@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>{{$title}}</h1>
-    <h2>{{$collections->title}}</h2>
+    <p><a href="/category/{{$collection->category->slug}}">Category: {{$collection->category->name}}</a></p>
+    <h2>{{$collection->title}}</h2>
 </body>
 </html>

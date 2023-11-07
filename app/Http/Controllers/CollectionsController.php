@@ -8,16 +8,16 @@ use Illuminate\Http\Request;
 class CollectionsController extends Controller
 {
     public function index() {
-        return view('search_collections', [
-            'title' => "Search Collections",
+        return view('collections.get_collections', [
+            'title' => "Collections",
             'collections' => Collections::all(),
         ]);
     }
 
     public function show($slug) {
-        return view('collection', [
+        return view('collections.get_collection', [
             'title' => "Collection",
-            'collections' => Collections::where('slug', $slug)->first(),
+            'collection' => Collections::where('slug', $slug)->first(),
         ]);
     }
 }

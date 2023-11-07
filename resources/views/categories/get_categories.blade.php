@@ -10,19 +10,20 @@
       <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">Subject</th>
+      <th scope="col">File</th>
     </tr>
   </thead>
+  
   <tbody>
-
-  @foreach($collections as $each_collections)
+  @foreach($categories as $category)
     <tr>
-      <th scope="row">{{$each_collections->id}}</th>
-      <td>{{$each_collections->title}}</td>
-      <td>{{$each_collections->author}}</td>
-      <td>{{$each_collections->subject}}</td>
+      <th scope="row">{{$category->id}}</th>
+      <td><a href="{{ route('get_collection', ['slug' => $category->slug]) }}">{{$category->title}}</a></td>
+      <td>{{$category->author}}</td>
+      <td>{{$category->category->name}}</td>
+      <td>{{$category->file_upload}}</td>
     </tr>
   @endforeach  
-    
   </tbody>
 </table>
 

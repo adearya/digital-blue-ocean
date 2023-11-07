@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-USE App\Models\Categories;
+USE App\Models\Collections;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Collections extends Model
+class Categories extends Model
 {
     use HasFactory;
 
-    public function category() {
-        return $this->belongsTo(Categories::class);
+    public function collections() {
+        return $this->hasMany(Collections::class);
     }
 }
