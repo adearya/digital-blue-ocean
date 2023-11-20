@@ -15,49 +15,18 @@ class PostController extends Controller
         $searchSubjects = $request->input('category');
 
         // Mulai query dengan metode latest()
-        $posts = Post::latest();
-
-        // Tambahkan kondisi WHERE hanya jika nilai input tidak kosong
-        if ($searchTitle) {
-            $posts->where('title', 'like', '%' . $searchTitle . '%');
-        }
-
-        if ($searchAuthor) {
-            $posts->whereHas('author', function ($query) use ($searchAuthor) {
-                $query->where('name', 'like', '%' . $searchAuthor . '%');
-            });
-        }
-
-        if ($searchYear) {
-            $posts->where('year', 'like', '%' . $searchYear . '%');
-        }
-
-        if ($searchSubjects) {
-            $posts->whereHas('category', function ($query) use ($searchSubjects) {
-                $query->where('name', 'like', '%' . $searchSubjects . '%');
-            });
-        }
-
-        // Ambil hasil query
-        $posts = $posts->get();
+        $posts = Post::latest()
+            ->searchByTitle($searchTitle)
+            ->searchByAuthor($searchAuthor)
+            ->searchByYear($searchYear)
+            ->searchBySubjects($searchSubjects)
+            ->paginate(10);
 
         return view('dashboard.all_posts', [
             'title' => "All Post",
             'posts' => $posts,
         ]);
     }
-    // public function index() {
-    //     $posts = Post::latest();
-
-    //     if(request('search')) {
-    //         $posts->where('title', 'like', '%'. request('search') . '%');
-    //     }
-
-    //     return view('dashboard.all_posts', [
-    //         'title' => "All Post",
-    //         'posts' => $posts->get(),
-    //     ]);
-    // }
 
     public function show($slug) {
         $post = Post::where('slug', $slug)->first();

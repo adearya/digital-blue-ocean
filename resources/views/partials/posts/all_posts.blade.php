@@ -24,7 +24,7 @@
   </tbody>
 
 </table>
-
+{{ $posts->links() }}
 <div class="text-center p-3">
 <p>Displaying results 1 to 5 of 100. <br>
 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | Next</p>
