@@ -1,14 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.landing_page')
 
-@section('container')
+@section('container-bg1')
 
-@include('partials.navbar')
-@include('partials.home')
-@include('partials.search_collection')
-@include('partials.statistic')
-@include('partials.about')
-@include('partials.contact')
-@include('partials.related_links')
-@include('partials.footer')
+@include('partials.landing_page_contents.home')
+@include('partials.landing_page_contents.search_collection')
+@include('partials.landing_page_contents.statistic')
+@include('partials.landing_page_contents.about')
+@include('partials.landing_page_contents.contact')
+@include('partials.landing_page_contents.related_links')
 
 @endsection

@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-USE App\Models\Categories;
+use App\Models\Post;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Collections extends Model
+class Category extends Model
 {
     use HasFactory;
 
-    public function category() {
-        return $this->belongsTo(Categories::class);
+    public function post() {
+        return $this->hasMany(Post::class);
     }
 }

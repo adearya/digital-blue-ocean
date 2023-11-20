@@ -12,31 +12,13 @@
                                 <th class="text-center">Views</th>
                                 <th class="text-center">Action</th>
                             </tr>
+                            @foreach($posts as $post)
                             <tr>
-                                <td>Reactjs and Expressjs Implementation..</td>
-                                <td class="text-center">10</td>
-                                <td class="text-center"><a href="#">More Detail</a></td>
+                                <td>{{ $post->title }}</td>
+                                <td class="text-center">{{ $post->views_count }}</td>
+                                <td class="text-center"><a href="{{ route('single_post', ['slug' => $post->slug]) }}">More Detail</a></td>
                             </tr>
-                            <tr>
-                                <td>Application of Certification Manageme..</td>
-                                <td class="text-center">15</td>
-                                <td class="text-center"><a href="">More Detail</a></td>
-                            </tr>
-                            <tr>
-                                <td>Identification and Evaluation of Logisti..</td>
-                                <td class="text-center">11</td>
-                                <td class="text-center"><a href="">More Detail</a></td>
-                            </tr>
-                            <tr>
-                                <td>The Effectiveness of Public Services..</td>
-                                <td class="text-center">12</td>
-                                <td class="text-center"><a href="">More Detail</a></td>
-                            </tr>
-                            <tr>
-                                <td>The Impact Learning Organization..</td>
-                                <td class="text-center">14</td>
-                                <td class="text-center"><a href="">More Detail</a></td>
-                            </tr>
+                            @endforeach
                             <tr>
                                 <td>
                                     <div class="explore-more">
