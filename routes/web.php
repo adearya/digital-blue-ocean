@@ -5,7 +5,15 @@ use App\Models\Category;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\SignupController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::get('/signup', [SignupController::class, 'index']);
+Route::post('/signup', [SignupController::class, 'store']);
 
 // Landing Pages
 Route::get('/', function () {    
@@ -17,7 +25,7 @@ Route::get('/', function () {
     })->name('index');
 
 // Get Posts
-Route::get('/posts', [PostController::class, 'index'])->name('all_posts');
+Route::get('/posts', [PostController::class, 'index'])->name('all_posts')->middleware('auth');
 
 // Get Post
 Route::get('/post/{slug}', [PostController::class, 'show'])->name('single_post');

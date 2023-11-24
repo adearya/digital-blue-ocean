@@ -1,3 +1,4 @@
+@auth
 @extends('layouts.dashboard')
 
 @section('container-bg2')
@@ -7,3 +8,4 @@
 @include('partials.posts.all_posts')
 
 @endsection
+@endauth
