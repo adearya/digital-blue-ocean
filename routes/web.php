@@ -17,18 +17,18 @@ Route::post('/signup', [SignupController::class, 'store']);
 
 // Landing Page
 Route::get('/', function () {    
-    $latestPosts = Post::latest()->take(4)->get(['title', 'views_count', 'slug']);
+  $latestPosts = Post::latest()->take(4)->get(['title', 'views_count', 'slug']);
 
-    return view('landing_pages.index', [
-        'posts' => $latestPosts,
-    ]);
-    })->name('landing_page');
+  return view('landing_pages.index', [
+    'posts' => $latestPosts,
+  ]);
+  })->name('landing_page');
 
 // Dashboard
-Route::get('/posts', [PostController::class, 'index'])->name('all_posts')->middleware('auth');
+Route::get('/posts', [PostController::class, 'index'])->name('dashboard');
 
 // Detail Page
-Route::get('/posts/{slug}', [PostController::class, 'show'])->name('single_post');
+Route::get('/posts/{slug}', [PostController::class, 'show'])->name('detail');
 
 // Posts by Category
 Route::get('/category/{category:slug}', [CategoryController::class, 'index'])->name('single_category');

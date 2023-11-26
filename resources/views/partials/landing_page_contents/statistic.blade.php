@@ -16,13 +16,13 @@
             <tr>
               <td>{{ $post->title }}</td>
               <td class="text-center">{{ $post->views_count }}</td>
-              <td class="text-center"><a href="{{ route('single_post', ['slug' => $post->slug]) }}">More Detail</a></td>
+              <td class="text-center"><a href="{{ route('detail', ['slug' => $post->slug]) }}">More Detail</a></td>
             </tr>
             @endforeach
             <tr>
               <td>
                 <div class="explore-more">
-                  <a class="me-3" href="{{ route('all_posts') }}">EXPLORE MORE</a>
+                  <a class="me-3" href="{{ route('dashboard') }}">EXPLORE MORE</a>
                   <img src="assets/img/Vector.svg" alt="">
                 </div>
               </td>

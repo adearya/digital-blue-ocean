@@ -7,37 +7,38 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index(Request $request) {
-        // Ambil nilai dari empat input pencarian
-        $searchTitle = $request->input('title');
-        $searchAuthor = $request->input('author');
-        $searchYear = $request->input('year');
-        $searchSubjects = $request->input('category');
+  // Dashboard
+  public function index(Request $request) {
 
-        // Mulai query dengan metode latest()
-        $posts = Post::latest()
-            ->searchByTitle($searchTitle)
-            ->searchByAuthor($searchAuthor)
-            ->searchByYear($searchYear)
-            ->searchBySubjects($searchSubjects)
-            ->paginate(10);
+    $searchTitle = $request->input('title');
+    $searchAuthor = $request->input('author');
+    $searchYear = $request->input('year');
+    $searchSubjects = $request->input('category');
 
-        return view('dashboard.all_posts', [
-            'title' => "All Post",
-            'posts' => $posts,
-        ]);
+    $posts = Post::latest()
+      ->searchByTitle($searchTitle)
+      ->searchByAuthor($searchAuthor)
+      ->searchByYear($searchYear)
+      ->searchBySubjects($searchSubjects)
+      ->paginate(10);
+
+    return view('dashboard.index', [
+      'title' => "All Post",
+      'posts' => $posts,
+    ]);
+  }
+
+  // Detail Page
+  public function show($slug) {
+    $post = Post::where('slug', $slug)->first();
+
+    if ($post) {
+      $post->increment('views_count');
     }
 
-    public function show($slug) {
-        $post = Post::where('slug', $slug)->first();
-
-        if ($post) {
-            $post->increment('views_count');
-        }
-
-        return view('dashboard.single_post', [
-            'title' => "Single Post",
-            'post' => $post,
-        ]);
-    }
+    return view('dashboard.detail', [
+      'title' => "Single Post",
+      'post' => $post,
+    ]);
+  }
 }
