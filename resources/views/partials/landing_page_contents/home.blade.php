@@ -7,7 +7,7 @@
           <h1 class="fw-bold">Digital Blue Ocean</h1>
         </div>
         <div class="d-flex justify-content-center">
-        <a href="/about-us" aria-current="page" class="button left-button me-4 pt-2 text-decoration-none text-center">More</a>
+        <a href="/about" aria-current="page" class="button left-button me-4 pt-2 text-decoration-none text-center">More</a>
         <a href="/signup" aria-current="page" class="button right-button pt-2 text-decoration-none text-center">Sign Up Now</a>
         </div>
       </div>

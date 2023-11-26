@@ -26,6 +26,6 @@ class SignupController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/signup');
+        return redirect('/login');
     }
 }

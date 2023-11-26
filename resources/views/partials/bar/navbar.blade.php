@@ -27,7 +27,9 @@
           <a class="nav-link active text-white fw-bold" aria-current="page" href="/related-links">Related Links</a>
         </li>
       </ul>
-      <a class="btn btn-outline-info d-flex mx-2" aria-current="page" href="/login">Log in</a>
+      @guest
+        <a class="btn btn-outline-info d-flex mx-2" aria-current="page" href="/login">Log in</a>
+      @endguest
     </div>
   </div>
 </nav>

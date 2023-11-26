@@ -13,12 +13,15 @@
       </div>
       <div class="col-md-6">
         <div class="mb-3 d-grid gap-2 mt-sm-5">
-          <input type="text" class="form-control" id="email" name="email" required placeholder="Email, Phone & Username">
-          <input type="password" class="form-control" id="password" name= "password" required placeholder="Password">
-          <p class="text-end">
-            <a href="/">Forgot Password?</a>
-          </p>
-          <button type="submit" class="btn btn-primary">Sign In</button>
+          <form action="/login" method="post">
+            @csrf
+            <input type="text" class="form-control" id="email" name="email" required placeholder="Email">
+            <input type="password" class="form-control" id="password" name= "password" required placeholder="Password">
+            <p class="text-end">
+              <a href="/">Forgot Password?</a>
+            </p>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+          </form>
           <p class="text-center separator-line mt-3">or</p>
           <div class="d-flex justify-content-center gap-3">
             <a href="/">
