@@ -4,9 +4,9 @@
 {{-- Yield container-bg2 --}}
 @section('container-bg2')
 
-  {{-- Detail Contents --}}
+  {{-- Dashboard Contents --}}
   @include('partials.panel.search_panel')
   @include('partials.panel.user_panel')
-  @include('partials.dashboard.detail')
+  @include('partials.admin.manage-deposits')
 
 @endsection

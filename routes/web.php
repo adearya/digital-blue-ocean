@@ -16,11 +16,15 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/signup', [SignupController::class, 'index']);
 Route::post('/signup', [SignupController::class, 'store']);
 
+Route::get('/manage-deposits', function () {
+    return view('admin.manage-deposits');
+});
+
 // Landing Page
 Route::get('/', function () {    
   $latestPosts = Post::latest()->take(4)->get(['title', 'views_count', 'slug']);
 
-  return view('landing_pages.index', [
+  return view('landing_page.index', [
     'posts' => $latestPosts,
   ]);
   })->name('landing_page');
