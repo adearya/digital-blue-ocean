@@ -7,6 +7,6 @@
   {{-- Dashboard Contents --}}
   @include('partials.panel.search_panel')
   @include('partials.panel.user_panel')
-  @include('partials.admin.manage-deposits')
+  @include('partials.posts.manage-deposits')
 
 @endsection

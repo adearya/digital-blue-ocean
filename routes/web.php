@@ -17,7 +17,10 @@ Route::get('/signup', [SignupController::class, 'index']);
 Route::post('/signup', [SignupController::class, 'store']);
 
 Route::get('/manage-deposits', function () {
-    return view('admin.manage-deposits');
+    return view('posts.manage-deposits');
+});
+Route::get('/manage-deposits/edit-item-submission-center', function () {
+  return view('posts.edit-item-submission-center');
 });
 
 // Landing Page
