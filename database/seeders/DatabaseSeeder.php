@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Collection;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 
@@ -39,7 +40,7 @@ class DatabaseSeeder extends Seeder
         //     "slug" => "sistem-komputer",
         // ]);
 
-        Post::factory(20)->create();
+        Collection::factory(20)->create();
         // Collections::factory(20)->create();
         // Collections::create([
         //     "title" => "Machine Learning dalam Sistem Komputer di era modern",

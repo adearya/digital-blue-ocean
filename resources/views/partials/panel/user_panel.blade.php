@@ -5,7 +5,7 @@
       <span class="divider">|</span>
       <a href="/profile" class="text-primary">Profile</a>
       <span class="divider">|</span>
-      <a href="/manage-deposits" class="text-primary">Manage Deposits</a>
+      <a href="/dashboard/manage-deposits" class="text-primary">Manage Deposits</a>
       <span class="divider">|</span>
       @if(auth()->check() && auth()->user()->name == 'Admin')
         <a href="/admin" class="text-primary">Admin</a>

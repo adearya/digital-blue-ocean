@@ -2,43 +2,67 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Collection;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-  // Dashboard
-  public function index(Request $request) {
-
-    $searchTitle = $request->input('title');
-    $searchAuthor = $request->input('author');
-    $searchYear = $request->input('year');
-    $searchSubjects = $request->input('category');
-
-    $posts = Post::latest()
-      ->searchByTitle($searchTitle)
-      ->searchByAuthor($searchAuthor)
-      ->searchByYear($searchYear)
-      ->searchBySubjects($searchSubjects)
-      ->paginate(10);
-
-    return view('dashboard.index', [
-      'title' => "All Post",
-      'posts' => $posts,
-    ]);
-  }
-
-  // Detail Page
-  public function show($slug) {
-    $post = Post::where('slug', $slug)->first();
-
-    if ($post) {
-      $post->increment('views_count');
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+      return view('posts.manage-deposits', [
+        'posts' => Collection::where('user_id', auth()->user()->id)->get()
+      ]);
     }
 
-    return view('dashboard.detail', [
-      'title' => "Single Post",
-      'post' => $post,
-    ]);
-  }
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($slug)
+    {
+      $collection = Collection::where('slug', $slug)->firstOrFail();
+      return view('dashboard.detail', ['post' => $collection]);
+    } 
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Collection $collection)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Collection $collection)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Collection $collection)
+    {
+        //
+    }
 }

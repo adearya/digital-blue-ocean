@@ -15,22 +15,26 @@
           <th class="text-center">Number</th>
           <th class="text-center"></th>
         </tr>
-        <tr>
-          <td class="text-center">26 September 2023</td>
-          <td class="text-center">Article</td>
-          <td>Utilization of Blockchain Technology for Management E-Certificate Open Journal System</td>
-          <td class="text-center">APTISI Transactions on Management (ATM)</td>
-          <td class="text-center">1</td>
-          <td class="text-center">1</td>
-          <td class="text-center bg-white">
-            <div class="d-flex gap-2">
-              <img src="{{ asset('assets/img_viewItem.svg') }}" alt="View Item">
-              <img src="{{ asset('assets/img_removeItem.svg') }}" alt="Remove Item">
-              <img src="{{ asset('assets/img_editItem.svg') }}" alt="Edit Item">
-              <img src="{{ asset('assets/img_depositsItem.svg') }}" alt="Deposits Item">
-            </div>
-          </td>
-        </tr>                                                                                
+        @foreach ($posts as $post)
+          <tr>
+            <td class="text-center">26 September 2023</td>
+            <td class="text-center">Article</td>
+            <td>{{ $post->title }}</td>
+            <td class="text-center">APTISI Transactions on Management (ATM)</td>
+            <td class="text-center">1</td>
+            <td class="text-center">1</td>
+            <td class="text-center bg-white">
+              <div class="d-flex gap-2">
+                <a href="{{ route('manage-deposits.show', ['manage_deposit' => $post->slug]) }}">
+                  <img src="{{ asset('assets/img_viewItem.svg') }}" alt="View Item">
+                </a>
+                <img src="{{ asset('assets/img_removeItem.svg') }}" alt="Remove Item">
+                <img src="{{ asset('assets/img_editItem.svg') }}" alt="Edit Item">
+                <img src="{{ asset('assets/img_depositsItem.svg') }}" alt="Deposits Item">
+              </div>
+            </td>
+          </tr>
+        @endforeach
       </table>
     </div>
   </div>

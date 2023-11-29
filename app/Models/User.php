@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Post;
+use App\Models\Collection;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -48,7 +48,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function post() {
-        return $this->hasMany(Post::class);
+    public function collection() {
+        return $this->hasMany(Collection::class);
     }
 }
