@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CategoryController;
@@ -10,6 +11,8 @@ use App\Models\Post;
 use App\Models\Collection;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/review', [ReviewController::class, 'index']);
 
 Route::get('/dashboard/manage-deposit/item-submission-center', [PostController::class, 'createItemSubmissionCenter'])->name('item-submission-center')->middleware('auth');
 Route::get('/dashboard/manage-deposit/item-keywords', [PostController::class, 'createItemKeywords'])->name('item-keywords')->middleware('auth');
