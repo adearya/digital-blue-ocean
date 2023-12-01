@@ -11,7 +11,10 @@ use App\Models\Collection;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('/dashboard/manage-deposits', PostController::class);
+Route::get('/dashboard/manage-deposit/item-submission-center', [PostController::class, 'createItemSubmissionCenter'])->name('item-submission-center')->middleware('auth');
+Route::get('/dashboard/manage-deposit/item-keywords', [PostController::class, 'createItemKeywords'])->name('item-keywords')->middleware('auth');
+Route::get('/dashboard/manage-deposit/item-deposits', [PostController::class, 'createItemKeywords'])->name('item-deposits')->middleware('auth');
+Route::resource('/dashboard/manage-deposits', PostController::class)->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);

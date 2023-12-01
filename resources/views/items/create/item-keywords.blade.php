@@ -7,6 +7,6 @@
   {{-- Dashboard Contents --}}
   @include('partials.panel.search_panel')
   @include('partials.panel.user_panel')
-  @include('partials.posts.edit-item-keywords')
+  @include('partials.items.create.item-keywords')
 
 @endsection

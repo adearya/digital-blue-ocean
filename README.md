@@ -5,7 +5,9 @@ lakukan perintah ini untuk menjalankan
 3. composer install
 4. copy .env_example .env
 5. php artisan key:generate
-7. sesuaikan file .env pada bagian
-    DB_DATABASE=DigitalBlueOcean
-    DB_USERNAME=root
-    DB_PASSWORD=152mysqlroot
+7. sesuaikan file .env pada bagian<br>
+    DB_DATABASE=dbo<br>
+    DB_USERNAME=root<br>
+    DB_PASSWORD=
+8. php artisan migrate:fresh --seed
+9. register akun (jika ingin mengakses dashboard)

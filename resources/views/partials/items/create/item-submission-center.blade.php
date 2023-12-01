@@ -2,11 +2,11 @@
     <!-- Header Button -->
             <h1 class="container header-tittle pt-4 fw-bold">Edit Item</h1>
             <div class="container header-button d-flex justify-content-center gap-2">
-                <a href="/edit-item-submission-center" class="btn btn-warning text-white mt-4 col">Submission Center</a>
+                <a href="{{ route('item-submission-center') }}" class="btn btn-warning text-white mt-4 col">Submission Center</a>
                 <button type="" class="btn mt-4">></button>
-                <a href="/edit-item-keywords" class="btn btn-warning text-white mt-4 col">Keywords</a>
+                <a href="{{ route('item-keywords') }}" class="btn btn-warning text-white mt-4 col">Keywords</a>
                 <button type="" class="btn mt-4">></button>
-                <a href="/edit-item-deposits" class="btn btn-warning text-white mt-4 col">Deposits</a>
+                <a href="{{ route('item-deposits') }}" class="btn btn-warning text-white mt-4 col">Deposits</a>
             </div>
     <!-- Akhir Header Button -->
     
@@ -21,12 +21,9 @@
                     Choose Item Type
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="changeTextItemType('Article')">Article</a></li>
-                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="changeTextItemType('Book Section')">Book Section</a></li>
-                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="changeTextItemType('Book')">Book</a></li>
-                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="changeTextItemType('Thesis')">Thesis</a></li>
-                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="changeTextItemType('Conference of Workshop Item')">Conference of Workshop Item</a></li>
-                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="changeTextItemType('Other')">Other</a></li>
+                  @foreach ($categories as $category)
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="changeTextItemType('Article')">{{ $category->name }}</a></li>
+                  @endforeach
                 </ul>
             </div>
         </div>

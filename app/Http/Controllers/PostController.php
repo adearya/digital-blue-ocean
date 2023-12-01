@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-      return view('posts.manage-deposits', [
+      return view('items.index.manage-deposits', [
         'posts' => Collection::where('user_id', auth()->user()->id)->get()
       ]);
     }
@@ -20,9 +21,22 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createItemSubmissionCenter()
     {
-        //
+        $categories = Category::all();
+        return view('items.create.item-submission-center', [
+          'categories' => $categories
+        ]);
+    }
+
+    public function createItemKeywords()
+    {
+      return view('items.create.item-keywords');
+    }
+
+    public function createItemDeposits()
+    {
+      return view('items.create.item-deposits');
     }
 
     /**

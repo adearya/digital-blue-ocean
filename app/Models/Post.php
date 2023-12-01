@@ -6,12 +6,10 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 
-
-class Collection extends Model
+class Post extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory;
 
     protected $with = ['category', 'author'];
     protected $fillable = ['views_count'];
@@ -54,14 +52,5 @@ class Collection extends Model
                 $query->where('name', 'like', '%' . $searchSubjects . '%');
             });
         });
-    }
-
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
     }
 }
