@@ -12,7 +12,7 @@ use App\Models\Collection;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/review', [ReviewController::class, 'index']);
+Route::get('/dashboard/review', [ReviewController::class, 'index'])->name('login');
 
 Route::get('/dashboard/manage-deposit/item-submission-center', [PostController::class, 'createItemSubmissionCenter'])->name('item-submission-center')->middleware('auth');
 Route::get('/dashboard/manage-deposit/item-keywords', [PostController::class, 'createItemKeywords'])->name('item-keywords')->middleware('auth');

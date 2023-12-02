@@ -1,4 +1,5 @@
 <section class="home-page">
+  <a name="home"></a>
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6 text-white content1 mt-5">

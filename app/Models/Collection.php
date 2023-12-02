@@ -4,7 +4,11 @@ namespace App\Models;
 
 use App\Models\Category;
 use App\Models\User;
-use App\Models\Review;
+use App\Models\ItemType;
+use App\Models\Language;
+use App\Models\DataType;
+use App\Models\Status;
+use App\Models\PageRange;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -23,6 +27,26 @@ class Collection extends Model
 
     public function author() {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function item_type() {
+      return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function language() {
+      return $this->belongsTo(User::class, 'user_id');
+    }
+    
+    public function data_type() {
+      return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function status() {
+      return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function page_range() {
+      return $this->belongsTo(User::class, 'user_id');
     }
 
     public function scopeSearchByTitle($query, $searchTitle)

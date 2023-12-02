@@ -7,10 +7,12 @@
       <span class="divider">|</span>
       <a href="/dashboard/manage-deposits" class="text-primary">Manage Deposits</a>
       <span class="divider">|</span>
-      @if(auth()->check() && auth()->user()->name == 'Admin')
+      <a href="/dashboard/review" class="text-primary">Review</a>
+      <span class="divider">|</span>
+      {{-- @if(auth()->check() && auth()->user()->name == 'Admin') --}}
         <a href="/admin" class="text-primary">Admin</a>
         <span class="divider">|</span>
-      @endif
+      {{-- @endif --}}
       <form action="/logout" method="post" id="logoutForm">
         @csrf      
         <a href="#" class="text-primary" onclick="document.getElementById('logoutForm').submit();">Logout</a>

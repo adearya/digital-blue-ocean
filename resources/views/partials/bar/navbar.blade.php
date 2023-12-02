@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav ms-auto mb-2 mt-2">
         <li class="nav-item mx-2">
-          <a class="nav-link active text-white fw-bold" aria-current="page" href="/">Home</a>
+          <a class="nav-link active text-white fw-bold" aria-current="page" href="/#home">Home</a>
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link active text-white fw-bold" aria-current="page" href="/search-collections">Search Collections</a>
@@ -18,7 +18,7 @@
           <a class="nav-link active text-white fw-bold" aria-current="page" href="/statistics">Statistics</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link active text-white fw-bold" aria-current="page" href="/about-us">About</a>
+          <a class="nav-link active text-white fw-bold" aria-current="page" href="/#about">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active text-white fw-bold mx-2" aria-current="page" href="/contact-us">Contact</a>

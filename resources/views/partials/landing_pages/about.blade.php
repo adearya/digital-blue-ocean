@@ -1,4 +1,5 @@
-<section class="container-fluid about-us">
+<a name="about"></a>
+<section class="container-fluid about-us">  
   <div class="container">
     <div class="row d-flex align-items-center">
       <div class="col-md-7">

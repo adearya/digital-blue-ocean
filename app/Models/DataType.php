@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model
+class DataType extends Model
 {
     use HasFactory;
-    //
 }

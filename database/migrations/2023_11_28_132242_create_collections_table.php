@@ -15,12 +15,29 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->foreignId('user_id');
-            $table->unsignedInteger('views_count')->default(0);
+            $table->foreignId('item_type_id')->nullable();
+            $table->foreignId('language_id')->nullable();
+            $table->foreignId('data_type_id')->nullable();
+            $table->foreignId('status_id')->nullable();
+            $table->foreignId('page_range_id')->nullable();
             $table->string('title')->unique();
+            $table->string('abstract')->unique()->nullable();
             $table->string('slug')->unique();
             $table->string('file_upload');
+            $table->boolean('refereed')->nullable();
+            $table->string('publication_title')->nullable();
+            $table->unsignedInteger('issn')->nullable();
+            $table->string('publisher')->nullable();
+            // table cover not availabel
+            // table author company not availabel
+            $table->string('official_url')->nullable();
+            $table->unsignedInteger('volume')->nullable();
+            $table->unsignedInteger('number')->nullable();
+            $table->unsignedInteger('year')->nullable();
+            $table->string('reference')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
+            $table->unsignedInteger('views_count')->default(0);
         });
     }
 

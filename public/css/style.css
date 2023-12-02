@@ -124,7 +124,6 @@
     background-color: #CDD1FB;
 }
 
-
 .container-bg1 .viewboard .main {
     margin-top: 10px;
     padding-left: 70px;
@@ -216,6 +215,10 @@
 .container-bg1 .second-gmail-logo {
     width: 20px;
     margin-right: 10px;
+}
+
+.container-bg1 .bg-contact-us .form-contact-us {
+    background-color: #D9D9D9;
 }
 
 .container-bg1 .img-contact-us {
@@ -375,28 +378,16 @@ section.signup-page a {
 .container-bg2 .edit-item .upload-item .text-main-content {
     text-align: justify;
 }
-
-.container-bg2 .edit-item .publication-details .content-refereed-publicationdetails {
-    margin-left: 300px;
-}
-
-.container-bg2 .edit-item .publication-details .content-status-publicationdetails {
-    margin-left: 300px;
-}
-
-.container-bg2 .edit-item .publication-details .content-datatype-publicationdetails {
-    margin-left: 300px;
-}
 /* akhir edit item = submission center */
 
 /* edit item = keywords */
-.container-bg2 .bg-main-content-keywords {
+.container-bg2 .bg-main-content-edit-item-keywords {
     background-color: #F7F7F7;
     border-radius: 10px;
     filter: drop-shadow(0px 1px 1px black);
 }
 
-.container-bg2 .bg-main-content-keywords .btn:focus {
+.container-bg2 .bg-main-content-edit-item-keywords .btn:focus {
     outline: none;
     box-shadow: none;
 }
@@ -447,8 +438,74 @@ section.signup-page a {
 }
 /* akhir manage deposits */
 
+/* Profile page */
+.container-bg2 .profile-page .bg-main-content {
+    background-color: #F7F7F7;
+    border-radius: 10px;
+    filter: drop-shadow(0px 1px 1px black);
+}
+/* akhir Profile page */
+
+/* Profile-edit-user page */
+.container-bg2 .profile-edit-user .bg-main-content {
+    background-color: #F7F7F7;
+    border-radius: 10px;
+    filter: drop-shadow(0px 1px 1px black);
+}
+
+.container-bg2 .profile-edit-user .bg-main-username {
+    background-color: #1E5391;
+}
+
+.container-bg2 .profile-edit-user .bg-main-account-detail {
+    background-color: #1E5391;
+}
+
+.container-bg2 .profile-edit-user .bg-main-personal-details {
+    background-color: #1E5391;
+}
+/* akhir Profile-edit-user page */
+
 /* review page */
-.container-bg2 .review {
-    height: 100vh;
+.container-bg2 .review-admin .bg-main-content {
+    background-color: #F7F7F7;
+    border-radius: 10px;
+    filter: drop-shadow(0px 1px 1px black);
 }
 /* akhir review page */
+
+/* admin status */
+.container-bg2 .admin-status .bg-main-content {
+    background-color: #F7F7F7;
+    border-radius: 10px;
+    filter: drop-shadow(0px 1px 1px black);
+}
+/* akhir admin status */
+
+/* admin create user */
+.container-bg2 .admin-create-user .bg-main-content{
+    background-color: #F7F7F7;
+    border-radius: 10px;
+    filter: drop-shadow(0px 1px 1px black);
+}
+
+.container-bg2 .admin-create-user .bg-main-username {
+    background-color: #1E5391;
+}
+
+.container-bg2 .admin-create-user .bg-main-account-detail {
+    background-color: #1E5391;
+}
+
+.container-bg2 .admin-create-user .bg-main-personal-details {
+    background-color: #1E5391;
+}
+/* akhir admin create user */
+
+/* admin edit keywords */
+.container-bg2 .admin-edit-keywords .bg-main-content{
+    background-color: #F7F7F7;
+    border-radius: 10px;
+    filter: drop-shadow(0px 1px 1px black);
+}
+/* akhir admin edit keywords */
