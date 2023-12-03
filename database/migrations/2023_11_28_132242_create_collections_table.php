@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('reference')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
-            $table->unsignedInteger('views_count')->default(0);
+            $table->unsignedInteger('views_count')->default(0)->nullable();
         });
     }
 

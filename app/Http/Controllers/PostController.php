@@ -45,15 +45,15 @@ class PostController extends Controller
           'title' => 'required|max:255',
           // tambahkan aturan validasi lainnya sesuai kebutuhan
       ]);
-
+      
       $request->session()->put('post_data', $validatedData);
 
-      // $request->session()->put('post_data', $validatedData);
       return redirect()->route('create-item-keywords');
     }
 
     public function storeItemKeywords(Request $request)
     {
+      
       
       return redirect()->route('create-item-deposits');    
     }
@@ -62,10 +62,13 @@ class PostController extends Controller
     {
       
 
-      // Hapus data dari sesi setelah submit berhasil
-      $request->session()->forget('post_data');
+      
+      Collection::create(session('post_data'));
 
-      return redirect()->route('dashboard');
+      // // Hapus data dari sesi setelah submit berhasil
+      // $request->session()->forget('post_data');
+
+      return redirect()->route('landing_page');
     }
 
     /**

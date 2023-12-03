@@ -99,9 +99,7 @@
     <!-- Content Tittle - Submission Center -->
         <div class="container mt-5 bg-white p-3 rounded">
             <h5 class="fw-bold">Title</h5>
-            <form>
-                  <input type="text" class="form-control" name="title" id="title" placeholder="Enter your title">                
-            </form>
+
         </div>
     <!-- Akhir Content Tittle - Submission Center -->
 
@@ -570,6 +568,7 @@
             <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>
             <form action="/dashboard/manage-deposit/item-submission-center" method="post" id="storeItemSubmissionCenter">
               @csrf
+              <input type="text" class="form-control" name="title" id="title" placeholder="Enter your title">                
               <a href="#" class="btn btn-warning text-white" onclick="document.getElementById('storeItemSubmissionCenter').submit();">Next</a>
             </form>            
         </div>

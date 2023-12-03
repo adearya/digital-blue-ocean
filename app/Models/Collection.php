@@ -19,7 +19,7 @@ class Collection extends Model
     use HasFactory, Sluggable;
 
     protected $with = ['category', 'author'];
-    protected $fillable = ['views_count'];
+    protected $fillable = ['views_count', 'title'];
     
     public function category() {
         return $this->belongsTo(Category::class);
