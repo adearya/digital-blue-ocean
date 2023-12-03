@@ -12,31 +12,69 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+      return view('items.index.manage-deposits', [
+        'posts' => Collection::where('user_id', auth()->user()->id)->get()
+      ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createItemSubmissionCenter()
     {
-        //
+        return view('items.create.item-submission-center');
+    }
+
+    public function createItemKeywords()
+    {
+      return view('items.create.item-keywords');
+    }
+
+    public function createItemDeposits()
+    {
+      return view('items.create.item-deposits');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function storeItemSubmissionCenter(Request $request)
     {
-        //
+      // Validasi data jika diperlukan
+      $validatedData = $request->validate([
+          'title' => 'required|max:255',
+          // tambahkan aturan validasi lainnya sesuai kebutuhan
+      ]);
+
+      $request->session()->put('post_data', $validatedData);
+
+      // $request->session()->put('post_data', $validatedData);
+      return redirect()->route('create-item-keywords');
+    }
+
+    public function storeItemKeywords(Request $request)
+    {
+      
+      return redirect()->route('create-item-deposits');    
+    }
+
+    public function storeItemDeposits(Request $request)
+    {
+      
+
+      // Hapus data dari sesi setelah submit berhasil
+      $request->session()->forget('post_data');
+
+      return redirect()->route('dashboard');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Collection $collection)
+    public function show($slug)
     {
-        //
+      $collection = Collection::where('slug', $slug)->firstOrFail();
+      return view('dashboard.detail', ['post' => $collection]);
     }
 
     /**

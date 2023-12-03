@@ -200,7 +200,10 @@
             <div class="footer-button p-4 d-flex justify-content-center gap-3">
                 <a href="/edit-item-submission-center" class="btn btn-warning text-white">Previous</a>
                 <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>
-                <a href="/edit-item-deposits" class="btn btn-warning text-white">Next</a>
+                <form action="/dashboard/manage-deposit/item-keywords" method="post" id="storeItemKeywords">
+                  @csrf
+                  <a href="#" class="btn btn-warning text-white" onclick="document.getElementById('storeItemKeywords').submit();">Next</a>
+                </form>
             </div>        
         <!-- Akhir Footer Button -->    
         </section>

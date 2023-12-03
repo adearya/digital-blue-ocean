@@ -1,7 +1,7 @@
 <section class="container manage-deposits p-2 mt-4 bg-white rounded">
   <div class="text-center pt-4">
     <h1 class="tittle fw-bold">Manage Deposits</h1>
-    <a href="{{ route('item-submission-center') }}" class="btn btn-warning text-white mt-4">NEW ITEM</a>
+    <a href="{{ route('create-item-submission-center') }}" class="btn btn-warning text-white mt-4">NEW ITEM</a>
   </div>
   <div class="container bg-main-content mt-3 p-3">
     <div class="table-responsive">

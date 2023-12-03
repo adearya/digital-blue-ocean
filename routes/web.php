@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard/review', [ReviewController::class, 'index'])->name('login');
 
-Route::get('/dashboard/manage-deposit/item-submission-center', [PostController::class, 'createItemSubmissionCenter'])->name('item-submission-center')->middleware('auth');
-Route::get('/dashboard/manage-deposit/item-keywords', [PostController::class, 'createItemKeywords'])->name('item-keywords')->middleware('auth');
-Route::get('/dashboard/manage-deposit/item-deposits', [PostController::class, 'createItemKeywords'])->name('item-deposits')->middleware('auth');
+Route::get('/dashboard/manage-deposit/item-submission-center', [PostController::class, 'createItemSubmissionCenter'])->name('create-item-submission-center');
+Route::post('/dashboard/manage-deposit/item-submission-center', [PostController::class, 'storeItemSubmissionCenter'])->name('store-item-submission-center');
+Route::get('/dashboard/manage-deposit/item-keywords', [PostController::class, 'createItemKeywords'])->name('create-item-keywords');
+Route::post('/dashboard/manage-deposit/item-keywords', [PostController::class, 'storeItemKeywords'])->name('store-item-keywords');
+Route::get('/dashboard/manage-deposit/item-deposits', [PostController::class, 'createItemDeposits'])->name('create-item-deposits');
+Route::post('/dashboard/manage-deposit/item-deposits', [PostController::class, 'storeItemDeposits'])->name('store-item-deposits');
 Route::resource('/dashboard/manage-deposits', PostController::class)->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');

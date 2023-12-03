@@ -2,11 +2,11 @@
     <!-- Header Button -->
             <h1 class="container header-tittle pt-4 fw-bold">Edit Item</h1>
             <div class="container header-button d-flex justify-content-center gap-2">
-                <a href="{{ route('item-submission-center') }}" class="btn btn-warning text-white mt-4 col">Submission Center</a>
+                <a href="{{ route('create-item-submission-center') }}" class="btn btn-warning text-white mt-4 col">Submission Center</a>
                 <button type="" class="btn mt-4">></button>
-                <a href="{{ route('item-keywords') }}" class="btn btn-warning text-white mt-4 col">Keywords</a>
+                <a href="{{ route('create-item-keywords') }}" class="btn btn-warning text-white mt-4 col">Keywords</a>
                 <button type="" class="btn mt-4">></button>
-                <a href="{{ route('item-deposits') }}" class="btn btn-warning text-white mt-4 col">Deposits</a>
+                <a href="{{ route('create-item-deposits') }}" class="btn btn-warning text-white mt-4 col">Deposits</a>
             </div>
     <!-- Akhir Header Button -->
     
@@ -21,9 +21,9 @@
                     Choose Item Type
                 </button>
                 <ul class="dropdown-menu">
-                  @foreach ($categories as $category)
+                  {{-- @foreach ($categories as $category)
                     <li><a class="dropdown-item" href="javascript:void(0);" onclick="changeTextItemType('Article')">{{ $category->name }}</a></li>
-                  @endforeach
+                  @endforeach --}}
                 </ul>
             </div>
         </div>
@@ -100,9 +100,7 @@
         <div class="container mt-5 bg-white p-3 rounded">
             <h5 class="fw-bold">Title</h5>
             <form>
-                <div class="">
-                    <input type="text" class="form-control" id="titleInput" placeholder="Enter your title">
-                </div>
+                  <input type="text" class="form-control" name="title" id="title" placeholder="Enter your title">                
             </form>
         </div>
     <!-- Akhir Content Tittle - Submission Center -->
@@ -570,7 +568,10 @@
     <!-- Footer Button -->
         <div class="footer-button p-4 d-flex justify-content-center gap-3">
             <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>
-            <a href="/edit-item-keywords" class="btn btn-warning text-white">Next</a>
+            <form action="/dashboard/manage-deposit/item-submission-center" method="post" id="storeItemSubmissionCenter">
+              @csrf
+              <a href="#" class="btn btn-warning text-white" onclick="document.getElementById('storeItemSubmissionCenter').submit();">Next</a>
+            </form>            
         </div>
     <!-- Akhir Footer Button -->
     </section>

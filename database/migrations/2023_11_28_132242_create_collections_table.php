@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id');
-            $table->foreignId('user_id');
+            $table->foreignId('category_id')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->foreignId('item_type_id')->nullable();
             $table->foreignId('language_id')->nullable();
             $table->foreignId('data_type_id')->nullable();
@@ -22,8 +22,8 @@ return new class extends Migration
             $table->foreignId('page_range_id')->nullable();
             $table->string('title')->unique();
             $table->string('abstract')->unique()->nullable();
-            $table->string('slug')->unique();
-            $table->string('file_upload');
+            $table->string('slug')->unique()->nullable();
+            $table->string('file_upload')->nullable();
             $table->boolean('refereed')->nullable();
             $table->string('publication_title')->nullable();
             $table->unsignedInteger('issn')->nullable();

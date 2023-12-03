@@ -29,8 +29,11 @@
             </p>
 
             <div class="deposits-button p-4 d-flex justify-content-center gap-3">
-                <a href="/deposits-item" class="btn btn-dark text-white">DEPOSITS ITEM NOW</a>
-                <a href="/manage-deposits" class="btn btn-dark text-white">SAVE FOR LATER</a>
+              <form action="/dashboard/manage-deposit/item-deposits" method="post" id="storeItemDeposits">
+                @csrf
+                <a href="#" class="btn btn-dark text-white" onclick="document.getElementById('storeItemDeposits').submit();">DEPOSITS ITEM NOW</a>
+              </form>
+                <a href="#" class="btn btn-dark text-white">SAVE FOR LATER</a>
             </div> 
 
         </div>    
