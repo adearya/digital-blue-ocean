@@ -65,7 +65,7 @@
           <th class="text-center">NO.</th>
           <th class="text-center">Cover</th>
           <th>Title</th>
-          <th class="text-center">Author</th>
+          {{-- <th class="text-center">Author</th> --}}
           <th class="text-center">Keyword</th>
         </tr>
         @foreach($posts as $post)
@@ -73,7 +73,7 @@
             <td class="text-center">{{ $posts->firstItem() + $loop->index  }}</td>
             <td class="text-center"><img src="{{ asset('assets/img_coveratm.svg') }}" alt="Logo DBO" width="80"></td>                                              
             <td><a href="{{ route('detail', ['slug' => $post->slug]) }}">{{$post->title}}</a></td>
-            <td class="text-center text-nowrap"><a href="/author/{{ $post->author->username }}">{{$post->author->name}}</a></td>
+            {{-- <td class="text-center text-nowrap"><a href="/author/{{ $post->author->username }}">{{$post->author->name}}</a></td> --}}
             <td class="text-center"><a href="/category/{{ $post->category->slug }}">{{$post->category->name}}</a></td>
           </tr>
         @endforeach

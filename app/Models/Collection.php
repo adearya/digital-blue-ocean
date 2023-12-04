@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Review;
+use App\Models\Author;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\ItemType;
@@ -26,9 +27,9 @@ class Collection extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // public function author() {
-    //     return $this->belongsTo(User::class, 'user_id');
-    // }
+    public function author() {
+        return $this->belongsToMany(Author::class);
+    }
 
     public function item_type() {
       return $this->belongsTo(User::class);

@@ -41,15 +41,19 @@ class PostController extends Controller
      */
     public function storeItemSubmissionCenter(Request $request)
     {
+      
       // Validasi data jika diperlukan
       $validatedData = $request->validate([
           'title' => 'required|max:255',
           'slug' => 'required|max:255',
-          // 'author' => 'required',
+          'author' => 'required|array',
           // tambahkan aturan validasi lainnya sesuai kebutuhan
       ]);
       
+
       $request->session()->put('post_data', $validatedData);
+      // dd(session('post_data'));
+      
 
       return redirect()->route('create-item-keywords');
     }
@@ -66,7 +70,9 @@ class PostController extends Controller
       
 
       
-      Collection::create(session('post_data'));
+      $post = Collection::create(session('post_data'));
+
+      $post->author()->sync($request->input('author', []));
 
       // // Hapus data dari sesi setelah submit berhasil
       // $request->session()->forget('post_data');

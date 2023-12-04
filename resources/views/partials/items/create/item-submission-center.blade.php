@@ -111,115 +111,73 @@
     <!-- Akhir Content Abstract - Submission Center -->
 
     <!-- Content Author - Submission Center -->
-        <div class="container bg-white mt-5 p-3">
-            <h5 class="text-center fw-bold">Author's</h5>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="text-center">
-                        <label for="givenName1">Given Name</label>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text">1.</span>
-                        <input type="text" class="form-control" id="givenName1" placeholder="Enter your given name">
-                    </div>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text">2.</span>
-                        <input type="text" class="form-control" id="givenName2" placeholder="Enter your given name">
-                    </div>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text">3.</span>
-                        <input type="text" class="form-control" id="givenName3" placeholder="Enter your given name">
-                    </div>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text">4.</span>
-                        <input type="text" class="form-control" id="givenName4" placeholder="Enter your given name">
-                    </div>
-                    </div>
-                </div>
-    
-                <div class="col-md-3">
-                    <div class="text-center">
-                        <label for="familyName1">Family Name</label>
-                        <input type="text" class="form-control mb-2" id="familyName1" placeholder="Enter your family name">
-                        <input type="text" class="form-control mb-2" id="familyName2" placeholder="Enter your family name">
-                        <input type="text" class="form-control mb-2" id="familyName3" placeholder="Enter your family name">
-                        <input type="text" class="form-control mb-2" id="familyName4" placeholder="Enter your family name">
-                    </div>
-                </div>
-    
-                <div class="col-md-6">
-                    <div class="text-center">
-                        <label for="email1">Email</label>
-                        <input type="text" class="form-control mb-2" id="email1" placeholder="Enter your email">
-                        <input type="text" class="form-control mb-2" id="email2" placeholder="Enter your email">
-                        <input type="text" class="form-control mb-2" id="email3" placeholder="Enter your email">
-                        <input type="text" class="form-control mb-2" id="email4" placeholder="Enter your email">
-                    </div>
-                </div>
-            </div>
-    
-            <div class="text-center mt-3">
-                <button type="button" class="btn btn-primary" onclick="authors()">More Input</button>
-            </div>
-        </div>
-        
-        <script>
-            let counter = 4; // Initial counter value
-        
-            function authors() {
-                counter++;
-        
-                // Create new elements
-                const givenNameClone = createInputElement(`givenName${counter}`, 'Enter your given name');
-                const familyNameClone = createInputElement(`familyName${counter}`, 'Enter your family name', false);
-                const emailClone = createInputElement(`email${counter}`, 'Enter your email', false);
-        
-                // Append the new elements to their respective sections
-                const container = document.querySelector('.row');
-        
-                const col1 = document.createElement('div');
-                col1.classList.add('col-md-3');
-                col1.appendChild(givenNameClone);
-        
-                const col2 = document.createElement('div');
-                col2.classList.add('col-md-3');
-                col2.appendChild(familyNameClone);
-        
-                const col3 = document.createElement('div');
-                col3.classList.add('col-md-6');
-                col3.appendChild(emailClone);
-        
-                container.appendChild(col1);
-                container.appendChild(col2);
-                container.appendChild(col3);
-            }
-        
-            function createInputElement(id, placeholder, includeInputGroupText = true) {
-                const container = document.createElement('div');
-                container.classList.add('text-center', 'mb-2');
-        
-                const inputGroup = document.createElement('div');
-                inputGroup.classList.add('input-group');
-        
-                if (includeInputGroupText) {
-                    const inputGroupText = document.createElement('span');
-                    inputGroupText.classList.add('input-group-text');
-                    inputGroupText.textContent = `${counter}.`;
-                    inputGroup.appendChild(inputGroupText);
-                }
-        
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.classList.add('form-control');
-                input.id = id;
-                input.placeholder = placeholder;
-        
-                // Construct the elements
-                inputGroup.appendChild(input);
-                container.appendChild(inputGroup);
-        
-                return container;
-            }           
-        </script>
+    <form action="/dashboard/manage-deposit/item-submission-center" method="post" id="storeItemSubmissionCenter">
+      @csrf
+      <input type="text" class="form-control" name="title" id="title" placeholder="Enter your title">                
+      <input type="text" class="form-control" name="slug" id="slug" placeholder="Enter your slug">
+  <div class="row" id="authors-container">
+      <!-- Your existing input fields for the first author -->
+
+      <div class="col-md-3">
+          <div class="text-center">
+              <label for="givenName1">Given Name</label>
+              <div class="input-group mb-2">
+                  <span class="input-group-text">1.</span>
+                  <input type="text" class="form-control" name="author[]" placeholder="Enter given name">
+              </div>
+          </div>
+      </div>
+
+      {{-- <div class="col-md-3">
+          <div class="text-center">
+              <label for="familyName1">Family Name</label>
+              <input type="text" class="form-control mb-2" name="familyNames[]" placeholder="Enter family name">
+          </div>
+      </div>
+
+      <div class="col-md-6">
+          <div class="text-center">
+              <label for="email1">Email</label>
+              <input type="text" class="form-control mb-2" name="emails[]" placeholder="Enter email">
+          </div>
+      </div> --}}
+  </div>
+
+  <div class="text-center mt-3">
+      <button type="button" class="btn btn-primary" onclick="addAuthor()">More Input</button>
+  </div>
+
+
+<script>
+  let authorCounter = 1;
+
+  function addAuthor() {
+      authorCounter++;
+
+      const newAuthor = `
+          <!-- Your existing input fields for the next authors -->
+
+          <div class="col-md-3">
+              <div class="text-center">
+                  <label for="givenName${authorCounter}">Given Name</label>
+                  <div class="input-group mb-2">
+                      <span class="input-group-text">${authorCounter}.</span>
+                      <input type="text" class="form-control" name="author[]" placeholder="Enter given name ${authorCounter}">
+                  </div>
+              </div>
+          </div>
+
+          
+      `;
+
+      // Append the new author fields to the container
+      document.getElementById('authors-container').insertAdjacentHTML('beforeend', newAuthor);
+  }
+</script>
+
+
+      <a href="#" class="btn btn-warning text-white" onclick="document.getElementById('storeItemSubmissionCenter').submit();">Next</a>
+    </form> 
     <!-- Akhir Content Author - Submission Center -->
 
     <!-- Author's Company - Submission Center -->
@@ -564,12 +522,7 @@
     <!-- Footer Button -->
         <div class="footer-button p-4 d-flex justify-content-center gap-3">
             <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>
-            <form action="/dashboard/manage-deposit/item-submission-center" method="post" id="storeItemSubmissionCenter">
-              @csrf
-              <input type="text" class="form-control" name="title" id="title" placeholder="Enter your title">                
-              <input type="text" class="form-control" name="slug" id="slug" placeholder="Enter your slug">                
-              <a href="#" class="btn btn-warning text-white" onclick="document.getElementById('storeItemSubmissionCenter').submit();">Next</a>
-            </form>            
+            {{-- tes            --}}
         </div>
     <!-- Akhir Footer Button -->
     </section>
