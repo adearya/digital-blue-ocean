@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Collection;
+use App\Models\Review;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,5 +51,9 @@ class User extends Authenticatable
 
     public function collection() {
         return $this->hasMany(Collection::class);
+    }
+
+    public function review() {
+      return $this->hasMany(Review::class);
     }
 }

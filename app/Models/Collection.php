@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Review;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\ItemType;
@@ -19,8 +20,12 @@ class Collection extends Model
     use HasFactory, Sluggable;
 
     protected $with = ['category', 'author'];
-    protected $fillable = ['views_count', 'title'];
-    
+    protected $guarded = ['id'];
+
+    public function review() {
+      return $this->hasMany(Review::class);
+    }
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
@@ -30,23 +35,23 @@ class Collection extends Model
     }
 
     public function item_type() {
-      return $this->belongsTo(User::class, 'user_id');
+      return $this->belongsTo(User::class);
     }
 
     public function language() {
-      return $this->belongsTo(User::class, 'user_id');
+      return $this->belongsTo(User::class);
     }
     
     public function data_type() {
-      return $this->belongsTo(User::class, 'user_id');
+      return $this->belongsTo(User::class);
     }
 
     public function status() {
-      return $this->belongsTo(User::class, 'user_id');
+      return $this->belongsTo(User::class);
     }
 
     public function page_range() {
-      return $this->belongsTo(User::class, 'user_id');
+      return $this->belongsTo(User::class);
     }
 
     public function scopeSearchByTitle($query, $searchTitle)

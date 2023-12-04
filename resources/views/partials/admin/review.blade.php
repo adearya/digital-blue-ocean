@@ -54,10 +54,11 @@
               <th class="text-center"></th>
           </tr>
 
+          @foreach ($posts as $post)
           <tr>
               <td class="text-center">26 September 2023</td>
               <td class="text-center">Article</td>
-              <td>Utilization of Blockchain Technology for Management E-Certificate Open Journal System</td>
+              <td>{{$post->title}}</td>
               <td class="text-center">Admin Digital Blue Ocean</td>
               <td class="text-center">APTISI Transactions on Management (ATM)</td>
               <td class="text-center">1</td>
@@ -67,108 +68,19 @@
                       <button onclick="editItemReview()" style="border: none; background-color: transparent">
                           <img src="{{ asset('assets/img_edititemreview.svg') }}" alt="Edit Item">
                       </button>
-                      <button onclick="publishItemReview()" style="border: none; background-color: transparent">
-                          <img src="{{ asset('assets/img_publishitemreview.svg') }}" alt="Publish Item">
-                      </button>
+                      <form action="/dashboard/review" method="post">
+                        @csrf
+                        <button type="submit" style="border: none; background-color: transparent">
+                            <img src="{{ asset('assets/img_publishitemreview.svg') }}" alt="Publish Item">
+                        </button>
+                      </form>
                       <button onclick="deleteItemReview()" style="border: none; background-color: transparent;">
                           <img src="{{ asset('assets/img_deleteitemreview.svg') }}" alt="Delete Item">
                       </button>
                   </div>
               </td>
-          </tr>                                     
-          
-          <tr>
-              <td class="text-center">26 September 2023</td>
-              <td class="text-center">Article</td>
-              <td>Utilization of Blockchain Technology for Management E-Certificate Open Journal System</td>
-              <td class="text-center">Admin Digital Blue Ocean</td>
-              <td class="text-center">APTISI Transactions on Management (ATM)</td>
-              <td class="text-center">1</td>
-              <td class="text-center">1</td>
-              <td class="text-center bg-white">
-                  <div class="d-flex gap-2">
-                      <button onclick="editItemReview()" style="border: none; background-color: transparent">
-                          <img src="{{ asset('assets/img_edititemreview.svg') }}" alt="Edit Item">
-                      </button>
-                      <button onclick="publishItemReview()" style="border: none; background-color: transparent">
-                          <img src="{{ asset('assets/img_publishitemreview.svg') }}" alt="Publish Item">
-                      </button>
-                      <button onclick="deleteItemReview()" style="border: none; background-color: transparent;">
-                          <img src="{{ asset('assets/img_deleteitemreview.svg') }}" alt="Delete Item">
-                      </button>
-                  </div>
-              </td>
-          </tr>        
-          
-          <tr>
-              <td class="text-center">26 September 2023</td>
-              <td class="text-center">Article</td>
-              <td>Utilization of Blockchain Technology for Management E-Certificate Open Journal System</td>
-              <td class="text-center">Admin Digital Blue Ocean</td>
-              <td class="text-center">APTISI Transactions on Management (ATM)</td>
-              <td class="text-center">1</td>
-              <td class="text-center">1</td>
-              <td class="text-center bg-white">
-                  <div class="d-flex gap-2">
-                      <button onclick="editItemReview()" style="border: none; background-color: transparent">
-                          <img src="{{ asset('assets/img_edititemreview.svg') }}" alt="Edit Item">
-                      </button>
-                      <button onclick="publishItemReview()" style="border: none; background-color: transparent">
-                          <img src="{{ asset('assets/img_publishitemreview.svg') }}" alt="Publish Item">
-                      </button>
-                      <button onclick="deleteItemReview()" style="border: none; background-color: transparent;">
-                          <img src="{{ asset('assets/img_deleteitemreview.svg') }}" alt="Delete Item">
-                      </button>
-                  </div>
-              </td>
-          </tr>
-
-          <tr>
-              <td class="text-center">26 September 2023</td>
-              <td class="text-center">Article</td>
-              <td>Utilization of Blockchain Technology for Management E-Certificate Open Journal System</td>
-              <td class="text-center">Admin Digital Blue Ocean</td>
-              <td class="text-center">APTISI Transactions on Management (ATM)</td>
-              <td class="text-center">1</td>
-              <td class="text-center">1</td>
-              <td class="text-center bg-white">
-                  <div class="d-flex gap-2">
-                      <button onclick="editItemReview()" style="border: none; background-color: transparent">
-                          <img src="{{ asset('assets/img_edititemreview.svg') }}" alt="Edit Item">
-                      </button>
-                      <button onclick="publishItemReview()" style="border: none; background-color: transparent">
-                          <img src="{{ asset('assets/img_publishitemreview.svg') }}" alt="Publish Item">
-                      </button>
-                      <button onclick="deleteItemReview()" style="border: none; background-color: transparent;">
-                          <img src="{{ asset('assets/img_deleteitemreview.svg') }}" alt="Delete Item">
-                      </button>
-                  </div>
-              </td>
-          </tr>
-
-          <tr>
-              <td class="text-center">26 September 2023</td>
-              <td class="text-center">Article</td>
-              <td>Utilization of Blockchain Technology for Management E-Certificate Open Journal System</td>
-              <td class="text-center">Admin Digital Blue Ocean</td>
-              <td class="text-center">APTISI Transactions on Management (ATM)</td>
-              <td class="text-center">1</td>
-              <td class="text-center">1</td>
-              <td class="text-center bg-white">
-                  <div class="d-flex gap-2">
-                      <button onclick="editItemReview()" style="border: none; background-color: transparent">
-                          <img src="{{ asset('assets/img_edititemreview.svg') }}" alt="Edit Item">
-                      </button>
-                      <button onclick="publishItemReview()" style="border: none; background-color: transparent">
-                          <img src="{{ asset('assets/img_publishitemreview.svg') }}" alt="Publish Item">
-                      </button>
-                      <button onclick="deleteItemReview()" style="border: none; background-color: transparent;">
-                          <img src="{{ asset('assets/img_deleteitemreview.svg') }}" alt="Delete Item">
-                      </button>
-                  </div>
-              </td>
-          </tr>
-
+          </tr>                                                         
+          @endforeach
           </table>
       </div>
 </div>

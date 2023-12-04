@@ -1,39 +1,37 @@
-        <section class="container edit-item mt-4 bg-white rounded">
-    <!-- Header Button -->
-            <h1 class="container header-tittle pt-4 fw-bold">Edit Item</h1>
-            <div class="container header-button d-flex justify-content-center gap-2">
-                <a href="{{ route('create-item-submission-center') }}" class="btn btn-warning text-white mt-4 col">Submission Center</a>
-                <button type="" class="btn mt-4">></button>
-                <a href="{{ route('create-item-keywords') }}" class="btn btn-warning text-white mt-4 col">Keywords</a>
-                <button type="" class="btn mt-4">></button>
-                <a href="{{ route('create-item-deposits') }}" class="btn btn-warning text-white mt-4 col">Deposits</a>
-            </div>
-    <!-- Akhir Header Button -->
+<section class="container edit-item mt-4 bg-white rounded">
+  <!-- Header Button -->
+  <h1 class="container header-tittle pt-4 fw-bold">Edit Item</h1>
+  <div class="container header-button d-flex justify-content-center gap-2">
+    <a href="{{ route('create-item-submission-center') }}" class="btn btn-warning text-white mt-4 col">Submission Center</a>
+    <button type="" class="btn mt-4">></button>
+    <a href="{{ route('create-item-keywords') }}" class="btn btn-warning text-white mt-4 col">Keywords</a>
+    <button type="" class="btn mt-4">></button>
+    <a href="{{ route('create-item-deposits') }}" class="btn btn-warning text-white mt-4 col">Deposits</a>
+  </div>
+  <!-- Akhir Header Button -->
     
-    <!-- Submission Center -->
-        <div class="container bg-main-content-submissioncenter mt-3 p-5">
+  <!-- Submission Center -->
+  <div class="container bg-main-content-submissioncenter mt-3 p-5">
         
     <!-- Item Type - Submission Center -->
-        <div class="container justify-content-center bg-white rounded p-3 d-flex">
-            <h5 class="me-3 fw-bold">ITEM TYPE:</h3>
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Choose Item Type
-                </button>
-                <ul class="dropdown-menu">
-                  {{-- @foreach ($categories as $category)
-                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="changeTextItemType('Article')">{{ $category->name }}</a></li>
-                  @endforeach --}}
-                </ul>
-            </div>
-        </div>
+    <div class="container justify-content-center bg-white rounded p-3 d-flex">
+      <h5 class="me-3 fw-bold">ITEM TYPE:</h3>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Choose Item Type</button>
+        <ul class="dropdown-menu">
+          {{-- @foreach ($categories as $category)
+            <li><a class="dropdown-item" href="javascript:void(0);" onclick="changeTextItemType('Article')">{{ $category->name }}</a></li>
+          @endforeach --}}
+        </ul>
+      </div>
+    </div>
         
-        <script>
-            function changeTextItemType(text) {
-                document.querySelector('.btn.btn-primary.dropdown-toggle').innerText = text;
-            }
-        </script>
-    <!-- Akhir Item Type - Submission Center -->
+  <script>
+    function changeTextItemType(text) {
+      document.querySelector('.btn.btn-primary.dropdown-toggle').innerText = text;
+    }
+  </script>
+  <!-- Akhir Item Type - Submission Center -->
 
     <!-- Upload Item - Submission Center -->
         <div class="container mt-5 bg-white rounded upload-item p-3">

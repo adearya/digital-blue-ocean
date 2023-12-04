@@ -13,7 +13,8 @@ class PostController extends Controller
     public function index()
     {
       return view('items.index.manage-deposits', [
-        'posts' => Collection::where('user_id', auth()->user()->id)->get()
+        // 'posts' => Collection::where('user_id', auth()->user()->id)->get()
+        'posts' => Collection::all()
       ]);
     }
 
@@ -68,7 +69,7 @@ class PostController extends Controller
       // // Hapus data dari sesi setelah submit berhasil
       // $request->session()->forget('post_data');
 
-      return redirect()->route('landing_page');
+      return redirect('/dashboard/manage-deposits');
     }
 
     /**

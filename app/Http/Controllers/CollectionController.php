@@ -22,7 +22,7 @@ class CollectionController extends Controller
       ->searchBySubjects($searchSubjects)
       ->paginate(10);
 
-    return view('dashboard.index', [
+    return view('admin.review', [
       'title' => "All Post",
       'posts' => $posts,
     ]);
