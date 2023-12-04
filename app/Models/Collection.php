@@ -26,9 +26,9 @@ class Collection extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function author() {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+    // public function author() {
+    //     return $this->belongsTo(User::class, 'user_id');
+    // }
 
     public function item_type() {
       return $this->belongsTo(User::class);

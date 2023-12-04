@@ -15,14 +15,14 @@ class AuthorController extends Controller
     //     ]);
     // }
 
-    public function index(User $author) {
-      $collections = Collection::where('user_id', $author->id)
-          ->with('category', 'author') // Pastikan relasi ini sudah didefinisikan di model Collection
-          ->paginate(10); // Sesuaikan jumlah item per halaman sesuai kebutuhan
+  //   public function index(User $author) {
+  //     $collections = Collection::where('user_id', $author->id)
+  //         ->with('category', 'author') // Pastikan relasi ini sudah didefinisikan di model Collection
+  //         ->paginate(10); // Sesuaikan jumlah item per halaman sesuai kebutuhan
   
-      return view('dashboard.index', [
-          'title' => "Collections by: $author->name",
-          'posts' => $collections,
-      ]);
-  }
+  //     return view('dashboard.index', [
+  //         'title' => "Collections by: $author->name",
+  //         'posts' => $collections,
+  //     ]);
+  // }
 }

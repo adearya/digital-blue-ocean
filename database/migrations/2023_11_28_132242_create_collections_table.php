@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->nullable();
-            $table->foreignId('user_id')->nullable();
+            // $table->foreignId('user_id')->nullable();
             $table->foreignId('item_type_id')->nullable();
             $table->foreignId('language_id')->nullable();
             $table->foreignId('data_type_id')->nullable();
