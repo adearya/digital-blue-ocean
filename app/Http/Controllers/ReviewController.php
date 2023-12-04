@@ -43,13 +43,14 @@ class ReviewController extends Controller
     ]);
   }
 
-  public function store(Request $request) {
-    $item = Collection::find($request->input('collection_id'));
+  public function store($slug) {
+    $post = Collection::where('slug', $slug)->first();
 
-    dd($item);
-    // Review::create([
-    //   'title' => $item->title
-    // ]);
-       
+    Review::create([
+      'title' => $post->title,
+      'slug' => $post->slug,
+    ]);
+
+    return redirect()->route('dashboard')
   }
 }

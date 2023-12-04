@@ -44,6 +44,7 @@ class PostController extends Controller
       // Validasi data jika diperlukan
       $validatedData = $request->validate([
           'title' => 'required|max:255',
+          'slug' => 'required|max:255',
           // tambahkan aturan validasi lainnya sesuai kebutuhan
       ]);
       

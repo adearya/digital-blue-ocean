@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
           $table->id();
-          $table->foreignId('collection_id');
           $table->foreignId('category_id')->nullable();
           $table->foreignId('user_id')->nullable();
           $table->foreignId('item_type_id')->nullable();

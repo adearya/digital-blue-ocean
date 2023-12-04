@@ -22,10 +22,6 @@ class Collection extends Model
     protected $with = ['category', 'author'];
     protected $guarded = ['id'];
 
-    public function review() {
-      return $this->hasMany(Review::class);
-    }
-
     public function category() {
         return $this->belongsTo(Category::class);
     }

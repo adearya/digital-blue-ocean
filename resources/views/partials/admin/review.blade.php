@@ -68,7 +68,7 @@
                       <button onclick="editItemReview()" style="border: none; background-color: transparent">
                           <img src="{{ asset('assets/img_edititemreview.svg') }}" alt="Edit Item">
                       </button>
-                      <form action="/dashboard/review" method="post">
+                      <form action="{{ route('publish', ['slug' => $post->slug]) }}" method="post">
                         @csrf
                         <button type="submit" style="border: none; background-color: transparent">
                             <img src="{{ asset('assets/img_publishitemreview.svg') }}" alt="Publish Item">

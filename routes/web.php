@@ -14,7 +14,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard/review', [CollectionController::class, 'index']);
-Route::post('/dashboard/review', [ReviewController::class, 'store']);
+Route::post('/dashboard/review/{slug}', [ReviewController::class, 'store'])->name('publish');
 
 Route::get('/dashboard/manage-deposit/item-submission-center', [PostController::class, 'createItemSubmissionCenter'])->name('create-item-submission-center');
 Route::post('/dashboard/manage-deposit/item-submission-center', [PostController::class, 'storeItemSubmissionCenter'])->name('store-item-submission-center');

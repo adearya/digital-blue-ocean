@@ -567,6 +567,7 @@
             <form action="/dashboard/manage-deposit/item-submission-center" method="post" id="storeItemSubmissionCenter">
               @csrf
               <input type="text" class="form-control" name="title" id="title" placeholder="Enter your title">                
+              <input type="text" class="form-control" name="slug" id="slug" placeholder="Enter your slug">                
               <a href="#" class="btn btn-warning text-white" onclick="document.getElementById('storeItemSubmissionCenter').submit();">Next</a>
             </form>            
         </div>
