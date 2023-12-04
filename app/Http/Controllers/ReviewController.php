@@ -51,6 +51,6 @@ class ReviewController extends Controller
       'slug' => $post->slug,
     ]);
 
-    return redirect()->route('dashboard')
+    return redirect()->route('dashboard');
   }
 }
