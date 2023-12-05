@@ -20,14 +20,14 @@ class Collection extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $with = ['category', 'author'];
+    // protected $with = ['category', 'author'];
     protected $guarded = ['id'];
 
     public function category() {
         return $this->belongsTo(Category::class);
     }
 
-    public function author() {
+    public function authors() {
         return $this->belongsToMany(Author::class);
     }
 

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('collection_author', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('collection_id')->constrained();
+        Schema::create('author_collection', function (Blueprint $table) {
+            $table->id();            
             $table->foreignId('author_id')->constrained();
+            $table->foreignId('collection_id')->constrained();
             $table->timestamps();
-            $table->unique(['collection_id', 'author_id']);
-
         });
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('collection_author');
+        Schema::dropIfExists('author_collection');
     }
 };

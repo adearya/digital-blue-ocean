@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\Author;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,10 +13,11 @@ class PostController extends Controller
      */
     public function index()
     {
-      return view('items.index.manage-deposits', [
-        // 'posts' => Collection::where('user_id', auth()->user()->id)->get()
-        'posts' => Collection::all()
-      ]);
+      // return view('items.index.manage-deposits', [
+        $collections = Collection::with('authors')->get();
+
+        return view('items.index.manage-deposits', compact('collections'));
+      
     }
 
     /**
@@ -54,6 +56,7 @@ class PostController extends Controller
       $request->session()->put('post_data', $validatedData);
       // dd(session('post_data'));
       
+      // dd($request->author);
 
       return redirect()->route('create-item-keywords');
     }
@@ -67,15 +70,33 @@ class PostController extends Controller
 
     public function storeItemDeposits(Request $request)
     {
-      
+      // Ambil data dari session
+      $postData = session('post_data');
 
-      
-      $post = Collection::create(session('post_data'));
+      // Buat buku baru
+      $book = Collection::create([
+          'title' => $postData['title'],
+          'slug' => $postData['slug'],
+      ]);
 
-      $post->author()->sync($request->input('author', []));
+      // Inisialisasi array untuk menyimpan ID penulis
+      $authorIds = [];
 
-      // // Hapus data dari sesi setelah submit berhasil
-      // $request->session()->forget('post_data');
+      // Loop untuk setiap penulis yang dikirimkan dari formulir
+      foreach ($postData['author'] as $authorName) {
+          // Cari penulis berdasarkan nama atau buat penulis baru jika tidak ditemukan
+          $author = Author::firstOrCreate(['name' => $authorName]);
+
+          // Tambahkan ID penulis ke dalam array
+          $authorIds[] = $author->id;
+      }
+
+      // Lampirkan penulis-penulis ke buku yang baru dibuat
+      $book->authors()->attach($authorIds);
+
+      // Hapus data dari session setelah digunakan
+      $request->session()->forget('post_data');
+
 
       return redirect('/dashboard/manage-deposits');
     }

@@ -11,7 +11,9 @@ class Author extends Model
 {
     use HasFactory;
 
-  public function collection() {
+    protected $guarded = ['id'];
+    
+  public function collections() {
       return $this->belongsToMany(Collection::class);
   }
 
