@@ -4,49 +4,55 @@ namespace App\Models;
 
 use App\Models\Collection;
 use App\Models\Category;
-use App\Models\User;
+use App\Models\Author;
+// use App\Models\Category;
 use App\Models\ItemType;
 use App\Models\Language;
 use App\Models\DataType;
+use App\Models\Refereed;
 use App\Models\Status;
 use App\Models\PageRange;
-use Cviebrock\EloquentSluggable\Sluggable;
+// use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-  use HasFactory, Sluggable;
+  use HasFactory;
 
-  protected $with = ['category', 'author'];
+  
   protected $guarded = ['id'];
 
-  public function category() {
-      return $this->belongsTo(Category::class);
+  public function authors() {
+    return $this->belongsToMany(Author::class);
   }
 
-  public function author() {
-      return $this->belongsTo(User::class, 'user_id');
-  }
+  // public function categories() {
+  //   return $this->belongsTo(Category::class);
+  // }
 
-  public function item_type() {
+  public function item_types() {
     return $this->belongsTo(User::class);
   }
 
-  public function language() {
-    return $this->belongsTo(User::class);
+  public function languages() {
+    return $this->belongsTo(Language::class);
   }
   
-  public function data_type() {
-    return $this->belongsTo(User::class);
+  public function data_types() {
+    return $this->belongsTo(DataType::class);
   }
 
-  public function status() {
-    return $this->belongsTo(User::class);
+  public function refereeds() {
+    return $this->belongsTo(Refereed::class);
   }
 
-  public function page_range() {
-    return $this->belongsTo(User::class);
+  public function statuses() {
+    return $this->belongsTo(Status::class);
+  }
+
+  public function page_ranges() {
+    return $this->belongsTo(PageRange::class);
   }
 
   public function scopeSearchByTitle($query, $searchTitle)
@@ -81,12 +87,12 @@ class Review extends Model
       });
   }
 
-  public function sluggable(): array
-  {
-      return [
-          'slug' => [
-              'source' => 'title'
-          ]
-      ];
-  }
+  // public function sluggable(): array
+  // {
+  //     return [
+  //         'slug' => [
+  //             'source' => 'title'
+  //         ]
+  //     ];
+  // }
 }

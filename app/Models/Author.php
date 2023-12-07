@@ -14,10 +14,10 @@ class Author extends Model
     protected $guarded = ['id'];
     
   public function collections() {
-      return $this->belongsToMany(Collection::class);
+    return $this->belongsToMany(Collection::class);
   }
 
-  public function review() {
-    return $this->hasMany(Review::class);
+  public function reviews() {
+    return $this->belongsToMany(Review::class);    
   }
 }

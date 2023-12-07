@@ -5,7 +5,6 @@
 @section('container-bg2')
 
   {{-- Dashboard Contents --}}
-  @include('partials.panel.search_panel')
   @include('partials.panel.user_panel')
   @include('partials.items.index.manage-deposits')
 

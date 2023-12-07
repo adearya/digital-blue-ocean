@@ -12,6 +12,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function collection() {
         return $this->hasMany(Collection::class);
     }

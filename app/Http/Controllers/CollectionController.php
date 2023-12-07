@@ -8,24 +8,9 @@ use Illuminate\Http\Request;
 class CollectionController extends Controller
 {
     // Dashboard
-  public function index(Request $request) {
-
-    $searchTitle = $request->input('title');
-    $searchAuthor = $request->input('author');
-    $searchYear = $request->input('year');
-    $searchSubjects = $request->input('category');
-
-    $posts = Collection::latest()
-      ->searchByTitle($searchTitle)
-      ->searchByAuthor($searchAuthor)
-      ->searchByYear($searchYear)
-      ->searchBySubjects($searchSubjects)
-      ->paginate(10);
-
-    return view('admin.review', [
-      'title' => "All Post",
-      'posts' => $posts,
-    ]);
+  public function index() {
+    $collections = Collection::with('authors')->get();
+    return view('admin.review', compact('collections'));      
   }
 
   // Detail Page

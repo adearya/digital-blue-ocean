@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('author_review', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();            
+            $table->foreignId('author_id')->constrained();
+            $table->foreignId('review_id')->constrained();
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('author_review');
     }
 };

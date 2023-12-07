@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('page_ranges', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->unsignedInteger('from')->unique();
+            $table->unsignedInteger('to')->unique();
             $table->timestamps();
         });
     }

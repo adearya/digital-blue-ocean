@@ -9,47 +9,53 @@ use App\Models\User;
 use App\Models\ItemType;
 use App\Models\Language;
 use App\Models\DataType;
+use App\Models\Refered;
 use App\Models\Status;
 use App\Models\PageRange;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
+// use Cviebrock\EloquentSluggable\Sluggable;
 
 
 class Collection extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory;
 
     // protected $with = ['category', 'author'];
     protected $guarded = ['id'];
-
-    public function category() {
-        return $this->belongsTo(Category::class);
-    }
-
+    
     public function authors() {
         return $this->belongsToMany(Author::class);
     }
 
-    public function item_type() {
-      return $this->belongsTo(User::class);
+    public function categories() {
+        return $this->belongsTo(Category::class);
     }
 
-    public function language() {
-      return $this->belongsTo(User::class);
+    public function item_types() {
+      return $this->belongsTo(ItemType::class);
+    }
+  
+    public function languages() {
+      return $this->belongsTo(Language::class);
     }
     
-    public function data_type() {
-      return $this->belongsTo(User::class);
+    public function data_types() {
+      return $this->belongsTo(DataType::class);
     }
-
-    public function status() {
-      return $this->belongsTo(User::class);
+  
+    public function refereeds() {
+      return $this->belongsTo(Refereed::class);
     }
-
-    public function page_range() {
-      return $this->belongsTo(User::class);
+  
+    public function statuses() {
+      return $this->belongsTo(Status::class);
     }
+  
+    public function page_ranges() {
+      return $this->belongsTo(PageRange::class);
+    }
+  
 
     public function scopeSearchByTitle($query, $searchTitle)
     {
@@ -61,7 +67,7 @@ class Collection extends Model
     public function scopeSearchByAuthor($query, $searchAuthor)
     {
         return $query->when($searchAuthor, function ($query, $searchAuthor) {
-            return $query->whereHas('author', function ($query) use ($searchAuthor) {
+            return $query->whereHas('authors', function ($query) use ($searchAuthor) {
                 $query->where('name', 'like', '%' . $searchAuthor . '%');
             });
         });
@@ -83,13 +89,13 @@ class Collection extends Model
         });
     }
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
+    // public function sluggable(): array
+    // {
+    //     return [
+    //         'slug' => [
+    //             'source' => 'title'
+    //         ]
+    //     ];
+    // }
 
 }

@@ -13,31 +13,32 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
           $table->id();
-          $table->foreignId('category_id')->nullable();
-          $table->foreignId('user_id')->nullable();
-          $table->foreignId('item_type_id')->nullable();
-          $table->foreignId('language_id')->nullable();
-          $table->foreignId('data_type_id')->nullable();
-          $table->foreignId('status_id')->nullable();
-          $table->foreignId('page_range_id')->nullable();
-          $table->string('title')->unique();
-          $table->string('abstract')->unique()->nullable();
-          $table->string('slug')->unique()->nullable();
-          $table->string('file_upload')->nullable();
-          $table->boolean('refereed')->nullable();
-          $table->string('publication_title')->nullable();
-          $table->unsignedInteger('issn')->nullable();
-          $table->string('publisher')->nullable();
-          // table cover not availabel
-          // table author company not availabel
-          $table->string('official_url')->nullable();
-          $table->unsignedInteger('volume')->nullable();
-          $table->unsignedInteger('number')->nullable();
-          $table->unsignedInteger('year')->nullable();
-          $table->string('reference')->nullable();
-          $table->timestamp('published_at')->nullable();
-          $table->timestamps();
-          $table->unsignedInteger('views_count')->default(0)->nullable();
+            // $table->foreignId('categories_id')->nullable();
+            $table->foreignId('item_types_id')->nullable();
+            $table->foreignId('languages_id')->nullable();
+            $table->foreignId('data_types_id')->nullable();
+            $table->foreignId('refereeds_id')->nullable();
+            $table->foreignId('statuses_id')->nullable();
+            $table->foreignId('page_ranges_id')->nullable();
+            $table->string('title')->unique();
+            $table->string('abstract')->unique()->nullable();
+            $table->string('slug')->unique();
+            // $table->string('file_upload')->nullable();            
+            $table->string('journal_or_publication_title')->nullable();
+            $table->unsignedInteger('issn')->nullable();
+            $table->string('publisher')->nullable();
+            // table cover not availabel            
+            $table->string('official_url')->nullable();
+            $table->unsignedInteger('volume')->nullable();
+            $table->unsignedInteger('number')->nullable();
+            $table->unsignedInteger('year')->nullable();
+            $table->unsignedInteger('month')->nullable();
+            $table->unsignedInteger('day')->nullable();
+            $table->string('email_depositor')->nullable();
+            $table->string('reference')->nullable();
+            $table->timestamp('published_at')->nullable();
+            $table->timestamps();
+            $table->unsignedInteger('views_count')->default(0)->nullable();
         });
     }
 

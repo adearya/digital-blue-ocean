@@ -13,20 +13,22 @@
           <th class="text-center">Journal or Publication Title</th>
           <th class="text-center">Author</th>
           <th class="text-center">Number</th>
+          <th class="text-center">Volume</th>
           <th class="text-center"></th>
         </tr>
         @foreach ($collections as $post)
           <tr>
             <td class="text-center">26 September 2023</td>
-            <td class="text-center">Article</td>
+            <td class="text-center">{{ $post->item_types->name }}</td>
             <td>{{ $post->title }}</td>
-            <td class="text-center">APTISI Transactions on Management (ATM)</td>
+            <td class="text-center">{{ $post->journal_or_publication_title }}</td>
             <td class="text-center">
               @foreach ($post->authors as $item)
-              {{$item->name}}
+              {{$item->firstName}}{{$item->lastName}} 
               @endforeach
             </td>    
-            <td class="text-center">1</td>
+            <td class="text-center">{{ $post->number }}</td>
+            <td class="text-center">{{ $post->volume }}</td>
             <td class="text-center bg-white">
               <div class="d-flex gap-2">
                 <a href="{{ route('manage-deposits.show', ['manage_deposit' => $post->slug]) }}">

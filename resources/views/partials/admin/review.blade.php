@@ -54,21 +54,26 @@
               <th class="text-center"></th>
           </tr>
 
-          @foreach ($posts as $post)
+          @foreach ($collections as $post)
           <tr>
               <td class="text-center">26 September 2023</td>
-              <td class="text-center">Article</td>
-              <td>{{$post->title}}</td>
-              <td class="text-center">Admin Digital Blue Ocean</td>
-              <td class="text-center">APTISI Transactions on Management (ATM)</td>
-              <td class="text-center">1</td>
-              <td class="text-center">1</td>
+            <td class="text-center">{{ $post->item_types->name }}</td>
+            <td>{{ $post->title }}</td>
+            <td class="text-center">{{ $post->journal_or_publication_title }}</td>
+            <td class="text-center">
+              @foreach ($post->authors as $item)
+              {{$item->firstName}}{{$item->lastName}} 
+              @endforeach
+            </td>    
+            <td class="text-center">{{ $post->number }}</td>
+            <td class="text-center">{{ $post->volume }}</td>
               <td class="text-center bg-white">
                   <div class="d-flex gap-2">
                       <button onclick="editItemReview()" style="border: none; background-color: transparent">
                           <img src="{{ asset('assets/img_edititemreview.svg') }}" alt="Edit Item">
                       </button>
-                      <form action="{{ route('publish', ['slug' => $post->slug]) }}" method="post">
+                      {{-- <form action="{{ route('publish', ['slug' => $post->slug]) }}" method="post"> --}}
+                      <form action="{{ route('publish') }}" method="post">
                         @csrf
                         <button type="submit" style="border: none; background-color: transparent">
                             <img src="{{ asset('assets/img_publishitemreview.svg') }}" alt="Publish Item">
