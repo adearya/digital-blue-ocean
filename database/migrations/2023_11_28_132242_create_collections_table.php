@@ -20,15 +20,14 @@ return new class extends Migration
             $table->foreignId('refereeds_id')->nullable();
             $table->foreignId('statuses_id')->nullable();
             $table->foreignId('page_ranges_id')->nullable();
-            $table->string('title')->unique();
+            $table->string('title')->unique()->nullable();
             $table->string('abstract')->unique()->nullable();
-            $table->string('slug')->unique();
-            // $table->string('file_upload')->nullable();            
+            $table->string('slug')->unique()->nullable();
+            $table->string('file_upload')->nullable();            
             $table->string('journal_or_publication_title')->nullable();
             $table->unsignedInteger('issn')->nullable();
             $table->string('publisher')->nullable();
-            // table cover not availabel
-            // table author company not availabel
+            // table cover not availabel            
             $table->string('official_url')->nullable();
             $table->unsignedInteger('volume')->nullable();
             $table->unsignedInteger('number')->nullable();

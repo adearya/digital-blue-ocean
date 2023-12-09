@@ -1,5 +1,5 @@
 <section class="container edit-item mt-4 bg-white rounded">
-  <form action="/dashboard/manage-deposit/item-submission-center" method="post" id="storeItemSubmissionCenter">
+  <form action="/dashboard/manage-deposit/item-submission-center" method="post" id="storeItemSubmissionCenter"" enctype="multipart/form-data">
     @csrf
     <!-- Header Button -->
     <h1 class="container header-tittle pt-4 fw-bold">Edit Item</h1>
@@ -34,41 +34,7 @@
       </script>
       <!-- Akhir Item Type - Submission Center -->
 
-      <!-- Upload Item - Submission Center -->
-      <div class="container mt-5 bg-white rounded upload-item p-3">
-        <h5 class="text-center fw-bold text-header-content">ADD A NEW DOCUMENT</h5>
-        <p class="text-main-content">To upload a document to this repository, click the Browse button below to select a file and the Upload button to upload it to the archive. You can then add additional files to the document or upload more files to create additional documents. Select the files you want to upload, attach the files by clicking the upload button below, and upload your files to continue the process.</p>
-        <ul class="nav nav-tabs justify-content-center mt-4">
-          <li class="nav-item">
-            <a class="nav-link active" id="localTab" data-bs-toggle="tab" href="#uploadLocal">Upload File from Local</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="linkTab" data-bs-toggle="tab" href="#uploadLink">Upload File from Link</a>
-          </li>
-        </ul>
-
-        <div class="tab-content mt-4">
-          <div class="tab-pane fade show active" id="uploadLocal">      
-            <div class="mb-3">
-              <label for="localFile" class="form-label">Choose File</label>
-              <input type="file" class="form-control" id="localFile" accept=".pdf, .doc, .docx">
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">Upload</button>
-            </div>      
-          </div>
-          <div class="tab-pane fade" id="uploadLink">      
-            <div class="mb-3">
-              <label for="fileLink" class="form-label">File Link</label>
-              <input type="url" class="form-control" id="fileLink" placeholder="Enter file link">
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">Upload</button>
-            </div>      
-          </div>
-        </div>
-      </div>
-      <!-- Akhir Upload Item - Submission Center -->
+      //
 
       <!-- Language - Submission Center -->
       <div class="container justify-content-center bg-white mt-5 rounded p-3 d-flex d-md-flex flex-wrap align-items-center">
@@ -425,8 +391,7 @@
 
     <!-- Footer Button -->
     <div class="footer-button p-4 d-flex justify-content-center gap-3">
-      <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>
-      <a href="/edit-item-keywords" class="btn btn-warning text-white">Next</a>
+      <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>      
       <a class="btn btn-warning text-white" onclick="document.getElementById('storeItemSubmissionCenter').submit();">Next</a>
     </div>
     <!-- Akhir Footer Button -->

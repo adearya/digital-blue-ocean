@@ -11,6 +11,7 @@ use App\Models\Refereed;
 use App\Models\Status;
 use App\Models\PageRange;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -35,9 +36,10 @@ class PostController extends Controller
     ]);
   }
 
-  public function storeItemSubmissionCenter(Request $request) {
+  public function storeItemSubmissionCenter(Request $request) {    
+    
     $validatedData = $request->validate([
-      'itemTypes' => 'required',
+      'itemTypes' => 'required',            
       'languages' => 'required',
       'title' => 'required|max:255',
       'slug' => 'required|max:255',
@@ -62,10 +64,17 @@ class PostController extends Controller
       'dataTypes' => 'required',
       'emailDepositor' => 'required|max:255',
       'reference' => 'required|max:255',
-    ]);    
+    ]);            
+    // $validatedData['file_upload'] = $request->file('fileUpload')->store('public/uploads');
+
+    // Buat entri baru di basis data hanya untuk file_upload
+    // $collection = Collection::create([
+    //     'file_upload' => $file_path,
+    // ]);
 
     $request->session()->put('post_data', $validatedData);
     // dd(session('post_data'));
+    // return redirect()->route('create-item-keywords');
     return redirect()->route('create-item-keywords');
   }
 
@@ -84,9 +93,17 @@ class PostController extends Controller
   public function storeItemDeposits(Request $request) {
     $postData = session('post_data');
 
+    $request->validate([
+      'fileUpload' => 'required|file',        
+    ]);
+
+    // Simpan file di dalam folder storage/app/public/uploads
+    $file_path = $request->file('fileUpload')->store('public/uploads');
+
     $collection = Collection::create([
       'title' => $postData['title'],
       'slug' => $postData['slug'],
+      'file_upload' => $file_path,
       'abstract' => $postData['abstract'],
       'journal_or_publication_title' => $postData['journalOrPublicationTitle'],
       'issn' => $postData['issn'],

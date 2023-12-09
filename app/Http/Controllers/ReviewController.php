@@ -53,9 +53,12 @@ class ReviewController extends Controller
   public function store(Request $request) {
     $postData = session('post_data');
 
+    $fileUpload = Collection::get('file_upload');
+
     $review = Review::create([
       'title' => $postData['title'],
       'slug' => $postData['slug'],
+      'file_upload' => $fileUpload->first()->file_upload,
       'abstract' => $postData['abstract'],
       'journal_or_publication_title' => $postData['journalOrPublicationTitle'],
       'issn' => $postData['issn'],

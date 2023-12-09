@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('title')->unique();
             $table->string('abstract')->unique()->nullable();
             $table->string('slug')->unique();
-            // $table->string('file_upload')->nullable();            
+            $table->string('file_upload')->nullable();            
             $table->string('journal_or_publication_title')->nullable();
             $table->unsignedInteger('issn')->nullable();
             $table->string('publisher')->nullable();
