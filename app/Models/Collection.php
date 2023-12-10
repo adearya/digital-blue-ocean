@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Review;
 use App\Models\Author;
+use App\Models\Keyword;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\ItemType;
@@ -27,6 +28,10 @@ class Collection extends Model
     public function authors() {
         return $this->belongsToMany(Author::class);
     }
+
+    public function keywords() {
+      return $this->belongsToMany(Keyword::class);
+  }
 
     public function categories() {
         return $this->belongsTo(Category::class);

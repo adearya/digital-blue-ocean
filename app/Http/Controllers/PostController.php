@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Models\Author;
+use App\Models\Keyword;
+use App\Models\Category;
 use App\Models\ItemType;
 use App\Models\Language;
 use App\Models\DataType;
@@ -64,25 +66,39 @@ class PostController extends Controller
       'dataTypes' => 'required',
       'emailDepositor' => 'required|max:255',
       'reference' => 'required|max:255',
-    ]);            
-    // $validatedData['file_upload'] = $request->file('fileUpload')->store('public/uploads');
-
-    // Buat entri baru di basis data hanya untuk file_upload
-    // $collection = Collection::create([
-    //     'file_upload' => $file_path,
-    // ]);
+    ]);        
 
     $request->session()->put('post_data', $validatedData);
     // dd(session('post_data'));
-    // return redirect()->route('create-item-keywords');
     return redirect()->route('create-item-keywords');
   }
 
   public function createItemKeywords() {
-    return view('items.create.item-keywords');
+    $categories = Category::all();
+
+    return view('items.create.item-keywords', [
+      'categories' => $categories,
+    ]);
   }
 
   public function storeItemKeywords(Request $request) {
+    // Validasi data termasuk category
+    $validatedData = $request->validate([
+      'categories' => 'required',
+      'keyword' => 'required|array',
+      // ... (aturan validasi lainnya)
+    ]);
+
+    // Mendapatkan data dari sesi sebelumnya
+    $postData = session('post_data', []);
+
+    // Menggabungkan data sesi sebelumnya dengan data baru
+    $postData = array_merge($postData, $validatedData);
+
+    // Memasukkan kembali data ke dalam sesi
+    $request->session()->put('post_data', $postData);
+
+    // dd(session('post_data'));
     return redirect()->route('create-item-deposits');    
   }
 
@@ -94,11 +110,13 @@ class PostController extends Controller
     $postData = session('post_data');
 
     $request->validate([
-      'fileUpload' => 'required|file',        
+      'fileUpload' => 'required|file',
+      'image' => 'required|image',        
     ]);
 
     // Simpan file di dalam folder storage/app/public/uploads
-    $file_path = $request->file('fileUpload')->store('public/uploads');
+    $file_path = $request->file('fileUpload')->store('public/fileUploads');
+    $image = $request->file('image')->store('public/images');
 
     $collection = Collection::create([
       'title' => $postData['title'],
@@ -139,6 +157,26 @@ class PostController extends Controller
 
     // Lampirkan penulis-penulis ke buku yang baru dibuat
     $collection->authors()->attach($authorIds);
+
+    // // Inisialisasi array untuk menyimpan ID penulis
+    $keywordIds = [];    
+
+    // Loop through each author in the form data
+    foreach ($postData['keyword'] as $index => $keyword) {
+      // Create or find the author based on first name and last name
+      $keyword = Keyword::firstOrCreate([
+          'keyword' => $keyword,          
+      ]);
+
+      // Add the author's ID to the array
+      $keywordIds[] = $keyword->id;
+    }
+
+    // Lampirkan penulis-penulis ke buku yang baru dibuat
+    $collection->keywords()->attach($keywordIds);
+
+    $category = Category::firstOrCreate(['slug' => $postData['categories']]);
+    $collection->categories()->associate($category)->save();
 
     $itemType = ItemType::firstOrCreate(['name' => $postData['itemTypes']]);
     $collection->item_types()->associate($itemType)->save();

@@ -16,6 +16,7 @@
     <div class="container bg-main-content-submissioncenter mt-3 p-5">
 
       <!-- Item Type - Submission Center -->
+      <div class="d-flex">
       <div class="container justify-content-center bg-white mt-5 rounded p-3 d-flex d-md-flex flex-wrap align-items-center">
         <h5 class="me-3 fw-bold">ITEM TYPE:</h5>
         <div class="dropdown">
@@ -32,9 +33,7 @@
           document.querySelector('.dropdown select').value = text;
         }
       </script>
-      <!-- Akhir Item Type - Submission Center -->
-
-      //
+      <!-- Akhir Item Type - Submission Center -->      
 
       <!-- Language - Submission Center -->
       <div class="container justify-content-center bg-white mt-5 rounded p-3 d-flex d-md-flex flex-wrap align-items-center">
@@ -46,6 +45,7 @@
             @endforeach
           </select>
         </div>
+      </div>
       </div>        
 
       <script>
@@ -70,9 +70,9 @@
       <!-- Akhir Content Title - Submission Center -->
 
       <!-- Content Abstract - Submission Center -->
-      <div class="container mt-5 bg-white p-3 rounded">
-        <h5 class="fw-bold">Abstract</h5>        
-        <input type="text" class="form-control" name="abstract" id="abstract" placeholder="Enter your abstract">          
+      <div class="container mt-5 bg-white p-3 rounded">        
+        <h5 class="fw-bold">Abstract</h5>
+        <textarea class="form-control" name="abstract" id="abstract" rows="10"></textarea>        
       </div>
       <!-- Akhir Content Abstract - Submission Center -->
 
@@ -208,7 +208,7 @@
             @foreach ($refereeds as $item)              
               <div class="form-check">
                 <label class="form-check-label" for="refereed1">
-                  <input class="form-check-input" type="radio" name="refereeds" checked>
+                  <input class="form-check-input" type="radio" name="refereeds" value="{{ $item->name }}" checked>
                   {{ $item->name }}
                 </label>
               </div>
@@ -224,7 +224,7 @@
             @foreach ($statuses as $item)                  
               <div class="form-check">
                 <label class="form-check-label" for="status1">
-                  <input class="form-check-input" type="radio" name="statuses" value="option1" checked>
+                  <input class="form-check-input" type="radio" name="statuses" value="{{ $item->name }}" checked>
                   {{ $item->name }}
                 </label>
               </div>
@@ -252,42 +252,7 @@
           <h5 class="fw-bold">PUBLISHER :</h5>        
           <input type="text" class="form-control" name="publisher" id="publisher" placeholder="Enter your publisher journal">        
         </div>
-        <!-- akhir Publisher - publication deta -->
-
-        {{-- upload image cover --}}
-        <div class="container mt-5 bg-white rounded upload-item p-3">
-          <h5 class="text-center fw-bold text-header-content">ADD A COVER JOURNAL (OPTIONAL)</h5>
-          <p class="text-main-content">To upload an image to this repository, click the 'Browse' button below to select an image file, then click 'Upload' to add it to the archive. You can include additional images within the document or upload more images to create additional documents. Choose the images you wish to upload, attach them by clicking the upload button below, and proceed with the upload to continue the process.</p>
-          <ul class="nav nav-tabs justify-content-center mt-4">
-            <li class="nav-item">
-              <a class="nav-link active" id="localTab" data-bs-toggle="tab" href="#uploadLocal">Upload File from Local</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="linkTab" data-bs-toggle="tab" href="#uploadLink">Upload File from Link</a>
-            </li>
-          </ul>
-          <div class="tab-content mt-4">
-            <div class="tab-pane fade show active" id="uploadLocal">            
-              <div class="mb-3">
-                <label for="localFile" class="form-label">Choose File</label>
-                <input type="file" class="form-control" id="localFile" accept=".png, .jpeg">
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">Upload</button>
-              </div>            
-            </div>
-            <div class="tab-pane fade" id="uploadLink">            
-              <div class="mb-3">
-                <label for="fileLink" class="form-label">File Link</label>
-                <input type="url" class="form-control" id="fileLink" placeholder="Enter file link">
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">Upload</button>
-              </div>            
-            </div>
-          </div>
-        </div>
-        <!-- sakhir upload image cov -->
+        <!-- akhir Publisher - publication deta -->        
   
         <!-- Official URL - publication details -->
         <div class="container content-issn-publicationdetails mt-5">

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Category;
 use App\Models\ItemType;
 use App\Models\Language;
 use App\Models\Refereed;
@@ -102,6 +103,15 @@ class DatabaseSeeder extends Seeder
         ]);
         DataType::create([
           "name" => "Unspecified",
+        ]);
+
+        Category::create([
+          "name" => "Technology",
+          "slug" => "technology",
+        ]);
+        Category::create([
+          "name" => "General",
+          "slug" => "general",
         ]);
     }
 }
