@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Collection;
 use App\Models\Category;
 use App\Models\Author;
-// use App\Models\Category;
+use App\Models\Keyword;
 use App\Models\ItemType;
 use App\Models\Language;
 use App\Models\DataType;
@@ -27,9 +27,13 @@ class Review extends Model
     return $this->belongsToMany(Author::class);
   }
 
-  // public function categories() {
-  //   return $this->belongsTo(Category::class);
-  // }
+  public function keywords() {
+    return $this->belongsToMany(Keyword::class);
+}
+
+  public function categories() {
+    return $this->belongsTo(Category::class);
+  }
 
   public function item_types() {
     return $this->belongsTo(User::class);

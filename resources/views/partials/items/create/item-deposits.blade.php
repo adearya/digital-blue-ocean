@@ -61,20 +61,14 @@
         <div class="tab-pane fade show active" id="uploadLocal">            
           <div class="mb-3">
             <label for="localFile" class="form-label">Choose File</label>
-            <input type="file" class="form-control" id="localFile" accept=".png, .jpeg">
-          </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary">Upload</button>
-          </div>            
+            <input type="file" class="form-control" name="image" id="localFile" accept=".png, .jpeg">
+          </div>                    
         </div>
         <div class="tab-pane fade" id="uploadLink">            
           <div class="mb-3">
             <label for="fileLink" class="form-label">File Link</label>
             <input type="url" class="form-control" id="fileLink" placeholder="Enter file link">
-          </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary">Upload</button>
-          </div>            
+          </div>          
         </div>
       </div>
     </div>

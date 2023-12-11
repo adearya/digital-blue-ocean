@@ -45,7 +45,7 @@ class PostController extends Controller
       'languages' => 'required',
       'title' => 'required|max:255',
       'slug' => 'required|max:255',
-      'abstract' => 'required|max:255',
+      'abstract' => 'required',
       'firstName' => 'required|array',
       'lastName' => 'required|array',
       'email' => 'required|array',

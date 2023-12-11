@@ -13,21 +13,22 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
           $table->id();
-            // $table->foreignId('categories_id')->nullable();
+            $table->foreignId('categories_id')->nullable();
             $table->foreignId('item_types_id')->nullable();
+            $table->string('image')->nullable();
             $table->foreignId('languages_id')->nullable();
             $table->foreignId('data_types_id')->nullable();
             $table->foreignId('refereeds_id')->nullable();
             $table->foreignId('statuses_id')->nullable();
-            $table->foreignId('page_ranges_id')->nullable();
+            $table->foreignId('from_page')->nullable();
+            $table->foreignId('to_page')->nullable();
             $table->string('title')->unique();
             $table->string('abstract')->unique()->nullable();
             $table->string('slug')->unique();
             $table->string('file_upload')->nullable();            
             $table->string('journal_or_publication_title')->nullable();
             $table->unsignedInteger('issn')->nullable();
-            $table->string('publisher')->nullable();
-            // table cover not availabel            
+            $table->string('publisher')->nullable();                
             $table->string('official_url')->nullable();
             $table->unsignedInteger('volume')->nullable();
             $table->unsignedInteger('number')->nullable();
