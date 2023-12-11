@@ -22,15 +22,15 @@ class ReviewController extends Controller
   public function index(Request $request) {
 
     $searchTitle = $request->input('title');
-    // $searchAuthor = $request->input('author');
+    $searchAuthor = $request->input('author');
     $searchYear = $request->input('year');
-    // $searchSubjects = $request->input('category');
+    $searchSubjects = $request->input('category');
 
     $posts = Review::latest()
       ->searchByTitle($searchTitle)
-      // ->searchByAuthor($searchAuthor)
+      ->searchByAuthor($searchAuthor)
       ->searchByYear($searchYear)
-      // ->searchBySubjects($searchSubjects)
+      ->searchBySubjects($searchSubjects)
       ->paginate(10);
 
     return view('dashboard.index', [
@@ -114,10 +114,10 @@ class ReviewController extends Controller
     }
 
     // Lampirkan penulis-penulis ke buku yang baru dibuat
-    $collection->keywords()->attach($keywordIds);
+    $review->keywords()->attach($keywordIds);
 
     $category = Category::firstOrCreate(['slug' => $postData['categories']]);
-    $collection->categories()->associate($category)->save();
+    $review->categories()->associate($category)->save();
 
     $itemType = ItemType::firstOrCreate(['name' => $postData['itemTypes']]);
     $review->item_types()->associate($itemType)->save();

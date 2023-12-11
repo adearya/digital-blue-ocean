@@ -69,8 +69,8 @@ class Review extends Model
   public function scopeSearchByAuthor($query, $searchAuthor)
   {
       return $query->when($searchAuthor, function ($query, $searchAuthor) {
-          return $query->whereHas('author', function ($query) use ($searchAuthor) {
-              $query->where('name', 'like', '%' . $searchAuthor . '%');
+          return $query->whereHas('authors', function ($query) use ($searchAuthor) {
+              $query->where('firstName', 'like', '%' . $searchAuthor . '%');
           });
       });
   }
@@ -85,8 +85,8 @@ class Review extends Model
   public function scopeSearchBySubjects($query, $searchSubjects)
   {
       return $query->when($searchSubjects, function ($query, $searchSubjects) {
-          return $query->whereHas('category', function ($query) use ($searchSubjects) {
-              $query->where('name', 'like', '%' . $searchSubjects . '%');
+          return $query->whereHas('keywords', function ($query) use ($searchSubjects) {
+              $query->where('keyword', 'like', '%' . $searchSubjects . '%');
           });
       });
   }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('review_keyword', function (Blueprint $table) {
+        Schema::create('keyword_review', function (Blueprint $table) {
             $table->id();
             $table->foreignId('keyword_id')->constrained();
             $table->foreignId('review_id')->constrained();
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('review_keyword');
+        Schema::dropIfExists('keyword_review');
     }
 };
