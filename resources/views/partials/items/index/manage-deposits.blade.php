@@ -31,12 +31,19 @@
             <td class="text-center">{{ $post->volume }}</td>
             <td class="text-center bg-white">
               <div class="d-flex gap-2">
-                <a href="{{ route('manage-deposits.show', ['manage_deposit' => $post->slug]) }}">
+                <a href="{{ route('manage-deposits.show', ['collection' => $post->slug]) }}">                
                   <img src="{{ asset('assets/img_viewItem.svg') }}" alt="View Item">
-                </a>
-                <img src="{{ asset('assets/img_removeItem.svg') }}" alt="Remove Item">
-                <img src="{{ asset('assets/img_editItem.svg') }}" alt="Edit Item">
-                <img src="{{ asset('assets/img_depositsItem.svg') }}" alt="Deposits Item">
+                </a>                
+                <form action="/dashboard/manage-deposits/{{ $post->slug }}" method="post">                                    
+                  @method('delete')
+                  @csrf                  
+                  <button type="submit">
+                    <img src="{{ asset('assets/img_removeItem.svg') }}" alt="Remove Item">
+                  </button>
+                </form>
+                <a href="{{ route('edit-item-submission-center', ['collection' => $post->slug ]) }}">
+                  <img src="{{ asset('assets/img_editItem.svg') }}" alt="Edit Item">                
+                </a>                                
               </div>
             </td>
           </tr>

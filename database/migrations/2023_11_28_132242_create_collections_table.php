@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreignId('from_page')->nullable();
             $table->foreignId('to_page')->nullable();
             $table->string('title')->unique()->nullable();
-            $table->string('abstract')->unique()->nullable();
+            $table->text('abstract')->unique()->nullable();
             $table->string('slug')->unique()->nullable();
             $table->string('file_upload')->nullable();            
             $table->string('journal_or_publication_title')->nullable();

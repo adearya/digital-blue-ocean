@@ -16,13 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard/review', [CollectionController::class, 'index']);
 Route::post('/dashboard/review', [ReviewController::class, 'store'])->name('publish');
 
+Route::get('/dashboard/manage-deposit/item-submission-center/{collection}', [PostController::class, 'editItemSubmissionCenter'])->name('edit-item-submission-center');
+Route::put('/dashboard/manage-deposit/item-submission-center/{collection}', [PostController::class, 'updateItemSubmissionCenter'])->name('update-item-submission-center');
+Route::get('/dashboard/manage-deposit/item-keywords/{collection}', [PostController::class, 'editItemKeywords'])->name('edit-item-keywords');
+Route::put('/dashboard/manage-deposit/item-keywords/{collection}', [PostController::class, 'updateItemKeywords'])->name('update-item-keywords');
+Route::get('/dashboard/manage-deposit/item-deposits/{collection}', [PostController::class, 'editItemDeposits'])->name('edit-item-deposits');
+Route::put('/dashboard/manage-deposit/item-deposits/{collection}', [PostController::class, 'updateItemDeposits'])->name('update-item-deposits');
+
 Route::get('/dashboard/manage-deposit/item-submission-center', [PostController::class, 'createItemSubmissionCenter'])->name('create-item-submission-center');
 Route::post('/dashboard/manage-deposit/item-submission-center', [PostController::class, 'storeItemSubmissionCenter'])->name('store-item-submission-center');
 Route::get('/dashboard/manage-deposit/item-keywords', [PostController::class, 'createItemKeywords'])->name('create-item-keywords');
 Route::post('/dashboard/manage-deposit/item-keywords', [PostController::class, 'storeItemKeywords'])->name('store-item-keywords');
 Route::get('/dashboard/manage-deposit/item-deposits', [PostController::class, 'createItemDeposits'])->name('create-item-deposits');
 Route::post('/dashboard/manage-deposit/item-deposits', [PostController::class, 'storeItemDeposits'])->name('store-item-deposits');
-Route::resource('/dashboard/manage-deposits', PostController::class)->middleware('auth');
+Route::resource('/dashboard/manage-deposits', PostController::class)->middleware('auth')->parameters(['manage-deposits' => 'collection']);
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
