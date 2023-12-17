@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('collection_keyword', function (Blueprint $table) {
+        Schema::create('deposit_keyword', function (Blueprint $table) {
             $table->id();
             $table->foreignId('keyword_id')->constrained();
-            $table->foreignId('collection_id')->constrained();
+            $table->foreignId('deposit_id')->constrained();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('collection_keyword');
+        Schema::dropIfExists('deposit_keyword');
     }
 };

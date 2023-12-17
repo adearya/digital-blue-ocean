@@ -6,6 +6,6 @@
 
   {{-- Dashboard Contents --}}
   @include('partials.panel.user_panel')
-  @include('partials.admin.review')
+  @include('partials.authorization.admin.edit-admin')
 
 @endsection

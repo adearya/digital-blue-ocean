@@ -3,14 +3,14 @@
     <p>Logged in <span class="text-primary">as @auth {{ auth()->user()->name }} @else Guest @endauth </span></p>
     @auth
       <span class="divider">|</span>
-      <a href="/profile" class="text-primary">Profile</a>
+      <a href="{{ route('index-profile') }}" class="text-primary">Profile</a>
       <span class="divider">|</span>
-      <a href="/dashboard/manage-deposits" class="text-primary">Manage Deposits</a>
+      <a href="{{ route('manage-deposit') }}" class="text-primary">Manage Deposits</a>
       <span class="divider">|</span>
       <a href="/dashboard/review" class="text-primary">Review</a>
       <span class="divider">|</span>
       {{-- @if(auth()->check() && auth()->user()->name == 'Admin') --}}
-        <a href="/admin" class="text-primary">Admin</a>
+        <a href="{{ route('edit-admin') }}" class="text-primary">Admin</a>
         <span class="divider">|</span>
       {{-- @endif --}}
       <form action="/logout" method="post" id="logoutForm">

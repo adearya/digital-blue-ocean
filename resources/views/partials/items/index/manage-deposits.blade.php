@@ -22,18 +22,18 @@
             <td class="text-center">{{ $post->item_types->name }}</td>
             <td>{{ $post->title }}</td>
             <td class="text-center">{{ $post->journal_or_publication_title }}</td>
-            <td class="text-center">
+            <td class="text-center" style="white-space: nowrap">
               @foreach ($post->authors as $item)
-              {{$item->firstName}}{{$item->lastName}} 
+              {{$item->firstName}} {{$item->lastName}}
               @endforeach
             </td>    
             <td class="text-center">{{ $post->number }}</td>
             <td class="text-center">{{ $post->volume }}</td>
             <td class="text-center bg-white">
               <div class="d-flex gap-2">
-                <a href="{{ route('manage-deposits.show', ['collection' => $post->slug]) }}">                
+                {{-- <a href="{{ route('manage-deposits.show', ['collection' => $post->slug]) }}">                 --}}
                   <img src="{{ asset('assets/img_viewItem.svg') }}" alt="View Item">
-                </a>                
+                {{-- </a>                 --}}
                 <form action="/dashboard/manage-deposits/{{ $post->slug }}" method="post">                                    
                   @method('delete')
                   @csrf                  
@@ -41,7 +41,7 @@
                     <img src="{{ asset('assets/img_removeItem.svg') }}" alt="Remove Item">
                   </button>
                 </form>
-                <a href="{{ route('edit-item-submission-center', ['collection' => $post->slug ]) }}">
+                <a href="{{ route('edit-item-submission-center', ['deposit' => $post->slug ]) }}">
                   <img src="{{ asset('assets/img_editItem.svg') }}" alt="Edit Item">                
                 </a>                                
               </div>
