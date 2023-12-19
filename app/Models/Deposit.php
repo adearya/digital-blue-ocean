@@ -11,6 +11,7 @@ use App\Models\Language;
 use App\Models\PageRange;
 use App\Models\Refered;
 use App\Models\Status;
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,10 @@ class Deposit extends Model
     public function keywords() {
       return $this->belongsToMany(Keyword::class);
   }
+
+  public function users() {
+    return $this->belongsTo(User::class);
+}
 
     public function categories() {
         return $this->belongsTo(Category::class);

@@ -24,7 +24,7 @@
             <td class="text-center">{{ $post->journal_or_publication_title }}</td>
             <td class="text-center" style="white-space: nowrap">
               @foreach ($post->authors as $item)
-              {{$item->firstName}} {{$item->lastName}}
+              {{$item->firstName}} {{$item->lastName}} <br>
               @endforeach
             </td>    
             <td class="text-center">{{ $post->number }}</td>

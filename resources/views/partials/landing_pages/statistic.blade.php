@@ -32,11 +32,35 @@
       </div>
       <div class="col-md-6">
         <div class="content1-right d-flex justify-content-center flex-wrap">
-          <div class="kotak kotak1"></div>
-          <div class="kotak kotak2"></div>
-          <div class="kotak kotak3"></div>
-          <div class="kotak kotak4"></div>
-        </div>
+          <div class="kotak kotak1 d-flex justify-content-center gap-3">
+              <img src="{{ asset('assets/img_totalitems.svg') }}" width="100" alt="Total Items">
+              <div class="d-block justify-content-center mt-4 align-items-center">
+                  <h3 class="fw-bold text-center">{{ $totalItems }}</h3>
+                  <p class="fw-bold text-center">Items</p>
+              </div>
+          </div>
+          <div class="kotak kotak2 d-flex justify-content-center gap-3">
+              <img src="{{ asset('assets/img_totaldownloads.svg') }}" width="80" alt="Total Downloads">
+              <div class="d-block justify-content-center mt-4 align-items-center">
+                  <h3 class="fw-bold text-center">{{ $totalDownloads }}</h3>
+                  <p class="fw-bold text-center">Downloads</p>
+              </div>
+          </div>
+          <div class="kotak kotak3 d-flex justify-content-center gap-3">
+              <img src="{{ asset('assets/img_fulltext.svg') }}" width="100" alt="Full Text">
+              <div class="d-block justify-content-center mt-4 align-items-center">
+                  <h3 class="fw-bold text-center">100%</h3>
+                  <p class="fw-bold text-center">Full Text</p>
+              </div>
+          </div>
+          <div class="kotak kotak4 d-flex justify-content-center">
+              <img src="{{ asset('assets/img_openaccess.svg') }}" width="100" alt="Open Access">
+              <div class="d-block justify-content-center mt-4 align-items-center">
+                  <h3 class="fw-bold text-center">{{ $totalUsers }}</h3>
+                  <p class="fw-bold text-center">Users</p>
+              </div>
+          </div>
+      </div>
       </div>
     </div>
   </div>
@@ -55,28 +79,14 @@
           <table class="table table-spacing bg-white rounded">
             <tr>
               <th>Search Terms</th>
-              <th class="text-center">Download</th>
+              <th class="text-center">Downloaded</th>
             </tr>
+            @foreach ($topDownloads as $item)                  
             <tr>
-              <td>Learning scikit-learn: Machine Learning in Python</td>
-              <td class="text-center">10</td>
-            </tr>
-            <tr>
-              <td>Development of the Global Film Industry</td>
-              <td class="text-center">10</td>
-            </tr>
-            <tr>
-              <td>Data Analytics with Hadoop</td>
-              <td class="text-center">10</td>
-            </tr>
-            <tr>
-              <td>Data Analysis with R</td>
-              <td class="text-center">10</td>
-            </tr>
-            <tr>
-              <td>CYBERSPACE and CYBERSECURITY</td>
-              <td class="text-center">10</td>
-            </tr>
+              <td>{{ $item->title }}</td>
+              <td class="text-center">{{ $item->download_count }}</td>
+            </tr>            
+            @endforeach
           </table>
         </div>
       </div>
@@ -85,28 +95,14 @@
           <table class="table table-spacing bg-white rounded">
             <tr>
               <th>Search Terms</th>
-              <th class="text-center">Searches</th>
+              <th class="text-center">Downloaded</th>
             </tr>
+            @foreach ($topUsers as $item)                  
             <tr>
-              <td>Girinzio, Iqbal Desam</td>
-              <td class="text-center">24</td>
-            </tr>
-            <tr>
-              <td>Hanma, Zaki</td>
-              <td class="text-center">20</td>
-            </tr>
-            <tr>
-              <td>Situmorang, Hery</td>
-              <td class="text-center">18</td>
-            </tr>
-            <tr>
-              <td>Nurtino, Tio</td> 
-              <td class="text-center">15</td>
-            </tr>
-            <tr>
-              <td>Nuriman, Arbi</td>
-              <td class="text-center">11</td>
-            </tr>
+              <td>{{ $item->name }}</td>
+              <td class="text-center">{{ $item->download_count }}</td>
+            </tr>            
+            @endforeach
           </table>
         </div>
       </div>

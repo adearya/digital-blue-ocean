@@ -29,6 +29,11 @@
       </ul>
       @guest
         <a class="btn btn-outline-info d-flex mx-2" aria-current="page" href="/login">Log in</a>
+      @else
+      <form action="/logout" method="post" id="logoutForm">
+        @csrf      
+        <a class="btn btn-outline-info d-flex mx-2" aria-current="page" href="#" onclick="document.getElementById('logoutForm').submit();">Log out</a>        
+      </form>
       @endguest
     </div>
   </div>

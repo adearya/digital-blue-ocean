@@ -115,18 +115,23 @@ class DepositController extends Controller
     $postData = session('post_data');
 
     $request->validate([
-      'fileUpload' => 'required|file',
-      'image' => 'required|image',        
+      'fileUpload' => 'required_without_all:linkFileUpload|file',
+      'linkFileUpload' => 'required_without_all:fileUpload',
+      'image' => 'required_without_all:linkImage|image',
+      'linkImage' => 'required_without_all:image',
     ]);
 
     // Simpan file di dalam folder storage/app/public/uploads
     $file_path = $request->file('fileUpload')->store('public/fileUploads');
-    $image = $request->file('image')->store('public/images');
+    $image_path = $request->file('image')->store('public/images');
 
     $deposit = Deposit::create([
       'title' => $postData['title'],
       'slug' => $postData['slug'],
       'file_upload' => $file_path,
+      'link_file_upload' => $request->input('linkFileUpload'),
+      'image' => $image_path,
+      'link_image' => $request->input('linkImage'),
       'abstract' => $postData['abstract'],
       'journal_or_publication_title' => $postData['journalOrPublicationTitle'],
       'issn' => $postData['issn'],
@@ -170,7 +175,7 @@ class DepositController extends Controller
     foreach ($postData['keyword'] as $index => $keyword) {
       // Create or find the author based on first name and last name
       $keyword = Keyword::firstOrCreate([
-          'keyword' => $keyword,          
+          'name' => $keyword,          
       ]);
 
       // Add the author's ID to the array
@@ -317,8 +322,10 @@ class DepositController extends Controller
       
       
       $request->validate([
-        'fileUpload' => 'file',
-        'image' => 'image',        
+        'fileUpload' => 'sometimes',
+        'linkFileUpload' => 'sometimes',
+        'image' => 'sometimes',
+        'linkImage' => 'sometimes',
       ]);
 
       $deposit = Deposit::where('slug', $deposit)->firstOrFail();
@@ -342,6 +349,8 @@ class DepositController extends Controller
         'title' => $postData['title'],
         'slug' => $postData['slug'],        
         'abstract' => $postData['abstract'],
+        'link_file_upload' => $request->input('linkFileUpload'),      
+        'link_image' => $request->input('linkImage'),
         'journal_or_publication_title' => $postData['journalOrPublicationTitle'],
         'issn' => $postData['issn'],
         'publisher' => $postData['publisher'],
@@ -392,7 +401,7 @@ $keywordIds = [];
 // Loop through each keyword in the form data
 foreach ($postData['keyword'] as $index => $keyword) {
     // Temukan kata kunci berdasarkan nama kata kunci
-    $existingKeyword = Keyword::where('keyword', $keyword)->first();
+    $existingKeyword = Keyword::where('name', $keyword)->first();
 
     // Jika kata kunci tidak ditemukan, buat kata kunci baru
     if (!$existingKeyword) {
@@ -400,8 +409,8 @@ foreach ($postData['keyword'] as $index => $keyword) {
         $category = $postData['categories'][$index];
         
         $newKeyword = Keyword::create([
-            'keyword' => $keyword,
-            'category' => $category,
+            'name' => $keyword,
+            // 'category' => $category,
         ]);
 
         $keywordIds[] = $newKeyword->id;
@@ -443,7 +452,7 @@ foreach ($postData['keyword'] as $index => $keyword) {
       $deposit->save();
 
   
-      return redirect('/dashboard/manage-deposits');
+      return redirect()->route('manage-deposit');
     }
 
     /**

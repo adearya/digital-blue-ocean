@@ -1,5 +1,5 @@
         <section class="container edit-item mt-4 bg-white rounded">
-          <form action="{{ route('update-item-deposits', ['collection' => $post->slug ]) }}" method="post" id="updateItemDeposits" enctype="multipart/form-data">
+          <form action="{{ route('update-item-deposits', ['deposit' => $post->slug ]) }}" method="post" id="updateItemDeposits" enctype="multipart/form-data">
             @method('put')
             @csrf
     <!-- Header Button -->

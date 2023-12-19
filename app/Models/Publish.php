@@ -11,6 +11,8 @@ use App\Models\Language;
 use App\Models\PageRange;
 use App\Models\Refered;
 use App\Models\Status;
+use App\Models\User;
+
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -35,11 +35,8 @@
         <div class="tab-pane fade" id="uploadLink">      
           <div class="mb-3">
             <label for="fileLink" class="form-label">File Link</label>
-            <input type="url" class="form-control" id="fileLink" placeholder="Enter file link">
-          </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary">Upload</button>
-          </div>      
+            <input type="url" class="form-control" name="linkFileUpload" id="fileLink" placeholder="Enter file link">
+          </div>                
         </div>
       </div>
     </div>
@@ -67,7 +64,7 @@
         <div class="tab-pane fade" id="uploadLink">            
           <div class="mb-3">
             <label for="fileLink" class="form-label">File Link</label>
-            <input type="url" class="form-control" id="fileLink" placeholder="Enter file link">
+            <input type="url" class="form-control" name="linkImage" id="fileLink" placeholder="Enter file link">
           </div>          
         </div>
       </div>

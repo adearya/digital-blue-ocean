@@ -1,5 +1,5 @@
 <section class="container edit-item mt-4 bg-white rounded">
-  <form action="{{ route('update-item-keywords', ['collection' => $post->slug ]) }}" method="post" id="updateItemKeywords">
+  <form action="{{ route('update-item-keywords', ['deposit' => $post->slug ]) }}" method="post" id="updateItemKeywords">
     @method('put')
     @csrf
     <!-- Header Button -->
@@ -42,8 +42,8 @@
     <div id="keywordsContainer" class="mt-3">
       @foreach($post->keywords as $item)
           <div>
-              <input type="checkbox" class="btn-check" name="keyword[]" id="{{ 'btn-check-' . $item->name }}" autocomplete="off" value="{{ old('keyword[]', $item->keyword) }}" checked>
-              <label class="btn" for="{{ 'btn-check-' . $item->name }}">{{ old('keyword[]', $item->keyword) }}</label>
+              <input type="checkbox" class="btn-check" name="keyword[]" id="{{ 'btn-check-' . $item->name }}" autocomplete="off" value="{{ old('keyword[]', $item->name) }}" checked>
+              <label class="btn" for="{{ 'btn-check-' . $item->name }}">{{ old('keyword[]', $item->name) }}</label>
           </div>
       @endforeach
       <!-- Keywords will be dynamically added here -->

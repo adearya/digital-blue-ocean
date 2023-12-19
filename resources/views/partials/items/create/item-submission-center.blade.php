@@ -77,125 +77,103 @@
       <!-- Akhir Content Abstract - Submission Center -->
 
       <!-- Content Author - Submission Center -->
-      <div class="container bg-white mt-5 p-3">
-        <h5 class="text-center fw-bold">Author's</h5>
-        <div class="row">
-          <div class="col-md-3">
-            <div class="text-center mb-4">
-              <label for="firstnName">First Name</label>
+<div class="container bg-white mt-5 p-3">
+  <h5 class="text-center fw-bold">Author's</h5>
+  <div class="row" id="authorsContainer">
+      <!-- Existing Author inputs -->      
+      <div class="col-md-3">
+          <div class="text-center">
+              <label for="firstName">First Name</label>
               <div class="input-group mb-2">
-                <span class="input-group-text">1.</span>
-                <input type="text" class="form-control" name="firstName[]" id="firstnName" placeholder="Enter your first name">
-              </div>            
-            </div>
+                  <span class="input-group-text">1</span>
+                  <input type="text" class="form-control" name="firstName[]" placeholder="Enter your first name">
+              </div>
           </div>
-          <div class="col-md-3">
-            <div class="text-center mb-4">
+      </div>
+      <div class="col-md-3">
+          <div class="text-center">
               <label for="lastName">Last Name</label>
-              <input type="text" class="form-control mb-2" name="lastName[]" id="lastName" placeholder="Enter your last name">
-            </div>
+              <div class="input-group mb-2">                  
+                  <input type="text" class="form-control" name="lastName[]" placeholder="Enter your last name">
+              </div>
           </div>
-          <div class="col-md-6">
-            <div class="text-center">
+      </div>
+      <div class="col-md-6">
+          <div class="text-center">
               <label for="email">Email</label>
-              <input type="text" class="form-control mb-2" name="email[]" id="email" placeholder="Enter your email">
-            </div>
+              <div class="input-group mb-2">                  
+                  <input type="text" class="form-control" name="email[]" placeholder="Enter your email">
+              </div>
           </div>
-        </div>
-        <div class="text-center mt-3">
-          <button type="button" class="btn btn-primary" onclick="authors()">More Input</button>
-        </div>
+      </div>      
+  </div>
+  <h5 class="text-center fw-bold">Author's Company</h5>
+  <div id="authorsCompanyContainer">
+      <!-- Existing Author's Company inputs -->
+      
+      <div class="input-group mb-2">
+          <span class="input-group-text">1</span>          
+          <input type="text" class="form-control" name="authorCompany[]" placeholder=" Enter the author's company ">
       </div>
+      
+  </div>
+  <div class="text-center mt-3">
+    <button type="button" class="btn btn-primary" onclick="addAuthorsInput()">More Input</button>
+  </div>
+</div>
 
-      <script>
-        let counter = 1; // Initial counter value
+<script>
+  let counter = 1; // Initial counter value
 
-        function authors() {
-          counter++;
+  function addAuthorsInput() {
+      counter++;
 
-          // Create new elements
-          const firstNameClone = createInputElement(`firstName${counter}`, 'Enter your first name', 'firstName[]');
-          const lastNameClone = createInputElement(`lastName${counter}`, 'Enter your last name', 'lastName[]');
-          const emailClone = createInputElement(`email${counter}`, 'Enter your email', 'email[]');
+      // Create new elements for Author
+      const authorsContainer = document.getElementById('authorsContainer');
 
-    // Append the new elements to their respective sections
-    const container = document.querySelector('.row');
+      const col1 = document.createElement('div');
+      col1.classList.add('col-md-3');
+      col1.innerHTML = `
+          <div class="text-center mb-4">              
+              <div class="input-group mb-2">
+                  <span class="input-group-text">${counter}.</span>
+                  <input type="text" class="form-control" name="firstName[]" placeholder="Enter your first name">
+              </div>
+          </div>`;
 
-    const col1 = document.createElement('div');
-    col1.classList.add('col-md-3');
-    col1.appendChild(firstNameClone);
+      const col2 = document.createElement('div');
+      col2.classList.add('col-md-3');
+      col2.innerHTML = `
+          <div class="text-center mb-4">              
+              <div class="input-group mb-2">                  
+                  <input type="text" class="form-control" name="lastName[]" placeholder="Enter your last name">
+              </div>
+          </div>`;
 
-    const col2 = document.createElement('div');
-    col2.classList.add('col-md-3');
-    col2.appendChild(lastNameClone);
+      const col3 = document.createElement('div');
+      col3.classList.add('col-md-6');
+      col3.innerHTML = `
+          <div class="text-center">              
+              <div class="input-group mb-2">                  
+                  <input type="text" class="form-control" name="email[]" placeholder="Enter your email">
+              </div>
+          </div>`;
 
-    const col3 = document.createElement('div');
-    col3.classList.add('col-md-6');
-    col3.appendChild(emailClone);
+      authorsContainer.appendChild(col1);
+      authorsContainer.appendChild(col2);
+      authorsContainer.appendChild(col3);
 
-    container.appendChild(col1);
-    container.appendChild(col2);
-    container.appendChild(col3);
+      // Create new element for Author's Company
+      const companyContainer = document.getElementById('authorsCompanyContainer');
+      const newInputGroup = document.createElement('div');
+      newInputGroup.classList.add('input-group', 'mb-2');
+      newInputGroup.innerHTML = `
+          <span class="input-group-text">${counter}.</span>
+          <input type="text" class="form-control" name="authorCompany[]" placeholder="Enter the author's company">`;
+
+      companyContainer.appendChild(newInputGroup);
   }
-
-  function createInputElement(id, placeholder, name) {
-    const container = document.createElement('div');
-    container.classList.add('text-center', 'mb-4');
-
-    const inputGroup = document.createElement('div');
-    inputGroup.classList.add('input-group');
-
-    const inputGroupText = document.createElement('span');
-    inputGroupText.classList.add('input-group-text');
-    inputGroupText.textContent = `${counter}.`;
-    inputGroup.appendChild(inputGroupText);
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.classList.add('form-control');
-    input.id = id;
-    input.name = name;
-    input.placeholder = placeholder;
-
-    // Construct the elements
-    inputGroup.appendChild(input);
-    container.appendChild(inputGroup);
-
-    return container;
-  }           
 </script>
-
-
-      <!-- Author's Company - Submission Center -->
-      <div class="container bg-white mt-5 p-3">
-        <h5 class="text-center fw-bold">Author's Company</h5>
-        <div id="authorsCompanyContainer">
-          <div class="input-group mb-2">
-            <span class="input-group-text">1.</span>
-            <input type="text" class="form-control" name="authorCompany[]" id="authorCompany" placeholder="Enter the author's company">
-          </div>
-        </div>
-        <div class="text-center mt-3">
-          <button type="button" class="btn btn-primary" id="moreInputButton">More Input</button>
-        </div>
-      </div>
-
-      <script>
-      let counterr = 1; // Initial counter value
-
-      document.getElementById('moreInputButton').addEventListener('click', function() {
-        counterr++;
-
-        const container = document.getElementById('authorsCompanyContainer');
-        const newInputGroup = document.createElement('div');
-        newInputGroup.classList.add('input-group', 'mb-2');
-        newInputGroup.innerHTML = `
-            <span class="input-group-text">${counterr}.</span>
-            <input type="text" class="form-control" name="authorCompany[]" id="authorsCompany${counterr}" placeholder="Enter the author's company">`;
-        container.appendChild(newInputGroup);
-      });
-      </script>
-      <!-- Akhir Author's Company - Submission Center -->
 
       <!-- Publications Detail - Submission Center -->
       <div class="container publication-details bg-white mt-5 p-3">
@@ -239,41 +217,43 @@
           <input type="text" class="form-control" name="journalOrPublicationTitle" id="journalorpublicationtitle" placeholder="Enter your journal or publication tittle">        
         </div>
         <!-- Akhir Journal or Publication Title - publication deta -->
-
-        <!-- ISSN - publication details -->
-        <div class="container content-issn-publicationdetails mt-5">
-          <h5 class="fw-bold">ISSN :</h5>      
-          <input type="text" class="form-control" name="issn" id="issn" placeholder="Enter your issn journal">      
-        </div>
-        <!-- akhir ISSN - publication deta -->
-
-        <!-- Publisher - publication details -->
-        <div class="container content-publisher-publicationdetails mt-5">
-          <h5 class="fw-bold">PUBLISHER :</h5>        
-          <input type="text" class="form-control" name="publisher" id="publisher" placeholder="Enter your publisher journal">        
-        </div>
-        <!-- akhir Publisher - publication deta -->        
+        
+        <div class="d-flex">          
+          <!-- ISSN - publication details -->
+          <div class="container content-issn-publicationdetails mt-5">
+            <h5 class="fw-bold">ISSN :</h5>      
+            <input type="text" class="form-control" name="issn" id="issn" placeholder="Enter your issn journal">      
+          </div>
+          <!-- akhir ISSN - publication deta -->
   
-        <!-- Official URL - publication details -->
-        <div class="container content-issn-publicationdetails mt-5">
-          <h5 class="fw-bold">OFFICIAL URL :</h5>        
-          <input type="text" class="form-control" name="officialUrl" id="official_url" placeholder="Enter your official url journal">        
+          <!-- Publisher - publication details -->
+          <div class="container content-publisher-publicationdetails mt-5">
+            <h5 class="fw-bold">PUBLISHER :</h5>        
+            <input type="text" class="form-control" name="publisher" id="publisher" placeholder="Enter your publisher journal">        
+          </div>
+          <!-- akhir Publisher - publication deta -->        
+    
+          <!-- Official URL - publication details -->
+          <div class="container content-issn-publicationdetails mt-5">
+            <h5 class="fw-bold">OFFICIAL URL :</h5>        
+            <input type="text" class="form-control" name="officialUrl" id="official_url" placeholder="Enter your official url journal">        
+          </div>
+          <!-- akhir Official URL - publication deta-->
         </div>
-        <!-- akhir Official URL - publication deta-->
 
-        <!-- Volume - publication details -->
-        <div class="container content-volume-publicationdetails mt-5">
-          <h5 class="fw-bold">VOLUME :</h5>        
-          <input type="text" class="form-control" name="volume" id="volume" placeholder="Enter your volume journal">        
-        </div>
-        <!-- akhir Volume - publication deta -->
-
-        <!-- Number - publication details -->
-        <div class="container content-number-publicationdetails mt-5">
-          <h5 class="fw-bold">NUMBER :</h5>    
-          <input type="text" class="form-control" name="number" id="number" placeholder="Enter your number journal">    
-        </div>
-        <!-- akhir Number - publication deta -->
+          <!-- Volume - publication details -->
+          <div class="container content-volume-publicationdetails mt-5">
+            <h5 class="fw-bold">VOLUME :</h5>        
+            <input type="text" class="form-control" name="volume" id="volume" placeholder="Enter your volume journal">        
+          </div>
+          <!-- akhir Volume - publication deta -->
+  
+          <!-- Number - publication details -->
+          <div class="container content-number-publicationdetails mt-5">
+            <h5 class="fw-bold">NUMBER :</h5>    
+            <input type="text" class="form-control" name="number" id="number" placeholder="Enter your number journal">    
+          </div>
+          <!-- akhir Number - publication deta -->
 
         <!-- Page Range - publication details -->
         <div class="container content-pagerange-publicationdetails mt-5">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\PublishController;
 use App\Http\Controllers\AuthorizationController;
+use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CategoryController;
@@ -10,20 +11,23 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Publish;
 use App\Models\Collection;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/dashboard/profile', [PostsController::class, 'indexProfile'])->name('index-profile');
-// Route::get('/dashboard/profile/{username}', [ProfileController::class, 'editProfile'])->name('edit-profile');
-// Route::put('/dashboard/profile/{username}', [ProfileController::class, 'updateProfile'])->name('update-profile');
+Route::get('/download/{filename}', [PublishController::class, 'downloadFile'])->name('download-file');
+
+Route::get('/dashboard/profile', [ProfileController::class, 'indexProfile'])->name('index-profile');
+Route::get('/dashboard/profile/{username}', [ProfileController::class, 'editProfile'])->name('edit-profile');
+Route::put('/dashboard/profile/{username}', [ProfileController::class, 'updateProfile'])->name('update-profile');
 
 Route::get('/dashboard/admin', [AuthorizationController::class, 'editAdmin'])->name('edit-admin');
 Route::post('/dashboard/admin', [AuthorizationController::class, 'updateAdmin'])->name('update-admin');
 
 Route::get('/dashboard/review', [PublishController::class, 'indexReview']);
-Route::post('/dashboard/review', [PublishController::class, 'store'])->name('publish');
+Route::post('/dashboard/review/{slug}', [PublishController::class, 'store'])->name('publish');
 
 Route::get('/dashboard/manage-deposit/item-submission-center/{deposit}', [DepositController::class, 'editItemSubmissionCenter'])->name('edit-item-submission-center');
 Route::put('/dashboard/manage-deposit/item-submission-center/{deposit}', [DepositController::class, 'updateItemSubmissionCenter'])->name('update-item-submission-center');
@@ -51,10 +55,21 @@ Route::post('/signup', [SignupController::class, 'store']);
 
 // Landing Page
 Route::get('/', function () {    
-  $latestPosts = Publish::latest()->take(4)->get(['title', 'views_count', 'slug']);
+  $latestPosts = Publish::latest()->take(5)->get(['title', 'views_count', 'slug']);
+  $topDownloads = Publish::orderBy('download_count', 'desc')->orderBy('title', 'asc')->take(5)->get();
+  $topUsers = User::orderBy('download_count', 'desc')->take(5)->get();
+  $totalItems = Publish::count();
+  $totalDownloads = User::sum('download_count');
+  $totalUsers = User::count(); // Jumlah total pengguna
+  
 
   return view('landing_page.index', [
     'posts' => $latestPosts,
+    'topDownloads' => $topDownloads,
+    'topUsers' => $topUsers,
+    'totalItems' => $totalItems,
+    'totalDownloads' => $totalDownloads,
+    'totalUsers' => $totalUsers,
   ]);
   })->name('landing_page');
 
@@ -62,7 +77,7 @@ Route::get('/', function () {
 Route::get('/posts', [PublishController::class, 'index'])->name('dashboard');
 
 // Detail Page
-Route::get('/posts/{slug}', [CollectionController::class, 'show'])->name('detail');
+Route::get('/posts/{slug}', [PublishController::class, 'show'])->name('detail');
 
 // Posts by Category
 Route::get('/category/{category:slug}', [CategoryController::class, 'index'])->name('single_category');
