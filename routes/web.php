@@ -15,7 +15,14 @@ use App\Models\Collection;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
-Route::delete('/dashboard/{slug}', [DepositController::class, 'destroy'])->name('destroy-dashboard');
+Route::get('/dashboard/item-submission-center/{deposit}', [PublishController::class, 'editItemSubmissionCenter'])->name('edit-item-submission-center-dashboard');
+Route::put('/dashboard/item-submission-center/{deposit}', [PublishController::class, 'updateItemSubmissionCenter'])->name('update-item-submission-center-dashboard');
+Route::get('/dashboard/item-keywords/{deposit}', [PublishController::class, 'editItemKeywords'])->name('edit-item-keywords-dashboard');
+Route::put('/dashboard/item-keywords/{deposit}', [PublishController::class, 'updateItemKeywords'])->name('update-item-keywords-dashboard');
+Route::get('/dashboard/item-deposits/{deposit}', [PublishController::class, 'editItemDeposits'])->name('edit-item-deposits-dashboard');
+Route::put('/dashboard/item-deposits/{deposit}', [PublishController::class, 'updateItemDeposits'])->name('update-item-deposits-dashboard');
+
+Route::delete('/dashboard/{slug}', [PublishController::class, 'destroy'])->name('destroy-dashboard');
 
 Route::get('/download/{filename}', [PublishController::class, 'downloadFile'])->name('download-file');
 

@@ -98,7 +98,7 @@
                     <img src="{{ asset('assets/img_removeItem.svg') }}" alt="Remove Item">
                   </button>
                 </form>
-                <a href="{{ route('edit-item-submission-center', ['deposit' => $post->slug ]) }}">
+                <a href="{{ route('edit-item-submission-center-dashboard', ['deposit' => $post->slug ]) }}">
                   <img src="{{ asset('assets/img_editItem.svg') }}" alt="Edit Item">                
                 </a>                                
               </div>

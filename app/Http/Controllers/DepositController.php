@@ -221,7 +221,7 @@ class DepositController extends Controller
     $status = Status::firstOrCreate(['name' => $postData['statuses']]);
     $deposit->statuses()->associate($status)->save();
 
-    return redirect('/dashboard/manage-deposits');
+    return redirect('/dashboard/manage-deposit');
   }
 
     /**
