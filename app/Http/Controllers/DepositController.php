@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 class DepositController extends Controller
 {
   public function indexManageDeposit() {
-    $collections = Deposit::with('authors')->get();
+    $collections = Deposit::latest()->paginate(10);
     return view('items.index.manage-deposits', compact('collections'));      
   }
 
@@ -69,12 +69,23 @@ class DepositController extends Controller
       'month' => 'required|max:255',
       'day' => 'required|max:255',
       'dataTypes' => 'required',
-      'emailDepositor' => 'required|max:255',
-      'reference' => 'required|max:255',
-    ]);        
+      'emailDepositor' => 'sometimes|max:255',
+      'reference' => 'sometimes|max:255',
+    ]);
+    // Remove empty values from the 'firstName' array
+    $filteredFirstName = array_filter($validatedData['firstName'], 'strlen');
+    $filteredLastName = array_filter($validatedData['lastName'], 'strlen');
+    $filteredEmail = array_filter($validatedData['email'], 'strlen');
+    $filteredAuthorCompany = array_filter($validatedData['authorCompany'], 'strlen');
+
+    // Update the validated data with the filtered 'firstName'
+    $validatedData['firstName'] = $filteredFirstName;
+    $validatedData['lastName'] = $filteredLastName;
+    $validatedData['email'] = $filteredEmail;
+    $validatedData['authorCompany'] = $filteredAuthorCompany;
 
     $request->session()->put('post_data', $validatedData);
-    // dd(session('post_data'));
+    
     return redirect()->route('create-item-keywords');
   }
 
@@ -104,7 +115,7 @@ class DepositController extends Controller
     $request->session()->put('post_data', $postData);
 
     // dd(session('post_data'));
-    return redirect()->route('create-item-deposits');    
+    return redirect()->route('create-item-deposits');
   }
 
   public function createItemDeposits() {
@@ -117,13 +128,20 @@ class DepositController extends Controller
     $request->validate([
       'fileUpload' => 'required_without_all:linkFileUpload|file',
       'linkFileUpload' => 'required_without_all:fileUpload',
-      'image' => 'required_without_all:linkImage|image',
-      'linkImage' => 'required_without_all:image',
+      'image' => 'sometimes|required_without_all:linkImage|image',
+      'linkImage' => 'sometimes|required_without_all:image',
     ]);
 
+    $file_path = null;
+    $image_path = null;
     // Simpan file di dalam folder storage/app/public/uploads
-    $file_path = $request->file('fileUpload')->store('public/fileUploads');
-    $image_path = $request->file('image')->store('public/images');
+    if ($request->input('fileUpload') === !null) {      
+      $file_path = $request->file('fileUpload')->store('public/fileUploads');
+    }
+
+    if ($request->input('image') === !null) {      
+      $image_path = $request->file('image')->store('public/images');
+    }
 
     $deposit = Deposit::create([
       'title' => $postData['title'],
@@ -209,12 +227,12 @@ class DepositController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($deposit)
-    {
-      $deposit = Deposit::where('slug', $deposit)->firstOrFail();
+    // public function show($deposit)
+    // {
+    //   $deposit = Deposit::where('slug', $deposit)->firstOrFail();
       
-      return view('dashboard.detail', ['post' => $deposit]);
-    }
+    //   return view('dashboard.detail', ['post' => $deposit]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -269,8 +287,8 @@ class DepositController extends Controller
         'month' => 'required|max:255',
         'day' => 'required|max:255',
         'dataTypes' => 'required',
-        'emailDepositor' => 'required|max:255',
-        'reference' => 'required|max:255',
+        'emailDepositor' => 'sometimes|max:255',
+        'reference' => 'sometimes|max:255',
       ]);        
   
       $request->session()->put('post_data', $validatedData);
@@ -322,10 +340,10 @@ class DepositController extends Controller
       
       
       $request->validate([
-        'fileUpload' => 'sometimes',
-        'linkFileUpload' => 'sometimes',
-        'image' => 'sometimes',
-        'linkImage' => 'sometimes',
+        'fileUpload' => 'sometimes|required_without_all:linkFileUpload|file',
+        'linkFileUpload' => 'sometimes|required_without_all:fileUpload',
+        'image' => 'sometimes|required_without_all:linkImage|image',
+        'linkImage' => 'sometimes|required_without_all:image',
       ]);
 
       $deposit = Deposit::where('slug', $deposit)->firstOrFail();
@@ -470,6 +488,15 @@ foreach ($postData['keyword'] as $index => $keyword) {
       $delete->keywords()->delete();
       $delete->delete();
 
-      return redirect('/dashboard/manage-deposits');
+      return redirect('/dashboard/manage-deposit');
+    }
+
+    public function show($slug) {
+      $post = Deposit::where('slug', $slug)->first();
+  
+      return view('items.detail.detail', [
+        'title' => "Single Post",
+        'post' => $post,
+      ]);
     }
 }

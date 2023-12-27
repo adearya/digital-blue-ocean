@@ -49,10 +49,7 @@
       <ul class="nav nav-tabs justify-content-center mt-4">
         <li class="nav-item">
           <a class="nav-link active" id="localTab" data-bs-toggle="tab" href="#uploadLocal">Upload File from Local</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="linkTab" data-bs-toggle="tab" href="#uploadLink">Upload File from Link</a>
-        </li>
+        </li>        
       </ul>
       <div class="tab-content mt-4">
         <div class="tab-pane fade show active" id="uploadLocal">            
@@ -60,13 +57,7 @@
             <label for="localFile" class="form-label">Choose File</label>
             <input type="file" class="form-control" name="image" id="localFile" accept=".png, .jpeg">
           </div>                    
-        </div>
-        <div class="tab-pane fade" id="uploadLink">            
-          <div class="mb-3">
-            <label for="fileLink" class="form-label">File Link</label>
-            <input type="url" class="form-control" name="linkImage" id="fileLink" placeholder="Enter file link">
-          </div>          
-        </div>
+        </div>        
       </div>
     </div>
     <!-- sakhir upload image cov -->
@@ -103,8 +94,7 @@
 
     <!-- Footer Button -->
         <div class="footer-button p-4 d-flex justify-content-center gap-3">
-            <a href="/edit-item-keywords" class="btn btn-warning text-white">Previous</a>
-            <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>
+            <a href="#" class="btn btn-warning text-white" onclick="window.history.back();">Previous</a>            
         </div> 
         <!-- akhir Footer Button -->           
     </section>

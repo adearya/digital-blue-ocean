@@ -6,8 +6,6 @@ use App\Http\Controllers\AuthorizationController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\CollectionController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
 use App\Models\Post;
@@ -16,6 +14,8 @@ use App\Models\Publish;
 use App\Models\Collection;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+
+Route::delete('/dashboard/{slug}', [DepositController::class, 'destroy'])->name('destroy-dashboard');
 
 Route::get('/download/{filename}', [PublishController::class, 'downloadFile'])->name('download-file');
 
@@ -36,6 +36,7 @@ Route::put('/dashboard/manage-deposit/item-keywords/{deposit}', [DepositControll
 Route::get('/dashboard/manage-deposit/item-deposits/{deposit}', [DepositController::class, 'editItemDeposits'])->name('edit-item-deposits');
 Route::put('/dashboard/manage-deposit/item-deposits/{deposit}', [DepositController::class, 'updateItemDeposits'])->name('update-item-deposits');
 
+Route::delete('/dashboard/manage-deposit/{slug}', [DepositController::class, 'destroy'])->name('destroy-deposit');
 Route::get('/dashboard/manage-deposit', [DepositController::class, 'indexManageDeposit'])->name('manage-deposit');
 
 Route::get('/dashboard/manage-deposit/item-submission-center', [DepositController::class, 'createItemSubmissionCenter'])->name('create-item-submission-center');
@@ -77,13 +78,14 @@ Route::get('/', function () {
 Route::get('/posts', [PublishController::class, 'index'])->name('dashboard');
 
 // Detail Page
+Route::get('/manage-deposit/{slug}', [DepositController::class, 'show'])->name('detail-deposit');
 Route::get('/posts/{slug}', [PublishController::class, 'show'])->name('detail');
 
 // Posts by Category
-Route::get('/category/{category:slug}', [CategoryController::class, 'index'])->name('single_category');
+// Route::get('/category/{category:slug}', [CategoryController::class, 'index'])->name('single_category');
 
 // Posts by Author
-Route::get('/author/{author:username}', [AuthorController::class, 'index'])->name('posts_auhtor');
+// Route::get('/author/{author:username}', [AuthorController::class, 'index'])->name('posts_auhtor');
 
 // Categories
 // Route::get('/categories', [CategoryController::class, 'index'])->name('all_categories');

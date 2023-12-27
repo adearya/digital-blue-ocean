@@ -12,58 +12,36 @@
     </div>
     <!-- akhir Header Button -->
 
-    {{-- <!-- Keywords -->
-    <input type="checkbox" class="btn-check" name="keyword[]" id="btn-check" autocomplete="off">
-    <label class="btn" for="btn-check">Single toggle</label>                                                 
-    <!-- keywords -->
-
-    <!-- Menambahkan keyword baru -->
-    <div class="container mt-3">
-      <h5 class="fw-bold text-center">Add New Keyword:</h5>
-      <div class="d-flex justify-content-center align-items-center flex-column mt-3">
-        <div class="mb-3">
-          <label for="newKeyword" class="form-label">New Keyword:</label>
-          <input type="text" class="form-control" id="newKeyword" placeholder="Enter new keyword">
-        </div>
-        <div class="mb-3">
-          <label for="selectCategory" class="form-label">Select Category:</label>
-          <select class="form-select" name="categories" id="selectCategory">
-            @foreach ($categories as $item)                          
-              <option value="{{ $item->slug }}">{{ $item->name }}</option>                        
-            @endforeach
-          </select>
-        </div>
-        <button type="button" class="btn btn-primary" onclick="addNewKeyword()">Add Keyword</button>
-      </div>
-    </div>
-    <!-- akhir Keywords Baru--> --}}
-
-    <!-- Menambahkan keyword baru -->
-    <div class="container mt-3">
-      <h5 class="fw-bold text-center">Add New Keyword:</h5>
-      <div class="d-flex justify-content-center align-items-center flex-column mt-3">
-        <div class="mb-3">
-          <label for="newKeyword" class="form-label">New Keyword:</label>
-          <input type="text" class="form-control" id="newKeyword" placeholder="Enter new keyword">
-        </div>
-        <div class="mb-3">
-          <label for="selectCategory" class="form-label">Select Category:</label>
-          <select class="form-select" name="categories" id="selectCategory">        
-            @foreach ($categories as $item)
-              <option value="{{ $item->slug }}">{{ $item->name }}</option>
-            @endforeach
-          </select>
-        </div>
-        <button type="button" class="btn btn-primary" onclick="addNewKeyword()">Add Keyword</button>
-      </div>
-    </div>
-    <!-- akhir Keywords Baru-->
-
     <!-- Keywords -->
-    <div id="keywordsContainer" class="mt-3">
-      <!-- Keywords will be dynamically added here -->
+    <div id="keywordsContainer" class="mt-3 text-center">
+      <h5>List Keyword</h5>
+      <u>Click item</u>
+      <!-- Keywords will be dynamically added here -->      
+    </div>    
+    <!-- akhir Keywords -->    
+
+    <!-- Menambahkan keyword baru -->
+    <div class="container mt-3">
+      <h5 class="fw-bold text-center">Add New Keyword:</h5>
+      <div class="d-flex justify-content-center align-items-center flex-column mt-3">
+        <div class="mb-3">
+          <label for="newKeyword" class="form-label">New Keyword:</label>
+          <input type="text" class="form-control" id="newKeyword" placeholder="Enter new keyword">
+        </div>
+        <div class="mb-3">
+          <label for="selectCategory" class="form-label">Select Category:</label>
+          <select class="form-select bg-primary text-white" name="categories" id="selectCategory">            
+            @foreach ($categories as $item)                
+                <option value="{{ $item->slug }}" {{ old('categories') == $item->slug ? 'selected' : '' }}>
+                    {{ $item->name }}
+                </option>
+            @endforeach
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="addNewKeyword()">Add Keyword</button>
+      </div>
     </div>
-    <!-- akhir Keywords -->
+    <!-- akhir Keywords Baru-->    
 
     <script>
       function addNewKeyword() {
@@ -101,8 +79,8 @@
 
     <!-- Footer Button -->
     <div class="footer-button p-4 d-flex justify-content-center gap-3">
-      <a href="/edit-item-submission-center" class="btn btn-warning text-white">Previous</a>
-      <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>                
+      <a href="#" class="btn btn-warning text-white" onclick="window.history.back();">Previous</a>
+      {{-- <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>                 --}}
       <a href="#" class="btn btn-warning text-white" onclick="document.getElementById('storeItemKeywords').submit();">Next</a>                
     </div>        
     <!-- Akhir Footer Button -->    

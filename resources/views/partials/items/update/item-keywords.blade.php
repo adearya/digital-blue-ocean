@@ -13,12 +13,26 @@
     </div>
     <!-- akhir Header Button -->    
 
+    <!-- Keywords -->
+    <div id="keywordsContainer" class="mt-3 text-center">
+      <h5>List Keyword</h5>
+      <u>Click item</u>
+      @foreach($post->keywords as $item)
+          <div>
+              <input type="checkbox" class="btn-check" name="keyword[]" id="{{ 'btn-check-' . $item->name }}" autocomplete="off" value="{{ old('keyword[]', $item->name) }}" checked>
+              <label class="btn" for="{{ 'btn-check-' . $item->name }}">{{ old('keyword[]', $item->name) }}</label>
+          </div>
+      @endforeach
+      <!-- Keywords will be dynamically added here -->
+    </div>
+    <!-- akhir Keywords -->
+
     <!-- Menambahkan keyword baru -->
     <div class="container mt-3">
       <h5 class="fw-bold text-center">Add New Keyword:</h5>
       <div class="d-flex justify-content-center align-items-center flex-column mt-3">
         <div class="mb-3">
-          <label for="newKeyword" class="form-label">New Keyword:</label>
+          <label for="newKeyword" class="form-label text-center">New Keyword:</label>
           <input type="text" class="form-control" id="newKeyword" placeholder="Enter new keyword">
         </div>
         <div class="mb-3">
@@ -36,19 +50,7 @@
         <button type="button" class="btn btn-primary" onclick="addNewKeyword()">Add Keyword</button>
       </div>
     </div>
-    <!-- akhir Keywords Baru-->
-
-    <!-- Keywords -->
-    <div id="keywordsContainer" class="mt-3">
-      @foreach($post->keywords as $item)
-          <div>
-              <input type="checkbox" class="btn-check" name="keyword[]" id="{{ 'btn-check-' . $item->name }}" autocomplete="off" value="{{ old('keyword[]', $item->name) }}" checked>
-              <label class="btn" for="{{ 'btn-check-' . $item->name }}">{{ old('keyword[]', $item->name) }}</label>
-          </div>
-      @endforeach
-      <!-- Keywords will be dynamically added here -->
-    </div>
-    <!-- akhir Keywords -->
+    <!-- akhir Keywords Baru-->    
 
     <script>
       function addNewKeyword() {
@@ -86,8 +88,7 @@
 
     <!-- Footer Button -->
     <div class="footer-button p-4 d-flex justify-content-center gap-3">
-      <a href="/edit-item-submission-center" class="btn btn-warning text-white">Previous</a>
-      <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>                
+      <a href="#" class="btn btn-warning text-white" onclick="window.history.back();">Previous</a>
       <a href="#" class="btn btn-warning text-white" onclick="document.getElementById('updateItemKeywords').submit();">Next</a>                
     </div>        
     <!-- Akhir Footer Button -->    

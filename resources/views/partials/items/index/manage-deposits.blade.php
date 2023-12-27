@@ -31,13 +31,13 @@
             <td class="text-center">{{ $post->volume }}</td>
             <td class="text-center bg-white">
               <div class="d-flex gap-2">
-                {{-- <a href="{{ route('manage-deposits.show', ['collection' => $post->slug]) }}">                 --}}
+                <a href="{{ route('detail-deposit', ['slug' => $post->slug]) }}">
                   <img src="{{ asset('assets/img_viewItem.svg') }}" alt="View Item">
-                {{-- </a>                 --}}
-                <form action="/dashboard/manage-deposits/{{ $post->slug }}" method="post">                                    
+                </a>                
+                <form action="/dashboard/manage-deposit/{{ $post->slug }}" method="post">                                    
                   @method('delete')
-                  @csrf                  
-                  <button type="submit">
+                  @csrf                               
+                  <button type="submit"  style="border: none; background-color: transparent">
                     <img src="{{ asset('assets/img_removeItem.svg') }}" alt="Remove Item">
                   </button>
                 </form>
@@ -52,7 +52,11 @@
     </div>
   </div>
   <div class="text-center p-3">
-    <p>Displaying results 1 to 5 of 100. <br>
-    1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | Next</p>
+    @if ($collections->isNotEmpty())
+      <p>Displaying results {{ $collections->firstItem() }} to {{ $collections->lastItem() }} of {{ $collections->total() }}</p>
+      <p>{{ $collections->links() }}</p>
+    @else        
+      <p>Displaying results is empty</p>
+    @endif
   </div>        
 </section>

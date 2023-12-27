@@ -35,11 +35,11 @@
         <img src="{{ asset('assets/img_articlewriting.svg') }}" alt="img download article" width="80">        
           <p class="mb-0 ms-2">
             @auth                
-            @if ($post->file_upload !== null)                  
-              <a href="{{ route('download-file', ['filename' =>  $post->slug ] ) }}">Klik disini</a>            
-            @else
-              <a href="{{$post->link_file_upload}}">Klik disini</a>
-            @endif
+              @if ($post->file_upload !== null)                  
+                <a href="{{ route('download-file', ['filename' =>  $post->slug ] ) }}">Klik disini</a>            
+              @else
+                <a href="{{$post->link_file_upload}}">Klik disini</a>
+              @endif
             @else
               Klik disini
             @endauth

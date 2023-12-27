@@ -92,8 +92,10 @@
       <!-- Existing Author inputs -->
       @foreach($post->authors as $index => $author)
       <div class="col-md-3">
-          <div class="text-center mb-4">
+          <div class="text-center">
+              @if ($index === 0)
               <label for="firstName">First Name</label>
+              @endif
               <div class="input-group mb-2">
                   <span class="input-group-text">{{ $index + 1 }}.</span>
                   <input type="text" class="form-control" name="firstName[]" value="{{ old('firstName[]', $author->firstName) }}">
@@ -101,8 +103,10 @@
           </div>
       </div>
       <div class="col-md-3">
-          <div class="text-center mb-4">
+          <div class="text-center">
+              @if ($index === 0)
               <label for="lastName">Last Name</label>
+              @endif
               <div class="input-group mb-2">                  
                   <input type="text" class="form-control" name="lastName[]" value="{{ old('lastName[]', $author->lastName) }}">
               </div>
@@ -110,7 +114,9 @@
       </div>
       <div class="col-md-6">
           <div class="text-center">
+              @if ($index === 0)
               <label for="email">Email</label>
+              @endif
               <div class="input-group mb-2">                  
                   <input type="text" class="form-control" name="email[]" value="{{ old('email[]', $author->email) }}">
               </div>
@@ -129,7 +135,8 @@
       @endforeach
   </div>
   <div class="text-center mt-3">
-    <button type="button" class="btn btn-primary" onclick="addAuthorsInput()">More Input</button>
+    <button type="button" class="btn btn-primary" onclick="addAuthorsInput()">Add</button>
+    <button type="button" class="btn btn-primary" onclick="removeAuthorsInput()">Remove</button>
   </div>
 </div>
 
@@ -143,21 +150,18 @@
       const authorsContainer = document.getElementById('authorsContainer');
 
       const col1 = document.createElement('div');
-      col1.classList.add('col-md-3');
-      col1.innerHTML = `
-          <div class="text-center mb-4">              
-              <div class="input-group mb-2">
-                  <span class="input-group-text">${counter}.</span>
-                  <input type="text" class="form-control" name="firstName[]" placeholder="Enter your first name">
-              </div>
-          </div>`;
-
+      col1.classList.add('col-md-3', 'text-center', 'mb-10');
+      col1.innerHTML = `          
+        <div class="input-group mb-2">
+          <span class="input-group-text">${counter}.</span>
+          <input type="text" class="form-control" name="firstName[]" placeholder="Enter your first name">                  
+        </div>`;
       const col2 = document.createElement('div');
       col2.classList.add('col-md-3');
       col2.innerHTML = `
-          <div class="text-center mb-4">              
-              <div class="input-group mb-2">                  
-                  <input type="text" class="form-control" name="lastName[]" placeholder="Enter your last name">
+          <div class="text-center">              
+              <div class="input-group">
+                  <input type="text" class="form-control" name="lastName[]" placeholder="Enter your last name">                  
               </div>
           </div>`;
 
@@ -165,8 +169,8 @@
       col3.classList.add('col-md-6');
       col3.innerHTML = `
           <div class="text-center">              
-              <div class="input-group mb-2">                  
-                  <input type="text" class="form-control" name="email[]" placeholder="Enter your email">
+              <div class="input-group">                  
+                  <input type="text" class="form-control" name="email[]" placeholder="Enter your email">                  
               </div>
           </div>`;
 
@@ -180,10 +184,32 @@
       newInputGroup.classList.add('input-group', 'mb-2');
       newInputGroup.innerHTML = `
           <span class="input-group-text">${counter}.</span>
-          <input type="text" class="form-control" name="authorCompany[]" placeholder="Enter the author's company">`;
-
+          <input type="text" class="form-control" name="authorCompany[]" placeholder="Enter the author's company">
+      `
       companyContainer.appendChild(newInputGroup);
   }
+
+  function removeAuthorsInput() {
+  // Jangan hapus elemen jika counter sudah di 1
+  if (counter > 1) {
+    // Kurangi counter
+    counter--;
+
+    // Dapatkan container elemen authorsContainer
+    const authorsContainer = document.getElementById('authorsContainer');
+
+    // Hapus tiga elemen anak terakhir
+    for (let i = 0; i < 3; i++) {
+      authorsContainer.removeChild(authorsContainer.lastElementChild);
+    }
+
+    // Dapatkan container elemen authorsCompanyContainer
+    const companyContainer = document.getElementById('authorsCompanyContainer');
+
+    // Hapus elemen anak terakhir
+    companyContainer.removeChild(companyContainer.lastElementChild);
+  }
+}
 </script>
 
 
@@ -246,65 +272,72 @@
         </div>
         <!-- Akhir Journal or Publication Title - publication deta -->
 
-        <!-- ISSN - publication details -->
-        <div class="container content-issn-publicationdetails mt-5">
-          <h5 class="fw-bold">ISSN :</h5>      
-          <input type="text" class="form-control" name="issn" id="issn" value="{{ old('issn', $post->issn) }}">      
-        </div>
-        <!-- akhir ISSN - publication deta -->
-
-        <!-- Publisher - publication details -->
-        <div class="container content-publisher-publicationdetails mt-5">
-          <h5 class="fw-bold">PUBLISHER :</h5>        
-          <input type="text" class="form-control" name="publisher" id="publisher" value="{{ old('publisher', $post->publisher) }}">        
-        </div>
-        <!-- akhir Publisher - publication deta -->        
+        <div class="d-flex">          
+          <!-- ISSN - publication details -->
+          <div class="container content-issn-publicationdetails mt-5">
+            <h5 class="fw-bold text-center">ISSN :</h5>      
+            <input type="text" class="form-control" name="issn" id="issn" value="{{ old('issn', $post->issn) }}">      
+          </div>
+          <!-- akhir ISSN - publication deta -->
   
-        <!-- Official URL - publication details -->
-        <div class="container content-issn-publicationdetails mt-5">
-          <h5 class="fw-bold">OFFICIAL URL :</h5>        
-          <input type="text" class="form-control" name="officialUrl" id="official_url" value="{{ old('official_url', $post->official_url) }}">        
+          <!-- Publisher - publication details -->
+          <div class="container content-publisher-publicationdetails mt-5">
+            <h5 class="fw-bold text-center">PUBLISHER :</h5>        
+            <input type="text" class="form-control" name="publisher" id="publisher" value="{{ old('publisher', $post->publisher) }}">        
+          </div>
+          <!-- akhir Publisher - publication deta -->        
+    
+          <!-- Official URL - publication details -->
+          <div class="container content-issn-publicationdetails mt-5">
+            <h5 class="fw-bold text-center">OFFICIAL URL :</h5>        
+            <input type="text" class="form-control" name="officialUrl" id="official_url" value="{{ old('official_url', $post->official_url) }}">        
+          </div>
+          <!-- akhir Official URL - publication deta-->
         </div>
-        <!-- akhir Official URL - publication deta-->
 
-        <!-- Volume - publication details -->
-        <div class="container content-volume-publicationdetails mt-5">
-          <h5 class="fw-bold">VOLUME :</h5>        
-          <input type="text" class="form-control" name="volume" id="volume" value="{{ old('volume', $post->volume) }}">        
+        <div class="d-flex">          
+          <!-- Volume - publication details -->
+          <div class="container content-volume-publicationdetails mt-5">
+            <h5 class="fw-bold text-center">VOLUME :</h5>        
+            <input type="text" class="form-control" name="volume" id="volume" value="{{ old('volume', $post->volume) }}">        
+          </div>
+          <!-- akhir Volume - publication deta -->
+  
+          <!-- Number - publication details -->
+          <div class="container content-number-publicationdetails mt-5">
+            <h5 class="fw-bold text-center">NUMBER :</h5>    
+            <input type="text" class="form-control" name="number" id="number" value="{{ old('number', $post->number) }}">    
+          </div>
+          <!-- akhir Number - publication deta -->
+  
+          <!-- Page Range - publication details -->
+          <div class="container content-pagerange-publicationdetails mt-5">
+            <h5 class="fw-bold text-center">PAGE RANGE :</h5>        
+            <div class="d-flex">            
+              <input type="text" class="form-control" name="fromPage" id="fromPage" value="{{ old('from_page', $post->from_page) }}">          
+              <input type="text" class="form-control" name="toPage" id="toPage" value="{{ old('to_page', $post->to_page) }}">        
+            </div>
+          </div>
+          <!-- akhir Page Range - publication deta -->
         </div>
-        <!-- akhir Volume - publication deta -->
-
-        <!-- Number - publication details -->
-        <div class="container content-number-publicationdetails mt-5">
-          <h5 class="fw-bold">NUMBER :</h5>    
-          <input type="text" class="form-control" name="number" id="number" value="{{ old('number', $post->number) }}">    
-        </div>
-        <!-- akhir Number - publication deta -->
-
-        <!-- Page Range - publication details -->
-        <div class="container content-pagerange-publicationdetails mt-5">
-          <h5 class="fw-bold">PAGE RANGE :</h5>        
-          <input type="text" class="form-control" name="fromPage" id="fromPage" value="{{ old('from_page', $post->from_page) }}">
-          <h3>-</h3>
-          <input type="text" class="form-control" name="toPage" id="toPage" value="{{ old('to_page', $post->to_page) }}">        
-        </div>
-        <!-- akhir Page Range - publication deta -->
 
         <!-- date - publication details -->
-        <div class="container content-date-publicationdetails mt-5">
-          <h5 class="fw-bold">DATE :</h5>    
-          <div class="col-md-3">
-            <label for="year" class="form-label">Year :</label>
-            <input type="text" class="form-control" name="year" id="year" value="{{ old('year', $post->year) }}">
+        <div class="container content-date-publicationdetails mt-5 ">
+          <h5 class="fw-bold text-center">DATE :</h5>    
+          <div class="d-flex flex-wrap justify-content-center gap-2">            
+            <div class="col-md-3">
+              <label for="year" class="form-label">Year :</label>
+              <input type="text" class="form-control" name="year" id="year" value="{{ old('year', $post->year) }}">
+            </div>
+            <div class="col-md-3">
+              <label for="year" class="form-label">Month :</label>
+              <input type="text" class="form-control" name="month" id="month" value="{{ old('month', $post->month) }}">
+            </div>
+            <div class="col-md-3">
+              <label for="year" class="form-label">Day :</label>
+              <input type="text" class="form-control" name="day" id="day" value="{{ old('day', $post->day) }}">
+            </div>                            
           </div>
-          <div class="col-md-3">
-            <label for="year" class="form-label">Month :</label>
-            <input type="text" class="form-control" name="month" id="month" value="{{ old('month', $post->month) }}">
-          </div>
-          <div class="col-md-3">
-            <label for="year" class="form-label">Day :</label>
-            <input type="text" class="form-control" name="day" id="day" value="{{ old('day', $post->day) }}">
-          </div>                            
         </div>
         <!-- akhir date - publication deta -->
 
@@ -369,7 +402,19 @@
 
     <!-- Footer Button -->
     <div class="footer-button p-4 d-flex justify-content-center gap-3">
-      <a href="/save-and-return-page" class="btn btn-warning text-white">Save and Return</a>      
+      <a href="javascript:void(0);" class="btn btn-warning text-white" onclick="cancelAndRemoveSession();">Cancel</a>
+
+<script>
+function cancelAndRemoveSession() {
+    // Hapus sesi di sini
+    // Gantilah 'nama_sesi' dengan nama sesi yang ingin Anda hapus
+    sessionStorage.removeItem('post_data');
+    localStorage.removeItem('post_data'); // Jika menggunakan localStorage
+
+    // Kembali ke halaman sebelumnya
+    window.history.back();
+}
+</script>
       <a class="btn btn-warning text-white" onclick="document.getElementById('updateItemSubmissionCenter').submit();">Next</a>
     </div>
     <!-- Akhir Footer Button -->

@@ -20,12 +20,17 @@ use Illuminate\Http\Request;
 class PublishController extends Controller
 {
   public function indexReview() {
-    $collections = Deposit::with('authors')->get();
+    $collections = Deposit::latest()->paginate(10);
     return view('authorization.editor.review', compact('collections'));      
   }
 
   // Dashboard
   public function index(Request $request) {
+    $itemTypes = ItemType::whereIn('name', ['Article', 'Book', 'Thesis'])->get();
+
+    $articleCount = Publish::where('item_types_id', $itemTypes->where('name', 'Article')->first()->id)->count();
+    $bookCount = Publish::where('item_types_id', $itemTypes->where('name', 'Book')->first()->id)->count();
+    $thesisCount = Publish::where('item_types_id', $itemTypes->where('name', 'Thesis')->first()->id)->count();
 
     $searchTitle = $request->input('title');
     $searchAuthor = $request->input('author');
@@ -42,6 +47,9 @@ class PublishController extends Controller
     return view('dashboard.index', [
       'title' => "All Post",
       'posts' => $posts,
+      'articleCount' => $articleCount,
+      'bookCount' => $bookCount,
+      'thesisCount' => $thesisCount,
     ]);
   }
 

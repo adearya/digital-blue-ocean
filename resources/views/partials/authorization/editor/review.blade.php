@@ -69,26 +69,37 @@
             <td class="text-center">{{ $post->volume }}</td>
               <td class="text-center bg-white">
                   <div class="d-flex gap-2">
-                      <button onclick="editItemReview()" style="border: none; background-color: transparent">
+                      <a href="{{ route('edit-item-submission-center', ['deposit' => $post->slug ]) }}">
                           <img src="{{ asset('assets/img_edititemreview.svg') }}" alt="Edit Item">
-                      </button>
-                      {{-- <form action="{{ route('publish', ['slug' => $post->slug]) }}" method="post"> --}}
+                      </a>
                       <form action="{{ route('publish', ['slug' => $post->slug]) }}" method="post">
                         @csrf
                         <button type="submit" style="border: none; background-color: transparent">
                             <img src="{{ asset('assets/img_publishitemreview.svg') }}" alt="Publish Item">
                         </button>
                       </form>
-                      <button onclick="deleteItemReview()" style="border: none; background-color: transparent;">
-                          <img src="{{ asset('assets/img_deleteitemreview.svg') }}" alt="Delete Item">
-                      </button>
+                      <form action="/dashboard/manage-deposit/{{ $post->slug }}" method="post">                                    
+                        @method('delete')
+                        @csrf                  
+                        <button type="submit"  style="border: none; background-color: transparent">
+                          <img src="{{ asset('assets/img_deleteitemreview.svg') }}" alt="Delete Item">                        
+                        </button>
+                      </form>                      
                   </div>
               </td>
           </tr>                                                         
           @endforeach
           </table>
       </div>
-</div>
+    </div>
+    <div class="text-center p-3">
+    @if ($collections->isNotEmpty())            
+        <p>Displaying results {{ $collections->firstItem() }} to {{ $collections->lastItem() }} of {{ $collections->total() }}</p>
+        <p>{{ $collections->links() }}</p>
+      @else
+        <p>Displaying results is empty</p>  
+      @endif
+    </div>
 {{-- akhir main content dashboard --}}
 
 </section>

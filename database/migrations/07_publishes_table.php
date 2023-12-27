@@ -28,8 +28,8 @@ return new class extends Migration {
       $table->string('month');
       $table->unsignedInteger('day');
       $table->foreignId('data_types_id')->default(1);
-      $table->string('email_depositor');
-      $table->string('reference');
+      $table->string('email_depositor')->nullable();
+      $table->string('reference')->nullable();
       $table->foreignId('categories_id')->default(1);
       $table->string('file_upload')->nullable();
       $table->string('link_file_upload')->nullable();
