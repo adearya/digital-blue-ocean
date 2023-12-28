@@ -10,4 +10,5 @@ lakukan perintah ini untuk menjalankan
     DB_USERNAME=root<br>
     DB_PASSWORD=
 8. php artisan migrate:fresh --seed
-9. register akun (jika ingin mengakses dashboard)
+9. email: admindbo@gmail.com
+10. password: 01101001
