@@ -12,7 +12,7 @@ return new class extends Migration {
       $table->id();
       $table->string('firstName');
       $table->string('lastName');
-      $table->string('email')->unique();
+      $table->string('email');
       $table->string('authorCompany');
       $table->unsignedBigInteger('download_count')->default(0);
       $table->timestamps();

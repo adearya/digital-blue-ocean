@@ -12,6 +12,7 @@ use App\Models\DataType;
 use App\Models\Refereed;
 use App\Models\Status;
 use App\Models\PageRange;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 
@@ -135,11 +136,12 @@ class DepositController extends Controller
     $file_path = null;
     $image_path = null;
     // Simpan file di dalam folder storage/app/public/uploads
-    if ($request->input('fileUpload') === !null) {      
+    if ($request->hasFile('fileUpload')) {      
       $file_path = $request->file('fileUpload')->store('public/fileUploads');
     }
-
-    if ($request->input('image') === !null) {      
+    
+    // Simpan gambar di dalam folder storage/app/public/images
+    if ($request->hasFile('image')) {      
       $image_path = $request->file('image')->store('public/images');
     }
 
@@ -350,17 +352,22 @@ class DepositController extends Controller
   
       // Hapus file lama jika ada file baru yang diunggah
       if ($request->hasFile('fileUpload')) {
-        Storage::delete($deposit->file_upload);
+        // Pastikan file_upload memiliki nilai sebelum menghapus file lama
+        if ($deposit->file_upload) {
+            Storage::delete($deposit->file_upload);
+        }
         $file_path = $request->file('fileUpload')->store('public/fileUploads');
         $deposit->file_upload = $file_path;
       }
 
       // Hapus gambar lama jika ada gambar baru yang diunggah
       if ($request->hasFile('image')) {
-          Storage::delete($deposit->image);
-          $image = $request->file('image')->store('public/images');
-          $deposit->image = $image;
-      }
+        if ($deposit->image) {
+            Storage::delete($deposit->image);
+        }
+        $image_path = $request->file('image')->store('public/images');
+        $deposit->image = $image_path;
+     }
 
 
       $deposit->update([
