@@ -12,8 +12,10 @@ use App\Models\DataType;
 use App\Models\Refereed;
 use App\Models\Status;
 use App\Models\PageRange;
+
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class DepositController extends Controller
@@ -49,8 +51,7 @@ class DepositController extends Controller
     $validatedData = $request->validate([
       'itemTypes' => 'required',            
       'languages' => 'required',
-      'title' => 'required|max:255',
-      'slug' => 'required|max:255',
+      'title' => 'required|max:255',      
       'abstract' => 'required',
       'firstName' => 'required|array',
       'lastName' => 'required|array',
@@ -147,7 +148,7 @@ class DepositController extends Controller
 
     $deposit = Deposit::create([
       'title' => $postData['title'],
-      'slug' => $postData['slug'],
+      'slug' => Str::slug(Str::lower($postData['title']), '-'),
       'file_upload' => $file_path,
       'link_file_upload' => $request->input('linkFileUpload'),
       'image' => $image_path,
@@ -268,8 +269,7 @@ class DepositController extends Controller
       $validatedData = $request->validate([
         'itemTypes' => 'required',            
         'languages' => 'required',
-        'title' => 'required|max:255',
-        'slug' => 'required|max:255',
+        'title' => 'required|max:255',        
         'abstract' => 'required',
         'firstName' => 'required|array',
         'lastName' => 'required|array',
@@ -372,7 +372,7 @@ class DepositController extends Controller
 
       $deposit->update([
         'title' => $postData['title'],
-        'slug' => $postData['slug'],        
+        'slug' => Str::slug(Str::lower($postData['title']), '-'),        
         'abstract' => $postData['abstract'],
         'link_file_upload' => $request->input('linkFileUpload'),      
         'link_image' => $request->input('linkImage'),

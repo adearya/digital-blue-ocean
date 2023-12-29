@@ -30,7 +30,8 @@ Route::get('/dashboard/profile', [ProfileController::class, 'indexProfile'])->na
 Route::get('/dashboard/profile/{username}', [ProfileController::class, 'editProfile'])->name('edit-profile');
 Route::put('/dashboard/profile/{username}', [ProfileController::class, 'updateProfile'])->name('update-profile');
 
-Route::get('/dashboard/admin', [AuthorizationController::class, 'editAdmin'])->name('edit-admin');
+Route::get('/dashboard/admin/status', [AuthorizationController::class, 'statusAdmin'])->name('status-admin');
+Route::get('/dashboard/admin/edit', [AuthorizationController::class, 'editAdmin'])->name('edit-admin');
 Route::post('/dashboard/admin', [AuthorizationController::class, 'updateAdmin'])->name('update-admin');
 
 Route::get('/dashboard/review', [PublishController::class, 'indexReview']);

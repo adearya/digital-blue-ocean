@@ -67,17 +67,7 @@
           <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
-      <!-- Akhir Content Title - Submission Center -->
-
-      <!-- Content Link - Submission Center -->
-      <div class="container mt-5 bg-white p-3 rounded">
-        <h5 class="fw-bold">Link</h5>                
-        <input type="text" class="form-control" name="slug" id="slug" placeholder="Enter your link for this page" value="{{old('slug')}}">
-        @error('slug')
-          <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-      </div>
-      <!-- Akhir Content Title - Submission Center -->
+      <!-- Akhir Content Title - Submission Center -->      
 
       <!-- Content Abstract - Submission Center -->
       <div class="container mt-5 bg-white p-3 rounded">        

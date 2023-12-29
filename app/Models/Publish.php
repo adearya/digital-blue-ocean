@@ -71,7 +71,8 @@ class Publish extends Model
     {
         return $query->when($searchAuthor, function ($query, $searchAuthor) {
             return $query->whereHas('authors', function ($query) use ($searchAuthor) {
-                $query->where('name', 'like', '%' . $searchAuthor . '%');
+                $query->where('firstName', 'like', '%' . $searchAuthor . '%')
+                ->orWhere('lastName', 'like', '%' . $searchAuthor . '%');
             });
         });
     }
@@ -83,12 +84,28 @@ class Publish extends Model
         });
     }
 
-    public function scopeSearchBySubjects($query, $searchSubjects)
+    public function scopeSearchByKeyword($query, $searchKeyword)
     {
-        return $query->when($searchSubjects, function ($query, $searchSubjects) {
-            return $query->whereHas('category', function ($query) use ($searchSubjects) {
-                $query->where('name', 'like', '%' . $searchSubjects . '%');
+        return $query->when($searchKeyword, function ($query, $searchKeyword) {
+            return $query->whereHas('keywords', function ($query) use ($searchKeyword) {
+                $query->where('name', 'like', '%' . $searchKeyword . '%');
             });
+        });
+    }
+
+    public function scopeSearchByStatus($query, $searchStatus)
+    {
+        return $query->when($searchStatus, function ($query, $searchStatus) {
+            return $query->whereHas('statuses', function ($query) use ($searchStatus) {
+                $query->where('name', 'like', '%' . $searchStatus . '%');
+            });
+        });
+    }
+
+    public function scopeSearchByPublication($query, $searchPublication)
+    {
+        return $query->when($searchPublication, function ($query, $searchPublication) {
+            return $query->where('journal_or_publication_title', 'like', '%' . $searchPublication . '%');
         });
     }
 }

@@ -69,14 +69,7 @@
         <h5 class="fw-bold">Title</h5>                
         <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $post->title) }}">        
       </div>
-      <!-- Akhir Content Title - Submission Center -->
-
-      <!-- Content Link - Submission Center -->
-      <div class="container mt-5 bg-white p-3 rounded">
-        <h5 class="fw-bold">Link</h5>                
-        <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug', $post->slug ) }}">
-      </div>
-      <!-- Akhir Content Title - Submission Center -->
+      <!-- Akhir Content Title - Submission Center -->      
 
       <!-- Content Abstract - Submission Center -->
       <div class="container mt-5 bg-white p-3 rounded">        

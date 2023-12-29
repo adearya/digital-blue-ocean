@@ -30,10 +30,22 @@
       @guest
         <a class="btn btn-outline-info d-flex mx-2" aria-current="page" href="/login">Log in</a>
       @else
-      <form action="/logout" method="post" id="logoutForm">
+      {{-- <form action="/logout" method="post" id="logoutForm">
         @csrf      
         <a class="btn btn-outline-info d-flex mx-2" aria-current="page" href="#" onclick="document.getElementById('logoutForm').submit();">Log out</a>        
-      </form>
+      </form> --}}
+      <div class="dropdown mx-2">
+        <button class="btn btn-outline-info btn-light" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+            <li><a href="{{ route('index-profile') }}" class="dropdown-item">Profile</a></li>
+            <form action="/logout" method="post" id="logoutForm">
+                @csrf
+                <li><a class="dropdown-item" href="#" onclick="document.getElementById('logoutForm').submit();">Log out</a></li>
+            </form>
+        </ul>
+    </div>
       @endguest
     </div>
   </div>

@@ -7,7 +7,7 @@
         <input type="text" class="form-control" name="title" id="title" aria-describedby="title" placeholder="Title">
         <input type="text" class="form-control" name="author" id="author" aria-describedby="author" placeholder="Author">
         <input type="text" class="form-control" name="year" id="year" aria-describedby="year" placeholder="Year">
-        <input type="text" class="form-control" name="category" id="keyword" aria-describedby="keyword" placeholder="Keyword">
+        <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="keyword" placeholder="Keyword">
         <button type="submit" class="btn btn-primary">Search</button>
       </div>
       <div class="advanced-search mt-2" style="display: none;">

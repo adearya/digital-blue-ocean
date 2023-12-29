@@ -4,8 +4,8 @@
     <!-- Header Button -->
             <h1 class="container header-tittle pt-4 fw-bold text-center">Admin</h1>
             <div class="container header-button d-flex justify-content-center gap-2">
-                <a href="" class="btn btn-warning text-white mt-4 col">Status</a>
-                <a href="" class="btn btn-warning text-white mt-4 col">Edit Authorization</a>              
+                <a href="{{ route('status-admin') }}" class="btn btn-warning text-white mt-4 col">Status</a>
+                <a href="#" class="btn btn-warning text-white mt-4 col">Edit Authorization</a>              
             </div>
     <!-- Akhir Header Button -->
     

@@ -33,23 +33,36 @@
   {{-- collection menu --}}
   <div class="container d-flex justify-content-between">
     <div class="ms-auto order-by-results me-4 d-flex gap-3">
-        <p>Order by results:</p>
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="orderByDropdown" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
-            <ul class="dropdown-menu" aria-labelledby="orderByDropdown">
-                <li><a class="dropdown-item" href="#" onclick="changeOrder('Recent First')">Recent First</a></li>
-                <li><a class="dropdown-item" href="#" onclick="changeOrder('Oldest First')">Oldest First</a></li>
-            </ul>
-        </div>
+      <form id="sortForm" action="{{ url('/posts') }}" method="GET">
+        <label for="sort">Order by results:</label>
+        <select name="sort" id="sort" onchange="submitForm()" class="bg-primary text-white p-1">
+            <option value="recent" {{ request('sort') == 'recent' ? 'selected' : '' }}>recent</option>
+            <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>oldest</option>
+        </select>
+    </form>
     </div>
 </div>
 
       
-  <script>
+  {{-- <script>
     function changeOrder(selectedOrder) {
       document.getElementById('orderByDropdown').textContent = selectedOrder;
     }
-  </script>    
+  </script>     --}}
+
+  {{-- <form id="sortForm" action="{{ url('/posts') }}" method="GET">
+    <label for="sort">Order by results:</label>
+    <select name="sort" id="sort" onchange="submitForm()">
+        <option value="recent" {{ request('sort') == 'recent' ? 'selected' : '' }}>Recent</option>
+        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Oldest</option>
+    </select>
+</form> --}}
+
+<script>
+  function submitForm() {
+      document.getElementById('sortForm').submit();
+  }
+</script>
 
   {{-- main content dashboard --}}
   <div class="container bg-main-content mt-3 p-3">

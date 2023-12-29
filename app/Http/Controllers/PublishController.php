@@ -15,6 +15,7 @@ use App\Models\Status;
 use App\Models\PageRange;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class PublishController extends Controller
@@ -35,15 +36,28 @@ class PublishController extends Controller
     $searchTitle = $request->input('title');
     $searchAuthor = $request->input('author');
     $searchYear = $request->input('year');
-    $searchSubjects = $request->input('category');
+    $searchKeyword = $request->input('keyword');
 
+    $searchStatus = $request->input('status');
+    $searchPublication = $request->input('publication');
+    
+    $sortOption = request('sort', 'recent');
+
+    if ($sortOption == 'oldest') {
+        $posts = Publish::oldest('created_at')->paginate(10);
+    } else {
+        $posts = Publish::latest('created_at')->paginate(10);
+    }
+    
     $posts = Publish::latest()
       ->searchByTitle($searchTitle)
       ->searchByAuthor($searchAuthor)
       ->searchByYear($searchYear)
-      ->searchBySubjects($searchSubjects)
+      ->searchByKeyword($searchKeyword)
+      ->searchByStatus($searchStatus)
+      ->searchByPublication($searchPublication)
       ->paginate(10);
-
+      
     return view('dashboard.index', [
       'title' => "All Post",
       'posts' => $posts,
@@ -175,16 +189,15 @@ class PublishController extends Controller
     $file_path = storage_path("app/public/fileUploads/{$file_name}");    
     $file_extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
+    if (auth()->check()) {
+      $item->increment('download_count');
+      auth()->user()->increment('download_count');
+    }
+    
     // Lakukan logika untuk mengirimkan file ke pengguna
     $response = response()->download($file_path, "{$filename}.{$file_extension}");
-
-    // Jika unduhan berhasil, lakukan peningkatan download_count
-    if ($response->getStatusCode() == 200) {        
-        if (auth()->check()) {
-          $item->increment('download_count');
-          auth()->user()->increment('download_count');
-        }
-    }
+      
+    
 
     // Kembalikan response
     return $response;
@@ -227,8 +240,7 @@ public function updateItemSubmissionCenter(Request $request, $deposit) {
   $validatedData = $request->validate([
     'itemTypes' => 'required',            
     'languages' => 'required',
-    'title' => 'required|max:255',
-    'slug' => 'required|max:255',
+    'title' => 'required|max:255',    
     'abstract' => 'required',
     'firstName' => 'required|array',
     'lastName' => 'required|array',
@@ -331,7 +343,7 @@ public function updateItemDeposits(Request $request, $deposit) {
 
   $deposit->update([
     'title' => $postData['title'],
-    'slug' => $postData['slug'],        
+    'slug' => Str::slug(Str::lower($postData['title']), '-'),
     'abstract' => $postData['abstract'],
     'link_file_upload' => $request->input('linkFileUpload'),      
     'link_image' => $request->input('linkImage'),

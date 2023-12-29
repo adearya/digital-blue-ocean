@@ -6,21 +6,15 @@
       <a href="{{ route('dashboard') }}" class="text-primary">Dashboard</a>
       <span class="divider">|</span>
       <a href="{{ route('manage-deposit') }}" class="text-primary">Manage Deposits</a>
-      <span class="divider">|</span>
+      
       @if(auth()->check() && auth()->user()->is_admin == true)
-      <a href="/dashboard/review" class="text-primary">Review</a>
-      <span class="divider">|</span>      
+      <span class="divider">|</span>
+      <a href="/dashboard/review" class="text-primary">Review</a>      
       @if(auth()->check() && auth()->user()->username == 'admindbo')
-      <a href="{{ route('edit-admin') }}" class="text-primary">Admin</a>
-      <span class="divider">|</span>
+      <span class="divider">|</span>      
+      <a href="{{ route('edit-admin') }}" class="text-primary">Admin</a>      
       @endif
-      @endif
-      <a href="{{ route('index-profile') }}" class="text-primary">Profile</a>
-      <span class="divider">|</span>
-      <form action="/logout" method="post" id="logoutForm">
-        @csrf      
-        <a href="#" class="text-primary" onclick="document.getElementById('logoutForm').submit();">Logout</a>
-      </form>
+      @endif                  
     @endauth
   </div>
 </div>
