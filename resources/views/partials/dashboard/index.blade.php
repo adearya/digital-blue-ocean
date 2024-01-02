@@ -85,7 +85,7 @@
               @if ($post->image !== null)
                 <img src="{{ asset('storage/images/' . basename($post->image)) }}" alt="Logo DBO" width="80">
               @else                  
-                <img src="{{ asset('assets/img_coveratm.svg') }}" alt="Logo DBO" width="80">
+                <img src="{{ asset('assets/default_cover.png') }}" alt="Logo DBO" width="80">
               @endif
             </td>
             <td><a href="{{ route('detail', ['slug' => $post->slug]) }}">{{$post->title}}</a></td>

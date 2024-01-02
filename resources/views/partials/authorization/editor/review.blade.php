@@ -56,7 +56,7 @@
 
           @foreach ($collections as $post)
           <tr>
-              <td class="text-center">26 September 2023</td>
+              <td class="text-center">{{ $post->updated_at->format('d F Y') }}</td>
             <td class="text-center">{{ $post->item_types->name }}</td>
             <td>{{ $post->title }}</td>
             <td class="text-center">{{ $post->journal_or_publication_title }}</td>

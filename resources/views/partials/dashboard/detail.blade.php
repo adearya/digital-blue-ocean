@@ -46,7 +46,7 @@
             @endauth
           </p>
         
-        <p class="text-center mt-2">Restricted to Registered users only - Published Version <br>Official Url: <a href="https://att.aptisi.or.id/index.php/att/article/view/313" class="text-break">https://att.aptisi.or.id/index.php/att/article/view/313</a></p>
+        <p class="text-center mt-2">Restricted to Registered users only - {{ $post->statuses->name }} Version <br>Official Url: <a href="{{ $post->official_url }}" class="text-break">{{ $post->official_url }}</a></p>
       </div>
     </div>
   </div>             

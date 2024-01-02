@@ -18,6 +18,8 @@
 </section>
 
 <section class="container bg-contact-us">
+  <form action="{{ url('/send-email') }}" method="post">
+    @csrf
   <div class="row">
     <div class="col-md-6 col-12">
       <div class="form-contact-us mt-5 mb-5 p-3" style="background-color: #D9D9D9; border-radius: 10px;">
@@ -25,32 +27,33 @@
           <div class="col-md-6">
             <div class="mb-3">
               <label for="firstName" class="form-label">First Name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+              <input type="text" class="form-control" name="first_name" id="firstName" placeholder="Enter your first name" required>
             </div>
           </div>
           <div class="col-md-6">
             <div class="mb-3">
               <label for="lastName" class="form-label">Last Name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+              <input type="text" class="form-control" name="last_name" id="lastName" placeholder="Enter your last name" required>
             </div>
           </div>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+          <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email address" required>
         </div>
         <div class="mb-3">
-          <label for="phone" class="form-label">Phone</label>
-          <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+          <label for="phone" class="form-label">Subject</label>
+          <input type="tel" class="form-control" name="subject" id="subject" placeholder="Enter your subject" required>
         </div>
         <div class="mb-3">
           <label for="message" class="form-label">Message</label>
-          <textarea class="form-control" id="message" rows="4" placeholder="Enter your message" required></textarea>
+          <textarea class="form-control" name="message" id="message" rows="4" placeholder="Enter your message" required></textarea>
         </div>
         <div class="mb-3 text-end">
           <button type="submit" class="btn btn-primary" style="width: 30%;">Send</button>
         </div>
       </div>
+    </form>
     </div>
     <div class="col-md-6 col-12">
       <div class="container img-contact-us text-center float-end">
