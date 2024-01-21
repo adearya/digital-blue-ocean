@@ -86,10 +86,10 @@ Digital Blue Ocean dirancang dengan teknologi Laravel sebagai backend, sebuah fr
   ```sh
    php artisan key:generate
   ```
-6. Sesuaikan file .env pada bagian
-   DB_DATABASE=yout_database_name
-   DB_USERNAME=your_user
-   DB_PASSWORD=your_password
+6. Sesuaikan file .env pada bagian<br>
+   DB_DATABASE=yout_database_name<br>
+   DB_USERNAME=your_user<br>
+   DB_PASSWORD=your_password<br>
 7. Migrate dan Seed
   ```sh
    php artisan migrate:fresh --seed
@@ -100,12 +100,14 @@ Digital Blue Ocean dirancang dengan teknologi Laravel sebagai backend, sebuah fr
   ```
 
 ## Usage
+
 1. Load ip address pada browser
    http://127.0.0.1:8000
 
-2. Enjoy with Admin
-   Email     : admindbo@gmail.com
-   Password  : 01101001
+2. Enjoy with Admin<br>
+   Email     : admindbo@gmail.com<br>
+   Password  : 01101001<br>
+   
 ## Contact
 
 <div>
