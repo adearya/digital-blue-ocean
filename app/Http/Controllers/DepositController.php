@@ -1,7 +1,9 @@
 <?php
 
+// Namespace pada direktori Controllers
 namespace App\Http\Controllers;
 
+// Import Models
 use App\Models\Author;
 use App\Models\Deposit;
 use App\Models\Keyword;
@@ -13,23 +15,21 @@ use App\Models\Refereed;
 use App\Models\Status;
 use App\Models\PageRange;
 
+// Import Method Storage, Str, dan Request
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-class DepositController extends Controller
-{
+// Class DepositController
+class DepositController extends Controller {
+
+  // Method Index pada Manage Deposit
   public function indexManageDeposit() {
     $collections = Deposit::latest()->paginate(10);
     return view('items.index.manage-deposits', compact('collections'));      
   }
 
-  public function index() {
-    $deposits = Deposit::with('authors')->get();
-    return view('items.index.manage-deposits', compact('deposits'));      
-  }
-
+  // Method Create pada Manage Deposit
   public function createItemSubmissionCenter() {
     $itemTypes = ItemType::all();
     $languages = Language::all();
@@ -46,8 +46,10 @@ class DepositController extends Controller
     ]);
   }
 
-  public function storeItemSubmissionCenter(Request $request) {    
-    
+  // Method Store pada Manage Deposit
+  public function storeItemSubmissionCenter(Request $request) {
+
+    // Validasi input yang akan dikirim
     $validatedData = $request->validate([
       'itemTypes' => 'required',            
       'languages' => 'required',
@@ -74,6 +76,7 @@ class DepositController extends Controller
       'emailDepositor' => 'sometimes|max:255',
       'reference' => 'sometimes|max:255',
     ]);
+
     // Remove empty values from the 'firstName' array
     $filteredFirstName = array_filter($validatedData['firstName'], 'strlen');
     $filteredLastName = array_filter($validatedData['lastName'], 'strlen');
@@ -86,6 +89,7 @@ class DepositController extends Controller
     $validatedData['email'] = $filteredEmail;
     $validatedData['authorCompany'] = $filteredAuthorCompany;
 
+    // Put input ke Session
     $request->session()->put('post_data', $validatedData);
     
     return redirect()->route('create-item-keywords');

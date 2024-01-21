@@ -31,6 +31,12 @@ class LoginController extends Controller {
     $request->session()->invalidate();
     $request->session()->regenerateToken();
 
+    // Jika berada di middleware auth, redirect ke dashboard
+    if ($request->route()->middleware('auth')) {
+        return redirect()->route('dashboard');
+    }
+
+    // Jika tidak berada di middleware auth, redirect ke dashboard
     return redirect()->back();
   }
 }
