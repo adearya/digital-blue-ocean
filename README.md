@@ -3,9 +3,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-<img src="https://raw.githubusercontent.com/adearya/HostingImages/main/Images/Logos/logo_dbo.svg" alt="Logo" width="80" height="80">
+  <img src="https://raw.githubusercontent.com/adearya/HostingImages/main/Images/Logos/logo_dbo.svg" alt="Logo" width="80" height="80">
 
-<h3 align="center">Digital Blue Ocean</h3>
+  <h3 align="center">Digital Blue Ocean</h3>
   <p align="center">
   Digital Blue Ocean adalah sebuah situs web dokumentasi yang menghadirkan pengalaman penelitian yang luar biasa, fokus pada koleksi jurnal, tesis, dan berbagai sumber daya akademis. Dengan pendekatan inovatif, situs ini menyajikan lingkungan yang memudahkan akses dan penjelajahan terhadap beragam pengetahuan ilmiah. Desainnya yang efisien memungkinkan pengguna untuk dengan cepat menemukan dan mengakses jurnal-jurnal terbaru, tesis terkini, dan dokumen-dokumen penelitian penting lainnya. Sistem pencarian yang canggih memastikan bahwa pengguna dapat mengidentifikasi materi yang relevan dengan mudah, sementara fitur kategorisasi yang cerdas menyederhanakan navigasi dalam berbagai bidang studi. Dengan kemampuan untuk mengunduh dan berbagi dokumen, Digital Blue Ocean tidak hanya menjadi sumber daya intelektual yang kaya, tetapi juga platform kolaboratif yang mendukung pertukaran pengetahuan di antara komunitas peneliti dan akademisi. Ini adalah tempat yang menghadirkan akses terkini dan mudah ke pengetahuan akademis, mendorong pertumbuhan intelektual dan pembelajaran kolaboratif.
   </p>
@@ -90,6 +90,7 @@ Digital Blue Ocean dirancang dengan teknologi Laravel sebagai backend, sebuah fr
    DB_DATABASE=yout_database_name<br>
    DB_USERNAME=your_user<br>
    DB_PASSWORD=your_password<br>
+
 7. Migrate dan Seed
   ```sh
    php artisan migrate:fresh --seed
@@ -101,12 +102,12 @@ Digital Blue Ocean dirancang dengan teknologi Laravel sebagai backend, sebuah fr
 
 ## Usage
 
-1. Load ip address pada browser
+1. Load ip address pada browser<br>
    http://127.0.0.1:8000
 
 2. Enjoy with Admin<br>
-   Email     : admindbo@gmail.com<br>
-   Password  : 01101001<br>
+   Email: admindbo@gmail.com<br>
+   Password: 01101001<br>
    
 ## Contact
 
