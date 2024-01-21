@@ -7,7 +7,7 @@
 
 <h3 align="center">Digital Blue Ocean</h3>
   <p align="center">
-  Digital Blue Ocean adalah sebuah situs web perpustakaan digital yang didukung oleh teknologi Laravel sebagai backend, sebuah framework PHP modern untuk pengembangan web lalu menggunakan database management system MariaDB dan menggunakan Bootstrap sebagai frontend. Dengan pendekatan arsitektur monolitik, situs ini menyatukan semua komponen utamanya ke dalam satu aplikasi besar, menciptakan lingkungan pengembangan yang terintegrasi dan terpusat.
+  Digital Blue Ocean adalah sebuah situs web dokumentasi yang menghadirkan pengalaman penelitian yang luar biasa, fokus pada koleksi jurnal, tesis, dan berbagai sumber daya akademis. Dengan pendekatan inovatif, situs ini menyajikan lingkungan yang memudahkan akses dan penjelajahan terhadap beragam pengetahuan ilmiah. Desainnya yang efisien memungkinkan pengguna untuk dengan cepat menemukan dan mengakses jurnal-jurnal terbaru, tesis terkini, dan dokumen-dokumen penelitian penting lainnya. Sistem pencarian yang canggih memastikan bahwa pengguna dapat mengidentifikasi materi yang relevan dengan mudah, sementara fitur kategorisasi yang cerdas menyederhanakan navigasi dalam berbagai bidang studi. Dengan kemampuan untuk mengunduh dan berbagi dokumen, Digital Blue Ocean tidak hanya menjadi sumber daya intelektual yang kaya, tetapi juga platform kolaboratif yang mendukung pertukaran pengetahuan di antara komunitas peneliti dan akademisi. Ini adalah tempat yang menghadirkan akses terkini dan mudah ke pengetahuan akademis, mendorong pertumbuhan intelektual dan pembelajaran kolaboratif.
   </p>
 </div>
 
@@ -41,24 +41,24 @@
 ### Built With
 
 <div>
-  <a href="<link>">
-    <img src="<badge>" alt="" />
+  <a href="https://www.php.net">
+    <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="" />
   </a>
 </div>
 
 ## Getting Started
 
-description
+Digital Blue Ocean dirancang dengan teknologi Laravel sebagai backend, sebuah framework PHP modern untuk pengembangan web lalu menggunakan database management system MariaDB dan menggunakan Bootstrap sebagai frontend. Dengan pendekatan arsitektur monolitik, situs ini menyatukan semua komponen utamanya ke dalam satu aplikasi besar, menciptakan lingkungan pengembangan yang terintegrasi dan terpusat.
 
 ### Prerequisites
 
 <div>
   <a href="https://laravel.com">
     <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="" />
-  </a>
+  </a><br>
   <a href="https://getbootstrap.com">
     <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" alt="" />
-  </a>
+  </a><br>
   <a href="https://mariadb.org">
     <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white" alt="" />
   </a>
@@ -94,16 +94,16 @@ description
   ```sh
    php artisan migrate:fresh --seed
   ```
-
-## Usage
-1. Run server
+8. Run server
   ```sh
    php artisan serve
   ```
-2. Load ip address pada browser
+
+## Usage
+1. Load ip address pada browser
    http://127.0.0.1:8000
 
-3. Enjoy with Admin
+2. Enjoy with Admin
    Email     : admindbo@gmail.com
    Password  : 01101001
 ## Contact
