@@ -80,7 +80,7 @@ Digital Blue Ocean dirancang dengan teknologi Laravel sebagai backend, sebuah fr
   ```
 4. Copy file env 
   ```sh
-   cp .env_example .env
+   cp .env.example .env
   ```
 5. Generate Key
   ```sh
