@@ -95,7 +95,11 @@ Digital Blue Ocean dirancang dengan teknologi Laravel sebagai backend, sebuah fr
   ```sh
    php artisan migrate:fresh --seed
   ```
-8. Run server
+8. Storage Link
+  ```sh
+   php artisan storage:link
+  ```
+9. Run server
   ```sh
    php artisan serve
   ```

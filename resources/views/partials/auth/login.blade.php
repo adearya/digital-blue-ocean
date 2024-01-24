@@ -24,7 +24,7 @@
           </form>
           <p class="text-center separator-line mt-3">or</p>
           <div class="d-flex justify-content-center gap-3">
-            <a href="/">
+            <a href="/auth/google">
               <img width="30px" src="{{ asset('assets/img_google.svg') }}" alt="Gmail Logo" class="img-fluid">
             </a>
             <a href="/">

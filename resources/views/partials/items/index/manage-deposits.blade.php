@@ -17,44 +17,47 @@
           <th class="text-center"></th>
         </tr>
         @foreach ($collections as $post)
-          <tr>
+    @if ($post->user_upload == auth()->user()->name)
+        <tr>
             <td class="text-center">{{ $post->updated_at->format('d F Y') }}</td>
             <td class="text-center">{{ $post->item_types->name }}</td>
             <td>{{ $post->title }}</td>
             <td class="text-center">{{ $post->journal_or_publication_title }}</td>
             <td class="text-center" style="white-space: nowrap">
-              @foreach ($post->authors as $item)
-              {{$item->firstName}} {{$item->lastName}} <br>
-              @endforeach
+                @foreach ($post->authors as $item)
+                    {{$item->firstName}} {{$item->lastName}} <br>
+                @endforeach
             </td>    
             <td class="text-center">{{ $post->number }}</td>
             <td class="text-center">{{ $post->volume }}</td>
             <td class="text-center bg-white">
-              <div class="d-flex gap-2">
-                <a href="{{ route('detail-deposit', ['slug' => $post->slug]) }}">
-                  <img src="{{ asset('assets/img_viewItem.svg') }}" alt="View Item">
-                </a>                
-                <form action="/dashboard/manage-deposit/{{ $post->slug }}" method="post">                                    
-                  @method('delete')
-                  @csrf                               
-                  <button type="submit"  style="border: none; background-color: transparent">
-                    <img src="{{ asset('assets/img_removeItem.svg') }}" alt="Remove Item">
-                  </button>
-                </form>
-                <a href="{{ route('edit-item-submission-center', ['deposit' => $post->slug ]) }}">
-                  <img src="{{ asset('assets/img_editItem.svg') }}" alt="Edit Item">                
-                </a>                                
-              </div>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('detail-deposit', ['slug' => $post->slug]) }}">
+                        <img src="{{ asset('assets/img_viewItem.svg') }}" alt="View Item">
+                    </a>                
+                    <form action="/dashboard/manage-deposit/{{ $post->slug }}" method="post">                                    
+                        @method('delete')
+                        @csrf                               
+                        <button type="submit"  style="border: none; background-color: transparent">
+                            <img src="{{ asset('assets/img_removeItem.svg') }}" alt="Remove Item">
+                        </button>
+                    </form>
+                    <a href="{{ route('edit-item-submission-center', ['deposit' => $post->slug ]) }}">
+                        <img src="{{ asset('assets/img_editItem.svg') }}" alt="Edit Item">                
+                    </a>                                
+                </div>
             </td>
-          </tr>
-        @endforeach
+        </tr>
+    @endif
+@endforeach
+
       </table>
     </div>
   </div>
   <div class="text-center p-3">
-    @if ($collections->isNotEmpty())
-      <p>Displaying results {{ $collections->firstItem() }} to {{ $collections->lastItem() }} of {{ $collections->total() }}</p>
-      <p>{{ $collections->links() }}</p>
+    @if ($posts_count->isNotEmpty())
+      <p>Displaying results {{ $posts_count->firstItem() }} to {{ $posts_count->lastItem() }} of {{ $posts_count->total() }}</p>
+      <p>{{ $posts_count->links() }}</p>
     @else        
       <p>Displaying results is empty</p>
     @endif

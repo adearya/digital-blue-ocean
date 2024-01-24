@@ -35,6 +35,7 @@ return new class extends Migration {
       $table->string('link_file_upload')->nullable();
       $table->string('image')->nullable();
       $table->string('link_image')->nullable();
+      $table->string('user_upload');
       $table->timestamp('published_at')->nullable();
       $table->timestamps();
     });

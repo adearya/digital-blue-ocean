@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\GoogleController;
 
 // Import Models
 use App\Models\Post;
@@ -21,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 // Send Email (Experiment)
 Route::post('/send-email', [EmailController::class, 'sendEmail']);
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 // Update Collection Publish
 Route::get('/dashboard/item-submission-center/{deposit}', [PublishController::class, 'editItemSubmissionCenter'])->middleware('auth')->name('edit-item-submission-center-dashboard');

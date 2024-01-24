@@ -39,7 +39,7 @@
             <option value="recent" {{ request('sort') == 'recent' ? 'selected' : '' }}>recent</option>
             <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>oldest</option>
         </select>
-    </form>
+      </form>
     </div>
 </div>
 
