@@ -2,7 +2,7 @@
 <div class="container bg-white search-collections text-center p-3 rounded">
   <div class="header mt-2">
     <h1 class="fw-bold">Search for collections on Digital Blue Ocean</h1>
-    <form action="/posts" method="get" class="mb-3">
+    <form action="/dashboard" method="get" class="mb-3">
       <div class="d-flex gap-2">
         <input type="text" class="form-control" name="title" id="title" aria-describedby="title" placeholder="Title">
         <input type="text" class="form-control" name="author" id="author" aria-describedby="author" placeholder="Author">

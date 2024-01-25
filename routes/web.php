@@ -106,8 +106,8 @@ Route::get('/', function () {
   })->name('landing_page');
 
 // Dashboard
-Route::get('/posts', [PublishController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [PublishController::class, 'index'])->name('dashboard');
 
 // Detail Page
-Route::get('/manage-deposit/{slug}', [DepositController::class, 'show'])->name('detail-deposit');
-Route::get('/posts/{slug}', [PublishController::class, 'show'])->name('detail');
+Route::get('/dashboard/manage-deposit/{slug}', [DepositController::class, 'show'])->name('detail-deposit');
+Route::get('/dashboard/{slug}', [PublishController::class, 'show'])->name('detail');

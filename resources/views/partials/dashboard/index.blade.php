@@ -33,7 +33,7 @@
   {{-- collection menu --}}
   <div class="container d-flex justify-content-between">
     <div class="ms-auto order-by-results me-4 d-flex gap-3">
-      <form id="sortForm" action="{{ url('/posts') }}" method="GET">
+      <form id="sortForm" action="/dashboard" method="GET">
         <label for="sort">Order by results:</label>
         <select name="sort" id="sort" onchange="submitForm()" class="bg-primary text-white p-1">
             <option value="recent" {{ request('sort') == 'recent' ? 'selected' : '' }}>recent</option>

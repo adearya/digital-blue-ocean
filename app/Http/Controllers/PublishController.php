@@ -41,7 +41,14 @@ class PublishController extends Controller
     $searchStatus = $request->input('status');
     $searchPublication = $request->input('publication');
     
-    $posts = Publish::latest()
+    
+
+    $sortOption = $request->input('sort', 'recent');
+
+    if ($sortOption == 'oldest') {
+        $posts = Publish::oldest('created_at')->paginate(10);
+    } else {
+      $posts = Publish::latest()
       ->searchByTitle($searchTitle)
       ->searchByAuthor($searchAuthor)
       ->searchByYear($searchYear)
@@ -49,13 +56,6 @@ class PublishController extends Controller
       ->searchByStatus($searchStatus)
       ->searchByPublication($searchPublication)
       ->paginate(10);
-
-    $sortOption = $request->input('sort', 'recent');
-
-    if ($sortOption == 'oldest') {
-        $posts = Publish::oldest('created_at')->paginate(10);
-    } else {
-        $posts = Publish::latest('created_at')->paginate(10);
     }
       
     return view('dashboard.index', [
