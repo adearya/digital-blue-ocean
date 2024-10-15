@@ -26,7 +26,7 @@ class DepositController extends Controller {
   // Method Index pada Manage Deposit
   public function indexManageDeposit() {
     $collections = Deposit::latest()->paginate(10);
-    $collections_count = Deposit::where('user_upload', '=', auth()->user()->name)->latest()->paginate(10);
+    $collections_count = Deposit::where('user_upload', '=', auth()->user()->email)->latest()->paginate(10);
 
     return view('items.index.manage-deposits', [
       'collections' => $collections,
@@ -176,7 +176,7 @@ class DepositController extends Controller {
       'day' => $postData['day'],
       'email_depositor' => $postData['emailDepositor'],
       'reference' => $postData['reference'],
-      'user_upload' => auth()->user()->name,
+      'user_upload' => auth()->user()->email,
     ]);
 
     // // Inisialisasi array untuk menyimpan ID penulis

@@ -17,7 +17,7 @@
           <th class="text-center"></th>
         </tr>
         @foreach ($collections as $post)
-    @if ($post->user_upload == auth()->user()->name)
+    @if ($post->user_upload == auth()->user()->email)
         <tr>
             <td class="text-center">{{ $post->updated_at->format('d F Y') }}</td>
             <td class="text-center">{{ $post->item_types->name }}</td>
