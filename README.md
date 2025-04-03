@@ -1,129 +1,160 @@
 <a name="readme-top"></a>
 
-<!-- PROJECT LOGO -->
+<!-- digital-blue-ocean -->
 <br />
-<div align="center">
-  <img src="https://raw.githubusercontent.com/adearya/HostingImages/main/Images/Logos/logo_dbo.svg" alt="Logo" width="80" height="80">
 
-  <h3 align="center">Digital Blue Ocean</h3>
-  <p align="center">
-  Digital Blue Ocean adalah sebuah situs web dokumentasi yang menghadirkan pengalaman penelitian yang luar biasa, fokus pada koleksi jurnal, tesis, dan berbagai sumber daya akademis. Dengan pendekatan inovatif, situs ini menyajikan lingkungan yang memudahkan akses dan penjelajahan terhadap beragam pengetahuan ilmiah. Desainnya yang efisien memungkinkan pengguna untuk dengan cepat menemukan dan mengakses jurnal-jurnal terbaru, tesis terkini, dan dokumen-dokumen penelitian penting lainnya. Sistem pencarian yang canggih memastikan bahwa pengguna dapat mengidentifikasi materi yang relevan dengan mudah, sementara fitur kategorisasi yang cerdas menyederhanakan navigasi dalam berbagai bidang studi. Dengan kemampuan untuk mengunduh dan berbagi dokumen, Digital Blue Ocean tidak hanya menjadi sumber daya intelektual yang kaya, tetapi juga platform kolaboratif yang mendukung pertukaran pengetahuan di antara komunitas peneliti dan akademisi. Ini adalah tempat yang menghadirkan akses terkini dan mudah ke pengetahuan akademis, mendorong pertumbuhan intelektual dan pembelajaran kolaboratif.
-  </p>
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/adearya/digital-blue-ocean/HEAD/raw/images/github_user_logo.jpeg" alt="Github User Logo" width="80" height="80">
+
+<h3 align="center">Digital Blue Ocean</h3>
+    <p align="center">
+        I created this project to facilitate structured and accessible academic documentation, allowing researchers and students to manage and retrieve research materials efficiently.
+    </p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
+    <summary>Table of Contents</summary>
+    <ol>
+        <li>
+            <a href="#about-the-project">About The Project</a>
+            <ul>
+                <li><a href="#built-with">Built With</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#getting-started">Getting Started</a>
+            <ul>
+                <li><a href="#prerequisites">Prerequisites</a></li>
+                <li><a href="#installation">Installation</a></li>
+            </ul>
+        </li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ol>
 </details>
 
-<!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-![App Screenshot](https://raw.githubusercontent.com/adearya/HostingImages/main/Images/Screenshots/ss_dbo.png)
+![App Screenshot](https://raw.githubusercontent.com/adearya/digital-blue-ocean/HEAD/raw/images/desktop_screenshot.png)
+
+<p align="center">
+    This project leverages Laravel for backend management, Bootstrap for responsive UI design, and MariaDB for efficient data storage. It enables users to upload, categorize, and search for academic content easily while maintaining a clean and user-friendly interface.
+</p>
 
 ### Built With
+![Laravel](https://img.shields.io/badge/Laravel-%23FF2D20.svg?logo=laravel&logoColor=white) <br />
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=fff) <br />
+![MariaDB](https://img.shields.io/badge/MariaDB-003545?logo=mariadb&logoColor=white) <br />
+<!-- add_built_with -->
 
-<div>
-  <a href="https://www.php.net">
-    <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="" />
-  </a>
-</div>
 
 ## Getting Started
 
-Digital Blue Ocean dirancang dengan teknologi Laravel sebagai backend, sebuah framework PHP modern untuk pengembangan web lalu menggunakan database management system MariaDB dan menggunakan Bootstrap sebagai frontend. Dengan pendekatan arsitektur monolitik, situs ini menyatukan semua komponen utamanya ke dalam satu aplikasi besar, menciptakan lingkungan pengembangan yang terintegrasi dan terpusat.
+<p>
+    Users can explore academic resources through a categorized system, perform advanced searches, and manage their documentation with a streamlined interface. The platform is designed to be expandable, allowing integration with additional features as needed.
+</p>
 
 ### Prerequisites
+<p>Before getting started, ensure that your system meets all the necessary requirements to run this project smoothly. Below is a list of prerequisites that need to be installed.</p>
 
-<div>
-  <a href="https://laravel.com">
-    <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="" />
-  </a><br>
-  <a href="https://getbootstrap.com">
-    <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" alt="" />
-  </a><br>
-  <a href="https://mariadb.org">
-    <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white" alt="" />
-  </a>
-</div>
+<ul>
+	<li>laravel >= 10.29.0</li>
+	<li>bootstrap >= 5.3.2</li>
+	<li>mariadb >= 11.6.2</li>
+    <!-- add_prerequisites -->
+</ul>
 
 ### Installation
+<p>Follow these steps to install and configure the project on your system. The installation process is designed to be straightforward for both beginners and experienced users.</p>
 
-1. Clone the repo
-  ```sh
-   git clone https://github.com/adearya/DigitalBlueOcean.git
-  ```
-2. Change directory
-  ```sh
-   cd DigitalBlueOcean/
-  ```
-3. Install packages
-  ```sh
-   composer install
-  ```
-4. Copy file env 
-  ```sh
-   cp .env.example .env
-  ```
-5. Generate Key
-  ```sh
-   php artisan key:generate
-  ```
-6. Sesuaikan file .env pada bagian<br>
-   DB_DATABASE=yout_database_name<br>
-   DB_USERNAME=your_user<br>
-   DB_PASSWORD=your_password<br>
+Clone the repo
+```sh
+git clone https://github.com/adearya/digital-blue-ocean.git
+```
+Change directory
+```sh
+cd digital-blue-ocean/
+```
+To install packages
+```sh
+composer install
+```
+Copy file env
+```sh
+cp .env.example .env
+```
+Generate Key
+```sh
+php artisan key:generate
+```
+Fill in the database env var according to your database
+```sh
+DB_DATABASE=<database_name>, DB_USERNAME=<user>, DB_PASSWORD=<password>
+```
+Migrate and Seed
+```sh
+php artisan migrate:fresh --seed
+```
+Storage Link
+```sh
+php artisan storage:link
+```
+<!-- add_installation -->
 
-7. Migrate dan Seed
-  ```sh
-   php artisan migrate:fresh --seed
-  ```
-8. Storage Link
-  ```sh
-   php artisan storage:link
-  ```
-9. Run server
-  ```sh
-   php artisan serve
-  ```
 
 ## Usage
 
-1. Load ip address pada browser<br>
-   http://127.0.0.1:8000
+<p>Once the installation is complete, refer to this section for basic usage instructions. Make sure all prerequisites are met before running the application.</p>
 
-2. Enjoy with Admin<br>
-   Email: admindbo@gmail.com<br>
-   Password: 01101001<br>
-   
+
+To run this project
+```sh
+php artisan serve
+```
+Open a browser to see the output
+```sh
+http://localhost:8000
+```
+Enjoy with admin
+```sh
+Email: admindbo@gmail.com, Password: 01101001
+```
+<!-- add_usage -->
+
+
 ## Contact
 
+<p>If you have any questions, encounter any issues, or would like to contribute to this project, feel free to reach out through the contact information below</p>
+
 <div>
-  <a href="https://www.instagram.com/adearyabmtra">
-      <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white" alt="Instagram" />
-  </a>
+    <a href="https://linkedin.com/in/ade-arya-bimantara">
+        <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white">
+    </a>
 </div>
 <div>
-  <a href="mailto:ade.aryabimantara@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
-  </a>
+    <a href="mailto:ade.aryabimantara@gmail.com">
+        <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
+    </a>
 </div>
+<div>
+    <a href="https://www.instagram.com/adearyabmtra">
+        <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white" alt="Instagram" />
+    </a>
+</div>
+<div>
+    <a href="https://t.me/adearyabimantara">
+        <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white">
+    </a>
+</div>
+
+<br />
+<br />
+
+<p align="center">Thanks for checking out this Trash Project XD</p>
+
+<br />
 
 <p align="center">(<a href="#readme-top">back to top</a>)</p>
