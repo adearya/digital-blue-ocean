@@ -61,9 +61,9 @@
 <p>Before getting started, ensure that your system meets all the necessary requirements to run this project smoothly. Below is a list of prerequisites that need to be installed.</p>
 
 <ul>
-	<li>laravel >= 10.29.0</li>
-	<li>bootstrap >= 5.3.2</li>
-	<li>mariadb >= 11.6.2</li>
+    <li>php >= 8.3.15</li>
+    <li>mariadb >= 11.6.2</li>
+    <li>composer >= 2.8.4</li>
     <!-- add_prerequisites -->
 </ul>
 
@@ -92,9 +92,11 @@ php artisan key:generate
 ```
 Fill in the database env var according to your database
 ```sh
-DB_DATABASE=<database_name>, DB_USERNAME=<user>, DB_PASSWORD=<password>
+DB_DATABASE=<database_name>
+DB_USERNAME=<user>
+DB_PASSWORD=<password>
 ```
-Migrate and Seed
+Migrate and Seed this project
 ```sh
 php artisan migrate:fresh --seed
 ```
@@ -117,10 +119,6 @@ php artisan serve
 Open a browser to see the output
 ```sh
 http://localhost:8000
-```
-Enjoy with admin
-```sh
-Email: admindbo@gmail.com, Password: 01101001
 ```
 <!-- add_usage -->
 
